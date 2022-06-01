@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>OrderCreate</title>
+</head>
+<body>
+<form action="#" th:action="@{/order-create}" th:object="${order}" method="post">
+<!--    <label for="orderId">Order id</label>-->
+<!--    <input type="text" th:field="*{orderId}" id="orderId" placeholder="Order_Id">-->
+
+    <label for="userId">User id</label>
+    <input type="text" th:field="*{userId}" id="userId" placeholder="User_Id">
+
+    <label for="date">Data of Order</label>
+    <input type="text" th:field="*{date}" id="date" placeholder="Date">
+
+    <label for="conditionId">Condition Id</label>
+    <input type="text" th:field="*{conditionId}" id="conditionId" placeholder="Condition Id">
+
+    <label for="comment">Comment</label>
+    <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+
+    <input type="submit" value="Create Order">
+</form>
+</body>
+</html>

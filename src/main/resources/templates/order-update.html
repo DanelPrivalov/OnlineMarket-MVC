@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Update</title>
+</head>
+<body>
+<form action="#" th:action="@{/order-update}" th:object="${order}" method="post">
+    <label for="orderId">Order id</label>
+    <input readonly type="text" th:field="*{orderId}" id="orderId" placeholder="Order_Id">
+    <br/>
+    <label for="userId">User id</label>
+    <input readonly type="text" th:field="*{userId}" id="userId" placeholder="User_Id">
+    <br/>
+    <label for="date">Data of Order</label>
+    <input type="text" th:field="*{date}" id="date" placeholder="Date">
+    <br/>
+    <label for="conditionId">Condition Id</label>
+    <input type="text" th:field="*{conditionId}" id="conditionId" placeholder="Condition Id">
+    <br/>
+    <label for="comment">Comment</label>
+    <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+    <br/>
+    <input type="submit" value="Update Order">
+
+</form>
+</body>
+</html>
