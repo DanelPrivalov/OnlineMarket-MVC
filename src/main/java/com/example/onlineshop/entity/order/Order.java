@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 //import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer orderId;
 
     @Column(name="user_id")
@@ -26,6 +28,9 @@ public class Order {
 
     @Column(name="date")
     private LocalDate date; //разобраться с Date LocalDate и тд
+
+ @OneToMany(cascade = CascadeType.ALL)
+ private List<ProductInOrder> productInOrderList;//разобраться в каком случаедвойные связи
 
     @Column(name="condition_id")
     private Integer conditionId;
