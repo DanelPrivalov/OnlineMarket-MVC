@@ -15,9 +15,18 @@ import javax.persistence.*;
 @Table(name="condition")
 public class Condition {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer conditionId;
     @Column(name="condition_name")
     private String conditionName;
 
+
+
+    public String getConditionName() {
+        return conditionName;
+    }
+
+    public void setConditionName(String conditionName) {
+        this.conditionName = conditionName;
+    }
 }

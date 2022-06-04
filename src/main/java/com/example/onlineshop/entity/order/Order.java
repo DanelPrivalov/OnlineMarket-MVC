@@ -1,5 +1,6 @@
 package com.example.onlineshop.entity.order;
 
+import com.example.onlineshop.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,30 +17,100 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name="order")
+@Table(name = "order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer orderId;
 
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
-    @Column(name="date")
+    @ManyToOne
+    private Condition condition;
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
+    @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 
- @OneToMany(cascade = CascadeType.ALL)
- private List<ProductInOrder> productInOrderList;//разобраться в каком случаедвойные связи
+    @OneToMany(mappedBy = "order")
+    private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
 
-    @Column(name="condition_id")
+    @Column(name = "condition_id")
     private Integer conditionId;
 
-    @Column(name="comment")
+    @Column(name = "comment")
     private String comment;
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public List<ProductInOrder> getProductInOrder() {
+        return productInOrder;
+    }
+
+    public void setProductInOrder(List<ProductInOrder> productInOrder) {
+        this.productInOrder = productInOrder;
+    }
+
+    public Integer getConditionId() {
+        return conditionId;
+    }
+
+    public void setConditionId(Integer conditionId) {
+        this.conditionId = conditionId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public Order(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

@@ -9,7 +9,7 @@
     <h2 th:case="null">No orders found!</h2>
     <div th:case="*">
         <h2>Orders</h2>
-        <table>
+        <table border="1">
             <thead>
             <tr>
                 <th>order_id</th>
@@ -33,6 +33,7 @@
         </table>
     </div>
     <p><a href="/order-create">Create order</a></p>
+    <p><a href="/orders">Back</a></p>
 </div>
 </body>
 
