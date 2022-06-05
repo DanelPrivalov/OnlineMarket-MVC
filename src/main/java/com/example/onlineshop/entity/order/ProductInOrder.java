@@ -30,7 +30,7 @@ public class ProductInOrder {
     @Column(name = "quantity")
     private Integer quantity;
 
-@ManyToOne(fetch = FetchType.LAZY)
+@ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name="order_id", insertable = false, updatable = false)
 private Order order;
 

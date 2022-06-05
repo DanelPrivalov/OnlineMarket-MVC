@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-@AllArgsConstructor
-
 @Getter
 @Setter
 @Entity
@@ -21,7 +19,6 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer orderId;
 
     @Column(name = "user_id")
@@ -31,24 +28,14 @@ public class Order {
 //    private User user;//раскомментить когда добавят юзера
 
     @ManyToOne(fetch = FetchType.LAZY)
-   @JoinColumn(name = "condition_id", insertable = false, updatable = false)
+    @JoinColumn(name = "condition_id", insertable = false, updatable = false)
     private Condition condition;
-
-    public Condition getCondition() {
-        return condition;
-    }
-
-    public void setCondition(Condition condition) {
-        this.condition = condition;
-    }
 
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 
     @OneToMany(mappedBy = "order")
     private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
-
-
 
     @Column(name = "comment")
     private String comment;
@@ -93,6 +80,14 @@ public class Order {
         this.comment = comment;
     }
 
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
     public Order(Integer orderId) {
         this.orderId = orderId;
     }
@@ -104,6 +99,10 @@ public class Order {
 //    public void setUser(User user) {
 //        this.user = user;
 //    }
+
+    public Order(LocalDate date) {
+        this.date = LocalDate.now();
+    }
 
     public Order() {
     }
