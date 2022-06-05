@@ -1,6 +1,6 @@
 package com.example.onlineshop.entity.order;
 
-import com.example.onlineshop.entity.product.Product;
+import com.example.onlineshop.entity.product.Products;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,9 +34,9 @@ public class ProductInOrder {
 @JoinColumn(name="order_id", insertable = false, updatable = false)
 private Order order;
 
-//    @ManyToOne
-//    @JoinColumn(name="product_id", insertable = false, updatable = false)
-//    private Product product;
+    @ManyToOne
+    @JoinColumn(name="product_id", insertable = false, updatable = false)
+    private Products products;
 
     public Integer getProductId() {
         return productId;
