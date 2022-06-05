@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
 @Entity
@@ -20,7 +20,8 @@ public class Condition {
     @Column(name="condition_name")
     private String conditionName;
 
-
+    public Condition() {
+    }
 
     public String getConditionName() {
         return conditionName;

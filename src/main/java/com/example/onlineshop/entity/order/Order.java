@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
 @Entity
@@ -113,5 +113,7 @@ public class Order {
         this.user = user;
     }
 
+    public Order() {
+    }
 }
 

@@ -9,7 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
 @Entity
@@ -70,4 +70,6 @@ private Order order;
         this.order = order;
     }
 
+    public ProductInOrder() {
+    }
 }
