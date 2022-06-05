@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-@AllArgsConstructor
-
 @Getter
 @Setter
 @Entity
@@ -21,34 +19,23 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer orderId;
 
     @Column(name = "user_id")
     private Integer userId;
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+//    private User user;//раскомментить когда добавят юзера
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "condition_id", insertable = false, updatable = false)
     private Condition condition;
-
-    public Condition getCondition() {
-        return condition;
-    }
-
-    public void setCondition(Condition condition) {
-        this.condition = condition;
-    }
 
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 
     @OneToMany(mappedBy = "order")
     private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
-
-    @Column(name = "condition_id")
-    private Integer conditionId;
 
     @Column(name = "comment")
     private String comment;
@@ -85,14 +72,6 @@ public class Order {
         this.productInOrder = productInOrder;
     }
 
-    public Integer getConditionId() {
-        return conditionId;
-    }
-
-    public void setConditionId(Integer conditionId) {
-        this.conditionId = conditionId;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -101,16 +80,28 @@ public class Order {
         this.comment = comment;
     }
 
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
     public Order(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
+    public Order(LocalDate date) {
+        this.date = LocalDate.now();
     }
 
     public Order() {

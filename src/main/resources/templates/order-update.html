@@ -16,12 +16,17 @@
     <input type="text" th:field="*{date}" id="date" placeholder="Date">
     <br/>
     <label for="conditionId">Condition Id</label>
-    <input type="text" th:field="*{conditionId}" id="conditionId" placeholder="Condition Id">
+    <input type="text" th:field="*{condition.conditionName}" id="conditionId" placeholder="Condition Id">
     <br/>
     <label for="comment">Comment</label>
     <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
     <br/>
-    <input type="submit" value="Update Order">
+
+<!--    <label for="finalPrice">Comment</label>-->
+<!--    <input type="text" th:field="*{productInOrder.finalPrice}" id="finalPrice" placeholder="finalPrice">-->
+<!--    <br/>-->
+
+      <input type="submit" value="Update Order">
 
 </form>
 </body>
