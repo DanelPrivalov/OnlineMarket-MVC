@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div>
+    <h2>Update Products</h2>
+    <div>
+        <div>
+            <form action="#" th:action="@{/update/{id}(id=${products.id})}" th:object="${products}" method="post">
+                <div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div>
+                        <label for ="description">Description</label>
+                        <input type="text" th:field="*{description}" id="description" placeholder="Description">
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                    </div>
+                    <div>
+                        <label for="images" class="col-form-label">Images</label>
+                        <input type="text" th:field="*{images}" id="images" placeholder="Images">
+                        <span th:if="${#fields.hasErrors('images')}" th:errors="*{images}"></span>
+                    </div>
+                    <div>
+                        <label for="price">Price</label>
+                        <input type="text" th:field="*{price}" id="price" placeholder="Price">
+                        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" ></span>
+                    </div>
+                    <div>
+                        <label for="availability">Availability</label>
+                        <input type="text" th:field="*{availability}" id="availability" placeholder="Availability">
+                        <span th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></span>
+                    </div>
+                    <div>
+                        <label for="SEO_attributes">Availability</label>
+                        <input type="text" th:field="*{SEOAttributes}" id="SEO_attributes" placeholder="SEO_attributes">
+                        <span th:if="${#fields.hasErrors('SEO_attributes')}" th:errors="*{SEOAttributes}"></span>
+                    </div>
+                    <div>
+                        <label for="product_type_id">Availability</label>
+                        <input type="text" th:field="*{productTypeId}" id="product_type_id" placeholder="product_type_id">
+                        <span th:if="${#fields.hasErrors('product_type_id')}" th:errors="*{productTypeId}"></span>
+                    </div>
+                    <div>
+                        <label for="rating_id">Availability</label>
+                        <input type="text" th:field="*{ratingId}" id="rating_id" placeholder="rating_id">
+                        <span th:if="${#fields.hasErrors('rating_id')}" th:errors="*{ratingId}"></span>
+                    </div>
+                    <div>
+                        <label for="sale_id">Availability</label>
+                        <input type="text" th:field="*{saleId}" id="sale_id" placeholder="rating_id">
+                        <span th:if="${#fields.hasErrors('sale_id')}" th:errors="*{saleId}"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <input type="submit" value="Update Human">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
