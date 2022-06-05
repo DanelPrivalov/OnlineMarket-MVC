@@ -1,4 +1,4 @@
-package com.example.onlineshop.entity.product.boardGame;
+package com.example.onlineshop.entity.product;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +10,11 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "age")
-public class Age {
+@Table(name="country")
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @Column(name = "name")
+    private Integer countryId;
+    @Column(name="name")
     private String name;
 }
