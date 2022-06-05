@@ -26,11 +26,12 @@ public class Order {
 
     @Column(name = "user_id")
     private Integer userId;
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+//    private User user;//раскомментить когда добавят юзера
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "condition_id", insertable = false, updatable = false)
     private Condition condition;
 
     public Condition getCondition() {
@@ -47,8 +48,7 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
 
-    @Column(name = "condition_id")
-    private Integer conditionId;
+
 
     @Column(name = "comment")
     private String comment;
@@ -85,14 +85,6 @@ public class Order {
         this.productInOrder = productInOrder;
     }
 
-    public Integer getConditionId() {
-        return conditionId;
-    }
-
-    public void setConditionId(Integer conditionId) {
-        this.conditionId = conditionId;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -105,13 +97,13 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Order() {
     }

@@ -30,13 +30,13 @@ public class ProductInOrder {
     @Column(name = "quantity")
     private Integer quantity;
 
-@ManyToOne
+@ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name="order_id", insertable = false, updatable = false)
 private Order order;
 
-    @ManyToOne
-    @JoinColumn(name="product_id", insertable = false, updatable = false)
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name="product_id", insertable = false, updatable = false)
+//    private Product product;
 
     public Integer getProductId() {
         return productId;
