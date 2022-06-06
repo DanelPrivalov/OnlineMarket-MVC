@@ -1,11 +1,14 @@
 package com.example.onlineshop.entity.product.boardGame;
 
+import com.example.onlineshop.entity.product.Products;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -14,46 +17,53 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "board_games")
-public class BoardGame {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer boardGameId;
-    @Getter
-    @Setter
-    @Column(name = "product_id")
-    private Integer productId;
-    @Getter
-    @Setter
-    @Column(name = "producer_game_id")
-    private Integer producerGameId;
-    @Getter
-    @Setter
-    @Column(name = "difficulty_level")
-    private  Integer difficultyLevelId;
-    @Getter
-    @Setter
-    @Column(name = "genre_id")
-    private  Integer genreId;
-    @Getter
-    @Setter
-    @Column(name = "age_id")
-    private Integer ageId;
-    @Getter
-    @Setter
+public class BoardGame extends Products {
+
+
+    @Column(name = "board_game_id")
+    private Long boardGameId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producer_game_id")
+    private BoardGameProducer boardGameProducer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "difficulty_level_id")
+    private DifficultyLevel difficultyLevel;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "age_id")
+    private Age age;
+
     @Column(name = "players_num_min")
     private Integer playersNumMin;
-    @Getter
-    @Setter
+
     @Column(name = "players_num_max")
-    private Integer getPlayersNumMax;
-    @Getter
-    @Setter
-    @Column(name = "play_time_id")
-    private  Integer playTimeId;
-    @Getter
-    @Setter
-    @Column(name = "options_id")
-    private Integer optionId;
+    private Integer playersNumMax;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "play_time_id")
+    private PlayTime playTime;
 
+//    @Column(name = "options_id")
+//    private Long optionId;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "option_boardGame",
+            joinColumns = {@JoinColumn(name = "board_game_id")},
+            inverseJoinColumns = {@JoinColumn(name = "option_id")}
+    )
+    List<Option> options = new ArrayList<>();
+
+    public List<Option> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<Option> options) {
+        this.options = options;
+    }
 }

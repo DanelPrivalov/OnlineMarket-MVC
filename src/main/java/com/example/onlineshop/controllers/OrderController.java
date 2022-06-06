@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.List;
 
 @Controller
@@ -18,6 +17,7 @@ public class OrderController {
     public OrderController(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
+
     @GetMapping("/order")
     public String findAll(Model model) {
         List<Order> orders = orderRepository.findAll();
@@ -37,13 +37,13 @@ public class OrderController {
     }
 
     @GetMapping("/order-delete/{orderId}")
-    public String deleteOrder(@PathVariable("orderId") Integer orderId) {
+    public String deleteOrder(@PathVariable("orderId") Long orderId) {
         orderRepository.deleteById(orderId);
         return "redirect:/order";
     }
 
     @GetMapping("/order-update/{orderId}")
-    public String updateOrderForm(@PathVariable("orderId") Integer orderId, Model model) {
+    public String updateOrderForm(@PathVariable("orderId") Long orderId, Model model) {
         Order order = orderRepository.getReferenceById(orderId);
         model.addAttribute("order", order);
         return "order-update";
@@ -51,7 +51,6 @@ public class OrderController {
 
     @PostMapping("/order-update")
     public String updateOrder(Order order) {
-
         orderRepository.save(order);
         return "redirect:/order";
     }

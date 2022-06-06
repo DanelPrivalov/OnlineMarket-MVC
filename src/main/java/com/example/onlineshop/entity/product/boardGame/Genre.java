@@ -1,15 +1,13 @@
 package com.example.onlineshop.entity.product.boardGame;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 
+@Entity
 @Table(name = "genre")
 public class Genre {
     @Id
@@ -17,7 +15,6 @@ public class Genre {
     private Integer genreId;
 
     @Column(name = "name")
-
      private String name;
 
     public Integer getGenreId() {
