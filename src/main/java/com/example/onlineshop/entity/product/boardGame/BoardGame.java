@@ -21,7 +21,7 @@ public class BoardGame extends Products {
 
 
     @Column(name = "board_game_id")
-    private Integer boardGameId;
+    private Long boardGameId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producer_game_id")
@@ -43,14 +43,14 @@ public class BoardGame extends Products {
     private Integer playersNumMin;
 
     @Column(name = "players_num_max")
-    private Integer getPlayersNumMax;
+    private Integer playersNumMax;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "play_time_id")
     private PlayTime playTime;
 
-    @Column(name = "options_id")
-    private Integer optionId;
+//    @Column(name = "options_id")
+//    private Long optionId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "option_boardGame",

@@ -17,12 +17,12 @@ import javax.persistence.*;
 public class ProductInOrder {
     @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "order_id")
-    private Integer orderId;
+    private Long orderId;
     @Column(name = "product_id")
-    private Integer productId;
+    private Long productId;
 
     @Column(name = "final_price")
     private Integer finalPrice;
@@ -34,11 +34,11 @@ public class ProductInOrder {
 @JoinColumn(name="order_id", insertable = false, updatable = false)
 private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="product_id", insertable = false, updatable = false)
     private Products products;
 
-    public Integer getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
@@ -50,7 +50,7 @@ private Order order;
         return quantity;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

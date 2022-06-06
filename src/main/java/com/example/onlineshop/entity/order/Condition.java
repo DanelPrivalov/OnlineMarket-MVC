@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer conditionId;
+    private Long conditionId;
     @Column(name="condition_name")
     private String conditionName;
 
