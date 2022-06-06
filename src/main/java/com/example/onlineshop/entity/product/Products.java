@@ -37,11 +37,9 @@ public class Products {
     @Column(name = "availability")
     private int availability;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "SEO_attributes")
     private SEO seo;
-
-    @Column(name = "SEO_attributes")
-    private String SEOAttributes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "product_type_id")
@@ -50,7 +48,7 @@ public class Products {
     @Column(name = "rating_id")
     private int ratingId;
 
-    @Column(name = "sale_id")
-    private int saleId;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "sales")
+    private Sales sales;
 }
