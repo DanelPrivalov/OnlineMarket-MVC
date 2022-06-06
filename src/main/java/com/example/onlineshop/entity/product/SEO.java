@@ -18,9 +18,8 @@ public class SEO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SEO_attributes_id")
-    private Long SEOAttribute;
+    private Long SEOAttributeId;
 
     @Column(name = "name")
     private String name;
-
 }
