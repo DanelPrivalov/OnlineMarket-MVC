@@ -1,6 +1,7 @@
 package com.example.onlineshop.entity.product.drink;
 
 import com.example.onlineshop.entity.product.Products;
+import com.example.onlineshop.entity.product.Sales;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +19,13 @@ import javax.persistence.*;
 public class Drinks extends Products{
 
     @Column(name = "drink_id")
-    private String drinkId;
+    private Long drinkId;
 
-    @Column(name = "producer_drink_id")
-    private String producerDrinkId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "producer_drink_id")
+    private DrinkProducer drinkProducer;
 
-    @Column(name = "drink_type_id")
-    private String drinkTypeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "drink_type_id")
+    private DrinkType drinkType;
 }

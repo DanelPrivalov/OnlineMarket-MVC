@@ -23,8 +23,8 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String findAll(Model model){
-        List<Products> users = productsRepository.findAll();
-        model.addAttribute("users",users);
+        List<Products> products = productsRepository.findAll();
+        model.addAttribute("products",products);
         return "show-products";
     }
 
@@ -50,7 +50,6 @@ public class ProductsController {
         if (result.hasErrors()) {
             return "add-products";
         }
-
         productsRepository.save(products);
         return "redirect:/index";
     }
