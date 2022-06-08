@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @AllArgsConstructor
-
 @Getter
 @Setter
 @Entity
@@ -19,10 +18,10 @@ public class ProductInOrder {
    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "order_id")
-    private Long orderId;
-    @Column(name = "product_id")
-    private Long productId;
+//    @Column(name = "order_id")
+//    private Long orderId;
+//    @Column(name = "product_id")
+//    private Long productId;
 
     @Column(name = "final_price")
     private Integer finalPrice;
@@ -38,9 +37,9 @@ private Order order;
     @JoinColumn(name="product_id", insertable = false, updatable = false)
     private Products products;
 
-    public Long getProductId() {
-        return productId;
-    }
+//    public Long getProductId() {
+//        return productId;
+//    }
 
     public Integer getFinalPrice() {
         return finalPrice;
@@ -50,9 +49,9 @@ private Order order;
         return quantity;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+//    public void setProductId(Long productId) {
+//        this.productId = productId;
+//    }
 
     public void setFinalPrice(Integer finalPrice) {
         this.finalPrice = finalPrice;

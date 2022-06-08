@@ -23,21 +23,21 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String findAll(Model model){
-        List<Products> users = productsRepository.findAll();
+                List<Products> users = productsRepository.findAll();
         model.addAttribute("users",users);
         return "show-products";
     }
 
-    @GetMapping("/")
-    public String homePage(Model model){
-        return "redirect:/index";
-    }
-
-    @GetMapping("/index")
-    public String showProductsList(Model model) {
-        model.addAttribute("products", productsRepository.findAll());
-        return "show-products";
-    }
+//    @GetMapping("/")
+//    public String homePage(Model model){
+//        return "redirect:/index";
+//    }
+//
+//    @GetMapping("/index")
+//    public String showProductsList(Model model) {
+//        model.addAttribute("products", productsRepository.findAll());
+//        return "show-products";
+//    }
 
     @GetMapping("/signup")
     public String showSignUpForm(Products products) {
