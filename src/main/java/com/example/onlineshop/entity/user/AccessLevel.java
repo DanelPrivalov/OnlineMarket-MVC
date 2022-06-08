@@ -1,4 +1,9 @@
 package com.example.onlineshop.entity.user;
 
-public class AccessLevel {
+enum Level {
+    ADMIN,
+    MANAGER,
+    CUSTOMER
 }
+
+//перенести в user?

@@ -1,8 +1,10 @@
 package com.example.onlineshop.entity.product;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 
 @Getter
@@ -10,14 +12,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "country")
-public class Country {
+@Table(name = "Sales")
+public class Sales {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "country_id")
-    private Long countryId;
+    @Column(name = "Sails_id")
+    private Long SaleId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "value")
+    private String value;
 }
-

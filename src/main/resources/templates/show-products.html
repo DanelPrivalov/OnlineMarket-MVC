@@ -34,17 +34,17 @@
                         <td th:text="${product.description}"></td>
                         <td th:text="${product.price}"></td>
                         <td th:text="${product.availability}"></td>
-                        <td th:text="${product.SEOAttributes}"></td>
+                        <td th:text="${product.seo.name}"></td>
                         <td th:text="${product.productType.name}"></td>
                         <td th:text="${product.ratingId}"></td>
-                        <td th:text="${product.saleId}"></td>
-                        <td><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-primary"><i></i></a></td>
-                        <td><a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-primary"><i></i></a></td>
+                        <td th:text="${product.sales.value}"></td>
+                        <td><a th:href="@{/edit/{id}(id=${product.id})}">Edit<i></i></a></td>
+                        <td><a th:href="@{/delete/{id}(id=${product.id})}">Delete<i></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p><a href="/signup"><i></i></a></p>
+            <p><a href="/signup">Create product<i></i></a></p>
         </div>
     </div>
 </div>
