@@ -17,7 +17,7 @@ public class Sales {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Sails_id")
-    private Long SaleId;
+    private Long saleId;
 
     @Column(name = "value")
     private String value;

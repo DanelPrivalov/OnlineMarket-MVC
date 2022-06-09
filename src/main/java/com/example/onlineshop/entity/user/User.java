@@ -18,8 +18,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     @Column(name = "last_name")//, nullable = false)
     private String lastName;
+    @Column(name = "first_name")//, nullable = false)
+    private String firstName;
+
+  
 
     @Column(name = "login")//, nullable = false)
     private String login;
