@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @AllArgsConstructor
-
 @Getter
 @Setter
 @Entity
