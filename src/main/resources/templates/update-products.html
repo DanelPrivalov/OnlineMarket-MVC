@@ -24,7 +24,7 @@
                         <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
                     </div>
                     <div>
-                        <label for="images" class="col-form-label">Images</label>
+                        <label for="images">Images</label>
                         <input type="text" th:field="*{images}" id="images" placeholder="Images">
                         <span th:if="${#fields.hasErrors('images')}" th:errors="*{images}"></span>
                     </div>
@@ -39,24 +39,24 @@
                         <span th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></span>
                     </div>
                     <div>
-                        <label for="SEO_attributes">Availability</label>
-                        <input type="text" th:field="*{SEOAttributes}" id="SEO_attributes" placeholder="SEO_attributes">
-                        <span th:if="${#fields.hasErrors('SEO_attributes')}" th:errors="*{SEOAttributes}"></span>
+                        <label for="seo.SEOAttributeId">SEO attributes</label>
+                        <input type="text" th:field="*{seo.SEOAttributeId}" id="seo.SEOAttributeId" placeholder="SEO attributes">
+                        <span th:if="${#fields.hasErrors('seo.SEOAttributeId')}" th:errors="*{SEOAttributes}"></span>
                     </div>
                     <div>
-                        <label for="product_type_id">Availability</label>
-                        <input type="text" th:field="*{productTypeId}" id="product_type_id" placeholder="product_type_id">
-                        <span th:if="${#fields.hasErrors('product_type_id')}" th:errors="*{productTypeId}"></span>
+                        <label for="productType.productTypeId">Product Type</label>
+                        <input type="text" th:field="*{productType.productTypeId}" id="productType.productTypeId" placeholder="Product Type">
+                        <span th:if="${#fields.hasErrors('productType.productTypeId')}" th:errors="*{productTypeId}"></span>
                     </div>
                     <div>
-                        <label for="rating_id">Availability</label>
-                        <input type="text" th:field="*{ratingId}" id="rating_id" placeholder="rating_id">
-                        <span th:if="${#fields.hasErrors('rating_id')}" th:errors="*{ratingId}"></span>
+                        <label for="ratingId">Sale</label>
+                        <input type="text" th:field="*{ratingId}" id="ratingId" placeholder="rating Id">
+                        <span th:if="${#fields.hasErrors('ratingId')}" th:errors="*{ratingId}"></span>
                     </div>
                     <div>
-                        <label for="sale_id">Availability</label>
-                        <input type="text" th:field="*{saleId}" id="sale_id" placeholder="rating_id">
-                        <span th:if="${#fields.hasErrors('sale_id')}" th:errors="*{saleId}"></span>
+                        <label for="sales.saleId">Rating</label>
+                        <input type="text" th:field="*{sales.saleId}" id="sales.saleId" placeholder="sale Id">
+                        <span th:if="${#fields.hasErrors('sales.saleId')}" th:errors="*{saleId}"></span>
                     </div>
                 </div>
                 <div>
