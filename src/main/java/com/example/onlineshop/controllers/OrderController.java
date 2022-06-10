@@ -1,7 +1,9 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
+import com.example.onlineshop.entity.order.ProductInOrder;
 import com.example.onlineshop.repository.OrderRepository;
+import com.example.onlineshop.repository.ProductInOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,12 @@ import java.util.List;
 @Controller
 public class OrderController {
     private final OrderRepository orderRepository;
+    private final ProductInOrderRepository productInOrderRepository;
+
     @Autowired
-    public OrderController(OrderRepository orderRepository) {
+    public OrderController(OrderRepository orderRepository, ProductInOrderRepository productInOrderRepository) {
         this.orderRepository = orderRepository;
+        this.productInOrderRepository = productInOrderRepository;
     }
 
     @GetMapping("/order")
@@ -45,7 +50,9 @@ public class OrderController {
     @GetMapping("/order-update/{orderId}")
     public String updateOrderForm(@PathVariable("orderId") Long orderId, Model model) {
         Order order = orderRepository.getReferenceById(orderId);
+       // ProductInOrder productInOrder=productInOrderRepository.getReferenceById(orderId);
         model.addAttribute("order", order);
+    //    model.addAttribute("productInOrder", productInOrder);
         return "order-update";
     }
 

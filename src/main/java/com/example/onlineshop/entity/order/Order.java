@@ -27,7 +27,7 @@ public class Order {
 //    @JoinColumn(name = "user_id", insertable = false, updatable = false)
 //    private User user;//раскомментить когда добавят юзера
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "condition_id", insertable = false, updatable = false)
     private Condition condition;
 

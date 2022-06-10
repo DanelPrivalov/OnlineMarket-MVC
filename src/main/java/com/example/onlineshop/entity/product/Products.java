@@ -20,35 +20,35 @@ public class Products {
     @Id
     @Column(name = "product_id", unique = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
 
     @Column(name = "name")
-    private String name;
+    protected String name;
 
     @Column(name = "description")
-    private String description;
+    protected String description;
 
     @Column(name = "images")
-    private String images;
+    protected String images;
 
     @Column(name = "price")
-    private int price;
+    protected int price;
 
     @Column(name = "availability")
-    private int availability;
+    protected int availability;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "SEO_attributes")
-    private SEO seo;
+    protected SEO seo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "product_type_id")
-    private ProductType productType;
+    protected ProductType productType;
 
     @Column(name = "rating_id")
-    private int ratingId;
+    protected int ratingId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "sales")
-    private Sales sales;
+    protected Sales sales;
 }

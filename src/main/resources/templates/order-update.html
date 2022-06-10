@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Order Update</title>
 </head>
 <body>
 <form action="#" th:action="@{/order-update}" th:object="${order}" method="post">
+
     <label for="orderId">Order id</label>
     <input readonly type="text" th:field="*{orderId}" id="orderId" placeholder="Order_Id">
     <br/>
@@ -22,12 +23,21 @@
     <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
     <br/>
 
-<!--    <label for="finalPrice">Comment</label>-->
-<!--    <input type="text" th:field="*{productInOrder.finalPrice}" id="finalPrice" placeholder="finalPrice">-->
-<!--    <br/>-->
 
-      <input type="submit" value="Update Order">
+<!--    <label for="finalPrice">finalPrice</label>-->
 
+<!--        <input type="text" th:each="prIO : ${productInOrder}" th:field="*{prIO.finalPrice}" id="finalPrice" placeholder="FinalPrice">-->
+<!--        <br/>-->
+
+
+
+    <!--    <td th:each="bGOption : ${boardGame.options}" th:text="${bGOption.name}"></td>-->
+    <!--    <label for="finalPrice">Comment</label>-->
+    <!--    <input type="text" th:field="*{productInOrder.finalPrice}" id="finalPrice" placeholder="finalPrice">-->
+    <!--    <br/>-->
+
+    <input type="submit" value="Update Order">
+    <!--    </div>-->
 </form>
 </body>
 </html>

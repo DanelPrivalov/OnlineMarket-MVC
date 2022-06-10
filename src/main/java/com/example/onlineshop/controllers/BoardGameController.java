@@ -1,8 +1,10 @@
 package com.example.onlineshop.controllers;
 
 
+import com.example.onlineshop.entity.product.Products;
 import com.example.onlineshop.entity.product.boardGame.BoardGame;
 import com.example.onlineshop.repository.BoardGameRepository;
+import com.example.onlineshop.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +17,18 @@ import java.util.List;
 @Controller
 public class BoardGameController {
     private final BoardGameRepository boardGameRepository;
+    private final ProductsRepository productsRepository;
 @Autowired
-    public BoardGameController(BoardGameRepository boardGameRepository) {
+    public BoardGameController(BoardGameRepository boardGameRepository, ProductsRepository productsRepository) {
         this.boardGameRepository = boardGameRepository;
-    }
+    this.productsRepository = productsRepository;
+}
     @GetMapping("/bg")
     public String findAll(Model model) {
         List<BoardGame> boardGames = boardGameRepository.findAll();
-        model.addAttribute("boardGames", boardGames);
+        List<Products> products=productsRepository.findAll();
+               model.addAttribute("boardGames", boardGames);
+               model.addAttribute("products",products);
         return "board-games";
     }
 
