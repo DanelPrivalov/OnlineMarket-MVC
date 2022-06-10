@@ -6,23 +6,40 @@
 </head>
 <body>
 <h1>Список всех пользователей</h1>
-<table border="7" align="center" width="80%" cellspacing="0">
-    <tr>
-        <th>id пользователя</th>
-        <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Логин</th>
-        <th>Пароль</th>
-        <th>Город</th>
-    </tr>
-    <tr>
-        <td>ячейка</td>
-        <td>ячейка</td>
-        <td>ячейка</td>
-        <td>ячейка</td>
-        <td>ячейка</td>
-        <td>ячейка</td>
-    </tr>
-</table>
+    <div th:switch="${users}">
+        <div>
+            <div>
+                <h2 th:case="null">No users yet!</h2>
+                <div th:case="*">
+                    <h2>Users</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>id пользователя</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Логин</th>
+                            <th>Пароль</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.firstName}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.login}"></td>
+                            <td th:text="${user.password}"></td>
+
+                            <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit<i></i></a></td>
+                            <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete<i></i></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><a href="/users/createuser">Create a new user</a></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

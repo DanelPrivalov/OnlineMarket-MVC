@@ -2,10 +2,12 @@ package com.example.onlineshop.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+
+import lombok.NoArgsConstructor;
 import java.util.Set;
+
 
 //@Data
 @NoArgsConstructor
@@ -72,6 +74,16 @@ public class User {
     @Column(name = "discount")
     private double discount; //customer
 
+
+
+    public User(Long id, String firstName, String lastName, String login, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
@@ -135,6 +147,5 @@ public class User {
     public void setDiscount(double discount) {
         this.discount = discount;
     }
-
 
 }

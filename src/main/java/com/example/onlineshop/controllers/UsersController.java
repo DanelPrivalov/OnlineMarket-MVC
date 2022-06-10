@@ -1,6 +1,5 @@
 package com.example.onlineshop.controllers;
 
-import com.example.onlineshop.entity.product.Products;
 import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,39 +13,46 @@ import java.util.List;
 
 
 @Controller
-public class UserController {
+@RequestMapping ("/users")
+public class UsersController {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UsersController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-//    @GetMapping ("/createuser")
-//    public String createUser (){
-//        return "create-user";
-//    }
-
-    @GetMapping ("/createuser")
-    public String createUser (@RequestParam("name") String name){
-        System.out.println(name);
-        return "create-user";
-    }
-
-    @GetMapping("/users")
-    public String findAll(Model model){
-        List<User> users = userRepository.findAll();
-        model.addAttribute("users",users);
+    @GetMapping ()
+    public String showUserList (Model model){
+        List <User> users = userRepository.findAll();
+        model.addAttribute("users", users);
         return "users-list";
     }
 
-    @PostMapping("/adduser")
+//    @GetMapping ("/{id}")
+//    public String showCertainUser (@PathVariable("id") Long id, Model model){
+//        return "create-user";
+//    }
+
+//    @GetMapping ("/createuser")
+//    public String createUser (@RequestParam(value = "name", required = false) String name, Model model){
+//        model.addAttribute("greeting", "Hello," + name);
+//        return "create-user";
+//    }
+
+
+    @GetMapping("/signup")
+    public String showSignUpForm(User user) {
+        return "create-user";
+    }
+
+    @PostMapping("/createuser")
     public String addUser(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "create-user";
         }
 
         userRepository.save(user);
-        return "redirect:/users-list";
+        return "redirect:/users";
     }
 }

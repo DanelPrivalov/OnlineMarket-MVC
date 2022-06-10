@@ -5,30 +5,49 @@
     <title>Create a new user</title>
 </head>
 <body>
-<h1> Создать новый аккаунт </h1>
-<p> Введите ваши данные </p>
+
 <div>
-    <form>
+    <h2>Create a new user</h2>
+    <div>
         <div>
-            <div>
-                <label> Введите имя
-                    <input placeholder="Иван"></label>
-                <br>
-                <label>Введите фамилию
-                    <input  placeholder="Иванов"></label>
-                <br>
-                <label>Введите дату рождения
-                    <input placeholder="01.01.2000"></label>
-                <br>
-                <select>
-                    <option>Выберите город</option>
-                    <option>Санкт-Петербург</option>
-                    <option>Москва</option>
-                </select>
-            </div>
-            <button>Сохранить</button>
-        </div>
-    </form>
+            <form action="#" th:action="@{users/createuser}" th:object="${users}" method="post">
+                <div>
+                    <div>
+                        <label for="name">Введите имя</label>
+                        <input type="text" th:field="*{firstName}" id="name" placeholder="Иван">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div>
+                        <label for="secondName">Введите фамилию</label>
+                        <input type="text" th:field="*{secondName}" id="secondName" placeholder="Иванов">
+                        <span th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"></span>
+                    </div>
+                    <div>
+                        <label for="dateOfBirth">Введите дату рождения</label>
+                        <input type="text" th:field="*{dateOfBirth}" id="dateOfBirth" placeholder="01.01.2000">
+                        <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
+                    </div>
+                    <div>
+                        <label for="login">Введите логин</label>
+                        <input type="text" th:field="*{login}" id="login">
+                        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                    </div>
+                    <div>
+                        <label for="password">Введите пароль</label>
+                        <input type="text" th:field="*{password}" id="password">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </div>
+
+                </div>
+                <div>
+                    <input type="submit" value="Добавить">
+                    <br>
+                    <a href="/users">Перейти к списку пользователей</a>
+                </div>
+
+        </form>
+    </div>
+</div>
 </div>
 
 </body>
