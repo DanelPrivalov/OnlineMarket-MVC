@@ -1,7 +1,9 @@
 package com.example.onlineshop.entity.user;
 
 import lombok.Data;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -40,4 +42,23 @@ public class User {
 
     @Column(name = "discount")
     private double discount; //customer
+
+
+    public User(Long id, String firstName, String lastName, String login, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+    }
+
+//    {
+//        ArrayList<User> users = new ArrayList<>();
+//        users.add(new User(1L, "Romeo", "Montaque", "romeomont", "123"));
+//        users.add(new User(2L, "Juliet", "Capuletti", "julietca", "1234"));
+//    }
+
+//    public ArrayList<User> index (){
+//        return users;
+//    }
 }
