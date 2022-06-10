@@ -1,6 +1,9 @@
 package com.example.onlineshop.controllers;
 import javax.validation.Valid;
 import com.example.onlineshop.entity.product.Products;
+import com.example.onlineshop.repository.BoardGameRepository;
+import com.example.onlineshop.repository.CollectableFiguresRepository;
+import com.example.onlineshop.repository.DrinksRepository;
 import com.example.onlineshop.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,16 @@ import java.util.List;
 @Controller
 public class ProductsController {
     private final ProductsRepository productsRepository;
+    private final DrinksRepository drinksRepository;
+    private final BoardGameRepository boardGameRepository;
+    private final CollectableFiguresRepository collectableFiguresRepository;
 
     @Autowired
-    public ProductsController(ProductsRepository productsRepository) {
+    public ProductsController(ProductsRepository productsRepository, DrinksRepository drinksRepository, BoardGameRepository boardGameRepository, CollectableFiguresRepository collectableFiguresRepository) {
         this.productsRepository = productsRepository;
+        this.drinksRepository = drinksRepository;
+        this.boardGameRepository = boardGameRepository;
+        this.collectableFiguresRepository = collectableFiguresRepository;
     }
 
     @GetMapping("/products")
@@ -37,6 +46,24 @@ public class ProductsController {
     public String showProductsList(Model model) {
         model.addAttribute("products", productsRepository.findAll());
         return "show-products";
+    }
+
+    @GetMapping("/drinks")
+    public String showDrinks(Model model) {
+        model.addAttribute("drinks", drinksRepository.findAll());
+        return "show-drinks";
+    }
+
+    @GetMapping("/games")
+    public String showGames(Model model) {
+        model.addAttribute("games", boardGameRepository.findAll());
+        return "show-games";
+    }
+
+    @GetMapping("/figures")
+    public String showFigures(Model model) {
+        model.addAttribute("figures", collectableFiguresRepository.findAll());
+        return "show-figures";
     }
 
     @GetMapping("/signup")

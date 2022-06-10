@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div th:switch="${games}">
+    <div>
+        <div>
+            <h2 th:case="null">No games</h2>
+            <div th:case="*">
+                <h2>Board games</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Descripton</th>
+                        <th>Price</th>
+                        <th>Availability</th>
+                        <th>SEO_attributes</th>
+                        <th>Product_type_id</th>
+                        <th>Rating_id</th>
+                        <th>Sale_id</th>
+                        <th>Board_game_id</th>
+                        <th>Game_producer</th>
+                        <th>Difficulty_level</th>
+                        <th>Genre</th>
+                        <th>Age</th>
+                        <th>Players_num_min</th>
+                        <th>Players_num_max</th>
+                        <th>Play_time</th>
+<!--                        <th>Options</th>-->
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="game : ${games}">
+                        <td th:text="${game.name}"></td>
+                        <td th:text="${game.description}"></td>
+                        <td th:text="${game.price}"></td>
+                        <td th:text="${game.availability}"></td>
+                        <td th:text="${game.seo.name}"></td>
+                        <td th:text="${game.productType.name}"></td>
+                        <td th:text="${game.ratingId}"></td>
+                        <td th:text="${game.sales.value}"></td>
+                        <td th:text="${game.boardGameId}"></td>
+                        <td th:text="${game.boardGameProducer.name}"></td>
+                        <td th:text="${game.difficultyLevel.name}"></td>
+                        <td th:text="${game.genre.name}"></td>
+                        <td th:text="${game.age.name}"></td>
+                        <td th:text="${game.playersNumMin}"></td>
+                        <td th:text="${game.playersNumMax}"></td>
+                        <td th:text="${game.playTime.name}"></td>
+<!--                        <td th:text="${game.options.name}"></td>-->
+                        <td><a th:href="@{/edit/{id}(id=${game.id})}">Edit<i></i></a></td>
+                        <td><a th:href="@{/delete/{id}(id=${game.id})}">Delete<i></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="/signup">Create game<i></i></a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

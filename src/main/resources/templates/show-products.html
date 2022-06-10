@@ -10,7 +10,7 @@
 <div th:switch="${products}">
     <div>
         <div>
-            <h2 th:case="null">No humans yet!</h2>
+            <h2 th:case="null">No products yet!</h2>
             <div th:case="*">
                 <h2>Products</h2>
                 <table>
@@ -45,6 +45,9 @@
                 </table>
             </div>
             <p><a href="/signup">Create product<i></i></a></p>
+            <p><a href="/drinks">See drinks<i></i></a></p>
+            <p><a href="/games">See board games<i></i></a></p>
+            <p><a href="/figures">See figures<i></i></a></p>
         </div>
     </div>
 </div>

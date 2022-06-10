@@ -19,7 +19,6 @@ import java.util.List;
 @Table(name = "board_games")
 public class BoardGame extends Products {
 
-
     @Column(name = "board_game_id")
     private Long boardGameId;
 

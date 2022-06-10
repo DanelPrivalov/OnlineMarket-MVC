@@ -20,22 +20,22 @@ import javax.persistence.*;
 public class CollectableFigures extends Products {
 
     @Column(name = "collectable_figures_id")
-    private Long CollectableFiguresId;
+    private Long collectableFiguresId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "collectable_figures_producer_id")
     private CollectableFiguresProducer collectableFiguresProducer;
 
     @Column(name = "height")
-    private int Height;
+    private int height;
 
     @Column(name = "width")
-    private int Width;
+    private int width;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "fandom_id")
     private Fandom fandom;
 
     @Column(name = "flexibility")
-    private boolean Flexibility;
+    private boolean flexibility;
 }

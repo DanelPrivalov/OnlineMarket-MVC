@@ -23,7 +23,7 @@ public class BoardGameController {
     public String findAll(Model model) {
         List<BoardGame> boardGames = boardGameRepository.findAll();
         model.addAttribute("boardGames", boardGames);
-        return "board-games";
+        return "show-games";
     }
 
     @GetMapping("/bg-create")
