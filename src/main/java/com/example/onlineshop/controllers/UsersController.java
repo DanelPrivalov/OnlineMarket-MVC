@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -34,20 +32,20 @@ public class UsersController {
 //        return "create-user";
 //    }
 
-//    @GetMapping ("/createuser")
+//    @GetMapping ("/new")
 //    public String createUser (@RequestParam(value = "name", required = false) String name, Model model){
 //        model.addAttribute("greeting", "Hello," + name);
 //        return "create-user";
 //    }
 
-
-    @GetMapping("/signup")
-    public String showSignUpForm(User user) {
+    @GetMapping ("/new")
+    public String createUser (Model model){
+        model.addAttribute("user", new User());
         return "create-user";
     }
 
     @PostMapping("/createuser")
-    public String addUser(@Valid User user, BindingResult result, Model model) {
+    public String addUser(@ModelAttribute("user") User user, BindingResult result) {
         if (result.hasErrors()) {
             return "create-user";
         }
