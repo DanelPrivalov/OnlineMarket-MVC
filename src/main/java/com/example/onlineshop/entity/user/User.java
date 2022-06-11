@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 
-//@Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -23,6 +23,7 @@ public class User {
 
     @Column(name = "last_name")//, nullable = false)
     private String lastName;
+
     @Column(name = "first_name")//, nullable = false)
     private String firstName;
 
