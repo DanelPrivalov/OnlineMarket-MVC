@@ -1,43 +1,52 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
-import com.example.onlineshop.entity.order.ProductInOrder;
+import com.example.onlineshop.entity.product.Products;
 import com.example.onlineshop.repository.OrderRepository;
-import com.example.onlineshop.repository.ProductInOrderRepository;
+import com.example.onlineshop.repository.ProductsRepository;
+import com.example.onlineshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import java.util.List;
 
+//@RequestMapping("/order") для того, чтобы повесить /ордер на все методы
 @Controller
 public class OrderController {
     private final OrderRepository orderRepository;
-    private final ProductInOrderRepository productInOrderRepository;
+    private final UserRepository userRepository;
+    private final ProductsRepository productsRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, ProductInOrderRepository productInOrderRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductsRepository productsRepository) {
         this.orderRepository = orderRepository;
-        this.productInOrderRepository = productInOrderRepository;
+        this.userRepository = userRepository;
+        this.productsRepository = productsRepository;
     }
 
     @GetMapping("/order")
     public String findAll(Model model) {
         List<Order> orders = orderRepository.findAll();
         model.addAttribute("orders", orders);
-        return "orders";
+        return "orders"; // список заказов
     }
 
     @GetMapping("/order-create")
-    public String createOrderForm(Order order) {
+    public String createOrderForm(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("products", productsRepository.findAll());
+        model.addAttribute("order", new Order());
         return "order-create";
     }
 
     @PostMapping("/order-create")
-    public String createOrder(Order order) {
+    public String createOrder(Order order, Model model, Products product) {
         orderRepository.save(order);
+        model.addAttribute("orders", orderRepository.findAll());
         return "redirect:/order";
     }
 
@@ -50,15 +59,14 @@ public class OrderController {
     @GetMapping("/order-update/{orderId}")
     public String updateOrderForm(@PathVariable("orderId") Long orderId, Model model) {
         Order order = orderRepository.getReferenceById(orderId);
-       // ProductInOrder productInOrder=productInOrderRepository.getReferenceById(orderId);
         model.addAttribute("order", order);
-    //    model.addAttribute("productInOrder", productInOrder);
         return "order-update";
     }
 
     @PostMapping("/order-update")
-    public String updateOrder(Order order) {
+    public String updateOrder(Order order, Model model) {
         orderRepository.save(order);
+        model.addAttribute("orders", orderRepository.findAll());
         return "redirect:/order";
     }
 }
