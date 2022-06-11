@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 
 @Controller
-@RequestMapping ("/users")
+@RequestMapping("/users")
 public class UsersController {
     private final UserRepository userRepository;
 
@@ -20,9 +22,9 @@ public class UsersController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping ()
-    public String showUserList (Model model){
-        List <User> users = userRepository.findAll();
+    @GetMapping()
+    public String showUserList(Model model) {
+        List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "users-list";
     }
@@ -38,8 +40,8 @@ public class UsersController {
 //        return "create-user";
 //    }
 
-    @GetMapping ("/new")
-    public String createUser (Model model){
+    @GetMapping("/new")
+    public String createUser(Model model) {
         model.addAttribute("user", new User());
         return "create-user";
     }
@@ -53,4 +55,34 @@ public class UsersController {
         userRepository.save(user);
         return "redirect:/users";
     }
+
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable("id") long id, Model model) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("user", user);
+
+        return "user-update";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id, BindingResult result) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "user-update";
+        }
+
+        userRepository.save(user);
+
+        return "redirect:/users";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        userRepository.delete(user);
+
+        return "redirect:/users";
+    }
+
 }
