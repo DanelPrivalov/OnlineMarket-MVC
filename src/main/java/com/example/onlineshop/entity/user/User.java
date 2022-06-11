@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 
-//@Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -23,6 +23,7 @@ public class User {
 
     @Column(name = "last_name")//, nullable = false)
     private String lastName;
+
     @Column(name = "first_name")//, nullable = false)
     private String firstName;
 
@@ -74,15 +75,14 @@ public class User {
     @Column(name = "discount")
     private double discount; //customer
 
-
-
-    public User(Long id, String firstName, String lastName, String login, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-    }
+//
+//    public User(Long id, String firstName, String lastName, String login, String password) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.login = login;
+//        this.password = password;
+//    }
 
     public Long getId() {
         return id;
