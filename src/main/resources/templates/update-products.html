@@ -11,7 +11,7 @@
     <h2>Update Products</h2>
     <div>
         <div>
-            <form action="#" th:action="@{/update/{id}(id=${products.id})}" th:object="${products}" method="post">
+            <form action="#" th:action="@{/update/{id}(id=${product.id})}" th:object="${product}" method="post">
                 <div>
                     <div>
                         <label for="name">Name</label>

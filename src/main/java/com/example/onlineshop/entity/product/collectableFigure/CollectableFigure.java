@@ -1,8 +1,6 @@
-package com.example.onlineshop.entity.product.collectableFigures;
+package com.example.onlineshop.entity.product.collectableFigure;
 
-import com.example.onlineshop.entity.product.Products;
-import com.example.onlineshop.entity.product.drink.DrinkProducer;
-import com.example.onlineshop.entity.product.drink.DrinkType;
+import com.example.onlineshop.entity.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +15,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "collectable_figures")
 
-public class CollectableFigures extends Products {
+public class CollectableFigure extends Product {
 
     @Column(name = "collectable_figures_id")
     private Long collectableFiguresId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "collectable_figures_producer_id")
-    private CollectableFiguresProducer collectableFiguresProducer;
+    private CollectableFigureProducer collectableFigureProducer;
 
     @Column(name = "height")
     private int height;

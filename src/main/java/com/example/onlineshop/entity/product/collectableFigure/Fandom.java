@@ -1,4 +1,4 @@
-package com.example.onlineshop.entity.product.collectableFigures;
+package com.example.onlineshop.entity.product.collectableFigure;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

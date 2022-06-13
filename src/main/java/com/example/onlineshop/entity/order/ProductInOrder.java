@@ -1,9 +1,8 @@
 package com.example.onlineshop.entity.order;
 
-import com.example.onlineshop.entity.product.Products;
+import com.example.onlineshop.entity.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -36,7 +35,7 @@ private Order order;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="product_id", insertable = false, updatable = false)
-    private Products products;
+    private Product product;
 
 //    public Long getProductId() {
 //        return productId;

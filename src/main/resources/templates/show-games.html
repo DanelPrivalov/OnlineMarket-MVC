@@ -32,7 +32,7 @@
                         <th>Players_num_min</th>
                         <th>Players_num_max</th>
                         <th>Play_time</th>
-<!--                        <th>Options</th>-->
+                        <th>Options</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -55,7 +55,7 @@
                         <td th:text="${game.playersNumMin}"></td>
                         <td th:text="${game.playersNumMax}"></td>
                         <td th:text="${game.playTime.name}"></td>
-<!--                        <td th:text="${game.options.name}"></td>-->
+                        <td  th:each="gameop : ${game.options}" th:text="${gameop.name}"></td>
                         <td><a th:href="@{/edit/{id}(id=${game.id})}">Edit<i></i></a></td>
                         <td><a th:href="@{/delete/{id}(id=${game.id})}">Delete<i></i></a></td>
                     </tr>
