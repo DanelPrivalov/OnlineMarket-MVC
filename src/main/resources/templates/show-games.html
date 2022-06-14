@@ -13,8 +13,15 @@
         <table border="1">
             <thead>
             <tr>
-                <th>board_game_id</th>
                 <th>product_id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>SEO_attributes</th>
+                <th>Product_type_id</th>
+                <th>Rating_id</th>
+                <th>Sale_id</th>
                 <th>producer_game_id</th>
                 <th>difficulty_level_id</th>
                 <th>genre_id</th>
@@ -27,8 +34,15 @@
             </thead>
             <tbody>
             <tr th:each="boardGame : ${boardGames}">
-                <td th:text="${boardGame.boardGameId}"></td>
                 <td th:text="${boardGame.id}"></td>
+                <td th:text="${boardGame.name}"></td>
+                <td th:text="${boardGame.description}"></td>
+                <td th:text="${boardGame.price}"></td>
+                <td th:text="${boardGame.availability}"></td>
+                <td th:text="${boardGame.seo.name}"></td>
+                <td th:text="${boardGame.productType.name}"></td>
+                <td th:text="${boardGame.ratingId}"></td>
+                <td th:text="${boardGame.sale.value}"></td>
                 <td th:text="${boardGame.boardGameProducer.name}"></td>
                 <td th:text="${boardGame.difficultyLevel.name}"></td>
                 <td th:text="${boardGame.genre.name}"></td>
@@ -37,16 +51,16 @@
                 <td th:text="${boardGame.playersNumMax}"></td>
                 <td th:text="${boardGame.playTime.name}"></td>
 
-<!--Проверить после заполнения таблиц-->
-                <td  th:each="bGOption : ${boardGame.options}" th:text="${bGOption.name}">   </td>
+                <!--Проверить после заполнения таблиц-->
+                <td th:each="bGOption : ${boardGame.options}" th:text="${bGOption.name}"></td>
 
-                <td><a th:href="@{bg-update/{id}(id=${boardGame.id})}">Edit</a></td>
-                <td><a th:href="@{bg-delete/{id}(id=${boardGame.id})}">Delete</a></td>
+                <td><a th:href="@{games-update/{id}(id=${boardGame.id})}">Edit</a></td>
+                <td><a th:href="@{games-delete/{id}(id=${boardGame.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/bg-create">Create order</a></p>
+    <p><a href="/games-create">Create new game</a></p>
     <p><a href="/show-products">Back</a></p>
 </div>
 

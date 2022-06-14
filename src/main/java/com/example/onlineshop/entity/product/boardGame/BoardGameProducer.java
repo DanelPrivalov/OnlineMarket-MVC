@@ -14,8 +14,8 @@ import javax.persistence.*;
 @Table
 public class BoardGameProducer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer boardGameProducerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long boardGameProducerId;
 
     @Column(name="name")
     private String name;

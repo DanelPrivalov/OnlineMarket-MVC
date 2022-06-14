@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Setter
 public class DifficultyLevel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer difficultyLevelId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long difficultyLevelId;
 
     @Column(name = "name")
     private String name;

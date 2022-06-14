@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Game_Create</title>
+</head>
+<body>
+<h1> Настольные игры / создание </h1>
+<style>
+    fieldset {
+        background-color: #eeeeee;
+    }
+
+    legend {
+        background-color: gray;
+        color: white;
+        padding: 1px 10px;
+    }
+
+    input {
+        margin: 5px;
+    }
+</style>
+<form action="#" th:action="@{/games-create}" th:object="${boardGame}" method="post">
+    <br>
+    <fieldset>
+        <legend>Создание игры</legend>
+        <div>
+            <label for="name">Наименование</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        </div>
+        <br>
+        <div>
+            <label for="description">Описание</label>
+            <input type="text" th:field="*{description}" id="description" placeholder="Description">
+        </div>
+        <br>
+        <div>
+            <label for="images">Картинка</label>
+            <input type="text" th:field="*{images}" id="images" placeholder="Images">
+        </div>
+        <br>
+        <div>
+            <label for="price">Цена</label>
+            <input type="text" th:field="*{price}" id="price" placeholder="Price">
+        </div>
+        <br>
+        <div>
+            <label for="availability">Доступность(кол-во товара)</label>
+            <input type="text" th:field="*{availability}" id="availability" placeholder="Availability">
+        </div>
+        <br>
+        <div>
+<!--            <label for="seo">теги</label>-->
+<!--            <input type="text" th:field="*{seo.SEOAttributeId}" id="seo" placeholder="seo">-->
+            <label>Тег
+                <select th:name="seo" > <!--проверить работает ли-->
+                    <option th:each="seo:${seos}"
+                            th:value="${seo.SEOAttributeId}"
+                            th:text="${seo.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Тип продукта
+                <select th:name="productType">
+                    <option th:each="productType:${productTypes}"
+                            th:value="${productType.productTypeId}"
+                            th:text="${productType.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label for="ratingId">Рейтинг</label>
+            <input type="text" th:field="*{ratingId}" id="ratingId" placeholder="ratingId">
+        </div>
+        <br>
+        <div>
+            <label>Скидка
+                <select th:name="sale">
+                    <option th:each="sale:${sales}"
+                            th:value="${sale.saleId}"
+                            th:text="${sale.value}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Производитель
+                <select th:name="boardGameProducer">
+                    <option th:each="boardGameProducer:${boardGameProducers}"
+                            th:value="${boardGameProducer.boardGameProducerId}"
+                            th:text="${boardGameProducer.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Уровень сложности
+                <select th:name="difficultyLevel">
+                    <option th:each="difficultyLevel:${difficultyLevels}"
+                            th:value="${difficultyLevel.difficultyLevelId}"
+                            th:text="${difficultyLevel.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Жанр
+                <select th:name="genre">
+                    <option th:each="genre:${genres}"
+                            th:value="${genre.genreId}"
+                            th:text="${genre.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Возрастные ограничения
+                <select th:name="age">
+                    <option th:each="age:${ages}"
+                            th:value="${age.id}"
+                            th:text="${age.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Мин. кол-во игроков
+                <select th:field="*{playersNumMin}" size="1">
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                    <option th:value="3">3</option>
+                    <option th:value="4">4</option>
+                    <option th:value="5">5</option>
+                    <option th:value="6">6</option>
+                </select>
+            </label>
+                <!---->
+            <label>Макс. кол-во игроков
+                <select th:field="*{playersNumMax}" size="1">
+                    <option th:value="1"> 1</option>
+                    <option th:value="2">2</option>
+                    <option th:value="3">3</option>
+                    <option th:value="4">4</option>
+                    <option th:value="5">5</option>
+                    <option th:value="6">6</option>
+                    <option th:value="7">7</option>
+                    <option th:value="8">8</option>
+                    <option th:value="9">9</option>
+                    <option th:value="10">10</option>
+                    <option th:value="11">11</option>
+                    <option th:value="12">12</option>
+                    <option th:value="13">13</option>
+                    <option th:value="14">14</option>
+                    <option th:value="15">15</option>
+                    <option th:value="16">16</option>
+                    <option th:value="17">17</option>
+                    <option th:value="18">18</option>
+                    <option th:value="19">19</option>
+                    <option th:value="20">20</option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Выберите время игры
+                <select th:name="playTime">
+                    <option th:each="playTime:${playTimes}"
+                            th:value="${playTime.playTimeId}"
+                            th:text="${playTime.name}">опция
+                    </option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label>Выберите доп.опцию игры
+                <select th:name="option">
+                    <option th:each="option:${options}"
+                            th:value="${option.optionId}"
+                            th:text="${option.name}">опция
+                    </option>
+                </select>
+            </label>
+        </div>
+    </fieldset>
+    <input type="submit" value="Create BoardGame">
+</form>
+</body>
+</html>

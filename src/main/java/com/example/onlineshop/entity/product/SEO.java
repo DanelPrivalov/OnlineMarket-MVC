@@ -16,10 +16,11 @@ import java.util.List;
 @Table(name = "SEO_attributes")
 public class SEO {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SEO_attributes_id")
     private Long SEOAttributeId;
 
     @Column(name = "name")
     private String name;
+
 }

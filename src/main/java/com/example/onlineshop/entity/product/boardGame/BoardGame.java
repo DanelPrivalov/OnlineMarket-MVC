@@ -19,9 +19,9 @@ import java.util.List;
 @Table(name = "board_games")
 public class BoardGame extends Products {
 
-
-    @Column(name = "board_game_id")
-    private Long boardGameId;
+//@GeneratedValue(strategy = GenerationType.IDENTITY)// проверить будет ли работать с автогенерацией
+//    @Column(name = "board_game_id")
+//    private Long boardGameId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producer_game_id")
@@ -54,7 +54,7 @@ public class BoardGame extends Products {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "option_boardGame",
-            joinColumns = {@JoinColumn(name = "board_game_id")},
+            joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "option_id")}
     )
     List<Option> options = new ArrayList<>();

@@ -10,8 +10,8 @@ import java.util.List;
 @Table(name = "option")
 public class Option {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer optionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long optionId;
 
     @Column(name = "name")
     private String name;
@@ -19,11 +19,11 @@ public class Option {
     @ManyToMany(mappedBy = "options")
        List<BoardGame> boardGames = new ArrayList<>();
 
-    public Integer getOptionId() {
+    public Long getOptionId() {
         return optionId;
     }
 
-    public void setOptionId(Integer optionId) {
+    public void setOptionId(Long optionId) {
         this.optionId = optionId;
     }
 

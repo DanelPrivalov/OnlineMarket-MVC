@@ -9,10 +9,10 @@ import javax.persistence.*;
 
 @AllArgsConstructor
 
-@Getter
-@Setter
+
 @Entity
 @Table(name="condition")
+
 public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,14 @@ public class Condition {
     private String conditionName;
 
     public Condition() {
+    }
+
+    public Long getConditionId() {
+        return conditionId;
+    }
+
+    public void setConditionId(Long conditionId) {
+        this.conditionId = conditionId;
     }
 
     public String getConditionName() {
