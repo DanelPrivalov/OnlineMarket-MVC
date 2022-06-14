@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Тут будет корзина</title>
+</head>
+<body>
+    <div th:switch="${order}">
+        <h2 th:case="null">Товаров в корзине нет!</h2>
+        <div th:case="*">
+            <h2>Orders</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>UserId</th>
+                    <th>Condition</th>
+                    <th>date</th>
+                    <th>comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${order}">
+                    <td th:text="${order.userId}"></td>
+                    <td th:text="${order.condition.conditionName}"></td>
+                    <td th:text="${order.date}"></td>
+                    <td th:text="${order.comment}"></td>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>products.name</th>
+                            <th>quantity</th>
+                            <th>finalPrice</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="productInOrder : ${productInOrder}">
+                            <td th:text="${productInOrder.order.name}"></td>
+                            <td th:text="${productInOrder.quantity}"></td>
+                            <td th:text="${productInOrder.finalPrice}"></td>
+                        </tbody>
+                    </table>
+                    <td><a th:href="@{/edit/{id}(id=${order.orderId})}">Edit<i></i></a></td>
+                    <td><a th:href="@{/delete/{id}(id=${order.orderId})}">Delete<i></i></a></td>
+                </tr>
+                </tbody>
+                </table>
+            <p><a href="/Basket">Корзина<i></i></a></p>
+    </div>
+    </div>
+</body>
+</html>

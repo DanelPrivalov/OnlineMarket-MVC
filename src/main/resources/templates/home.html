@@ -10,5 +10,17 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>
+<td th:text="${name}"></td>
+<form th:action="@{/add-products}" method="post">
+    <input type="submit" value="add-products"/>
+</form>
+<td th:text="${name}"></td>
+<form th:action="@{/users}" method="post">
+    <input type="submit" value="users"/>
+</form>
+<td th:text="${name}"></td>
+<form th:action="@{/Basket}" method="post">
+    <input type="submit" value="Basket"/>
+</form>
 </body>
 </html>

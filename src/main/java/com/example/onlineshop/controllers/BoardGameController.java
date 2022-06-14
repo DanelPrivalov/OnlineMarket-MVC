@@ -11,14 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.List;
 
 @Controller
 public class BoardGameController {
     private final BoardGameRepository boardGameRepository;
     private final ProductsRepository productsRepository;
-@Autowired
+    @Autowired
     public BoardGameController(BoardGameRepository boardGameRepository, ProductsRepository productsRepository) {
         this.boardGameRepository = boardGameRepository;
     this.productsRepository = productsRepository;

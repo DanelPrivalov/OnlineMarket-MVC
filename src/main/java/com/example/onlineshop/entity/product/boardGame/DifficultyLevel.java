@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name="Difficulty_Level")
 @Getter
 @Setter
 public class DifficultyLevel {
