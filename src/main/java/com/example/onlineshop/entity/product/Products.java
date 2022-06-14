@@ -18,8 +18,8 @@ import javax.persistence.*;
 @Table(name = "Products")
 public class Products {
     @Id
-    @Column(name = "product_id", unique = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(name = "name")
@@ -49,6 +49,6 @@ public class Products {
     protected int ratingId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn (name = "sales")
-    protected Sales sales;
+    @JoinColumn (name = "sale")
+    protected Sale sale;
 }

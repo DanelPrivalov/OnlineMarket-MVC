@@ -11,17 +11,17 @@ import javax.persistence.*;
 @Table(name = "genre")
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer genreId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long genreId;
 
     @Column(name = "name")
      private String name;
 
-    public Integer getGenreId() {
+    public Long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(Integer genreId) {
+    public void setGenreId(Long genreId) {
         this.genreId = genreId;
     }
 

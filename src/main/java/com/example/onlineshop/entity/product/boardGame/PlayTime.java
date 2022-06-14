@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Table(name= "play_time")
 public class PlayTime {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer playTimeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long playTimeId;
 
     @Column(name = "name")
     private String name;

@@ -21,14 +21,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @Column(name = "user_id")
-    private Long userId;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-//    private User user;//раскомментить когда добавят юзера
+    @ManyToOne
+    @JoinColumn(name = "user_id")//, insertable = false, updatable = false)
+    private User user;//раскомментить когда добавят юзера
 
     @ManyToOne
-    @JoinColumn(name = "condition_id", insertable = false, updatable = false)
+    @JoinColumn(name = "condition_id")//, insertable = false, updatable = false)
     private Condition condition;
 
     @Column(name = "date")
@@ -46,14 +44,6 @@ public class Order {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public LocalDate getDate() {
@@ -92,13 +82,17 @@ public class Order {
         this.orderId = orderId;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Order(User user) {
+        this.user = user;
+    }
 
     public Order(LocalDate date) {
         this.date = LocalDate.now();
