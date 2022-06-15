@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class ProductType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_type_id")
     private Long productTypeId;
 

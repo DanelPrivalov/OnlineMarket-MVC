@@ -1,7 +1,6 @@
 package com.example.onlineshop.entity.product.drink;
 
 import com.example.onlineshop.entity.product.Country;
-import com.example.onlineshop.entity.product.Sales;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
