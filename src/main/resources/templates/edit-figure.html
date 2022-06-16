@@ -45,6 +45,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="seo: ${SEO}" th:value="${seo}"
                                     th:text="${seo.name}"
+                                    th:selected = "${figure.seo.SEOAttributeId == seo.SEOAttributeId}"
                                     th:seo-id="${seo.SEOAttributeId}">
                             </option>
                         </select>

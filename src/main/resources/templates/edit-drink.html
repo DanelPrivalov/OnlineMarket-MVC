@@ -45,6 +45,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="seo: ${SEO}" th:value="${seo}"
                                     th:text="${seo.name}"
+                                    th:selected = "${drink.seo.SEOAttributeId == seo.SEOAttributeId}"
                                     th:seo-id="${seo.SEOAttributeId}">
 
                             </option>
@@ -64,6 +65,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="sale: ${sales}" th:value="${sale}"
                                     th:text="${sale.value}"
+                                    th:selected = "${drink.sale.saleId == sale.saleId}"
                                     th:sale-id="${sale.saleId}">
                             </option>
                         </select>
@@ -77,6 +79,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="producer: ${drinkProducers}" th:value="${producer}"
                                     th:text="${producer.name}"
+                                    th:selected = "${drink.drinkProducer.drinkProducerId == producer.drinkProducerId}"
                                     th:producer-id="${producer.drinkProducerId}">
                             </option>
                         </select>
@@ -90,6 +93,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="drinkType: ${drinkTypes}" th:value="${drinkType}"
                                     th:text="${drinkType.name}"
+                                    th:selected = "${drink.drinkType.drinkTypeId == drinkType.drinkTypeId}"
                                     th:drinkType-id="${drinkType.drinkTypeId}">
                             </option>
                         </select>
