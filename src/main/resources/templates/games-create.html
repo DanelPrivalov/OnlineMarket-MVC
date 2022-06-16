@@ -183,9 +183,12 @@
             </label>
         </div>
         <br>
+
+
+
         <div>
             <label>Выберите доп.опцию игры
-                <select th:name="option">
+                <select th:name="options[0].optionId">
                     <option th:each="option:${options}"
                             th:value="${option.optionId}"
                             th:text="${option.name}">опция

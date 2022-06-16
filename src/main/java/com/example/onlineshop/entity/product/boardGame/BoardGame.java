@@ -52,7 +52,7 @@ public class BoardGame extends Product {
 //    @Column(name = "options_id")
 //    private Long optionId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(name = "option_boardGame",
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "option_id")}
