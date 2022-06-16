@@ -1,4 +1,4 @@
-package com.example.onlineshop.entity.product.collectableFigures;
+package com.example.onlineshop.entity.product.collectableFigure;
 
 import com.example.onlineshop.entity.product.Country;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "collectable_figures_producer")
-public class CollectableFiguresProducer {
+public class CollectableFigureProducer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

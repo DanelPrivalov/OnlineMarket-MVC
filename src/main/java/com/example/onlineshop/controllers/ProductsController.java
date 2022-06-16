@@ -28,16 +28,16 @@ public class ProductsController {
         return "show-products";
     }
 
-//    @GetMapping("/")
-//    public String homePage(Model model){
-//        return "redirect:/index";
-//    }
-//
-//    @GetMapping("/index")
-//    public String showProductsList(Model model) {
-//        model.addAttribute("products", productsRepository.findAll());
-//        return "show-products";
-//    }
+    @GetMapping("/")
+    public String homePage(Model model){
+        return "redirect:/index";
+    }
+
+    @GetMapping("/index")
+    public String showProductsList(Model model) {
+        model.addAttribute("products", productsRepository.findAll());
+        return "show-products";
+    }
 
     @GetMapping("/signup")
     public String showSignUpForm(Products products) {
@@ -50,7 +50,6 @@ public class ProductsController {
         if (result.hasErrors()) {
             return "add-products";
         }
-
         productsRepository.save(products);
         return "redirect:/index";
     }

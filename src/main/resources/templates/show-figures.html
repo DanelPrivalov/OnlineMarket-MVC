@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div th:switch="${figures}">
+    <div>
+        <div>
+            <h2 th:case="null">No figures yet!</h2>
+            <div th:case="*">
+                <h2>Figures</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Descripton</th>
+                        <th>Price</th>
+                        <th>Availability</th>
+                        <th>SEO_attributes</th>
+                        <th>Product_type_id</th>
+                        <th>Rating_id</th>
+                        <th>Sale_id</th>
+                        <th>Figure_id</th>
+                        <th>Figure_producer</th>
+                        <th>Height</th>
+                        <th>Width</th>
+                        <th>Fandom</th>
+                        <th>Flexibility</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="figure : ${figures}">
+                        <td th:text="${figure.name}"></td>
+                        <td th:text="${figure.description}"></td>
+                        <td th:text="${figure.price}"></td>
+                        <td th:text="${figure.availability}"></td>
+                        <td th:text="${figure.seo.name}"></td>
+                        <td th:text="${figure.productType.name}"></td>
+                        <td th:text="${figure.ratingId}"></td>
+                        <td th:text="${figure.sales.value}"></td>
+                        <td th:text="${figure.collectableFiguresId}"></td>
+                        <td th:text="${figure.collectableFiguresProducer.name}"></td>
+                        <td th:text="${figure.height}"></td>
+                        <td th:text="${figure.width}"></td>
+                        <td th:text="${figure.fandom.name}"></td>
+                        <td th:text="${figure.flexibility}"></td>
+                        <td><a th:href="@{/edit/{id}(id=${figure.id})}">Edit<i></i></a></td>
+                        <td><a th:href="@{/delete/{id}(id=${figure.id})}">Delete<i></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="/signup">Create figure<i></i></a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

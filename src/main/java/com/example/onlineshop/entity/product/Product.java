@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -16,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Products")
-public class Products {
+public class Product {
     @Id
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
