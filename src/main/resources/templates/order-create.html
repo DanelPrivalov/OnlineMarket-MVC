@@ -10,11 +10,13 @@
     fieldset {
         background-color: #eeeeee;
     }
+
     legend {
         background-color: gray;
         color: white;
         padding: 1px 10px;
     }
+
     input {
         margin: 5px;
     }
@@ -23,55 +25,54 @@
     <br>
     <fieldset>
         <legend>Создание заказа</legend>
-    <div>
-        <label> Выберите покупателя</label>
-
-        <select th:name="user">
-            <option th:each="user:${users}"
-                    th:value="${user.id}"
-                    th:text="${user.login}">Логин покупателя
-            </option>
-        </select>
-    </div>
+        <div>
+            <label> Выберите покупателя</label>
+            <select th:name="user">
+                <option th:each="user:${users}"
+                        th:value="${user.id}"
+                        th:text="${user.login}">Логин покупателя
+                </option>
+            </select>
+        </div>
         <br>
-   <div>
-       <label> Выберите продукт</label>
-
-        <select th:name="product">
-            <option th:each="product:${products}"
-                    th:value="${product.id}"
-                    th:text="${product.name}">Наименование продукта
-            </option>
-        </select>
-   </div>
+        <div>
+            <label> Выберите продукт</label>
+            <select name="productInOrder[0].products.id">
+                <option th:each="product:${products}"
+                        th:value="${product.id}"
+                        th:text="${product.name}">Наименование продукта
+                </option>
+            </select>
+        </div>
         <br>
-    <div>
-        <label> Количество товаров</label>
-        <input type="text" th:name="quantity" placeholder="Количество товара"/>
-    </div>
+        <div>
+            <label> Количество</label>
+            <input type="text" name="productInOrder[0].quantity" placeholder="Количество товара"/>
+            <br>
+            <label> Итоговая цена</label>
+            <input type="text" name="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
+            <br>
+            <label for="date">Дата заказа</label>
+            <input type="text" th:field="*{date}" id="date" placeholder="Date">
+        </div>
         <br>
-<!--    <label> Количество товаров</label>-->
-<!--    <input type="text" th:name="productInOrder[0].quantity" placeholder="Количество товара"/>-->
-
-
-<!--    <label> Итоговая цена</label>-->
-<!--    <input type="text" th:name="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>-->
-
-
-<!--    <input type="hidden" th:field="${product.id}" id="orderId" placeholder="orderId">-->
-    <!--    <label for="userId">User id</label>-->
-    <!--    <input type="text" th:field="*{userId}" id="userId" placeholder="User_Id">-->
-
-    <label for="date">Data of Order</label>
-    <input type="text" th:field="*{date}" id="date" placeholder="Date">
+        <div>
+            <label> Состояние заказа
+                <select name="condition">
+                    <option th:each="condition:${conditions}"
+                            th:value="${condition.conditionId}"
+                            th:text="${condition.conditionName}">Состояние заказа
+                    </option>
+                </select>
+            </label>
+        </div>
         <br>
-    <label for="condition.conditionId">Condition Id</label>
-    <input type="text" th:field="*{condition.conditionId}" id="condition.conditionId" placeholder="Condition Id">
-        <br>
-    <label for="comment">Comment</label>
-    <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
-        <br></fieldset>
-    <input type="submit" value="Create Order">
+        <div>
+            <label for="comment">Комментарий к заказу</label>
+            <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+        </div>
+    </fieldset>
+    <input type="submit" value="Создать">
 
 </form>
 </body>

@@ -25,7 +25,8 @@ public class Order {
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL ) //mappedBy = "order"
+    @JoinColumn(name = "order_Id")
     private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
 
     @Column(name = "comment")

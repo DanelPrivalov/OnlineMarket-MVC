@@ -19,9 +19,9 @@ public class ProductInOrder {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")    //, insertable = false, updatable = false)
-    private Order order;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "order_id")    //, insertable = false, updatable = false)
+//    private Order order;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")    //, insertable = false, updatable = false)
@@ -31,7 +31,7 @@ public class ProductInOrder {
         this.id = id;
         this.finalPrice = finalPrice;
         this.quantity = quantity;
-        this.order = order;
+       // this.order = order;
         this.products = products;
     }
 
@@ -59,13 +59,13 @@ public class ProductInOrder {
         this.quantity = quantity;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
 
     public Products getProducts() {
         return products;
