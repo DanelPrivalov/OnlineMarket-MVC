@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create a new user</title>
+    <title>Edit a user</title>
 </head>
 <body>
 
 <div>
-    <h2>Create a new user</h2>
+    <h2>Edit a chosen user</h2>
     <div>
         <div>
-            <form th:method="post"  th:action="@{/users/createuser}" th:object="${user}" >
+            <form th:method="post"  th:action="@{/users/update/{id}(id = ${user.id})}" th:object="${user}" >
                 <div>
                     <div>
                         <label for="name">Введите имя</label>
@@ -40,15 +40,16 @@
 
                 </div>
                 <div>
-                    <input type="submit" value="Добавить">
+                    <input type="submit" value="Изменить">
                     <br>
                     <a href="/users">Перейти к списку пользователей</a>
                 </div>
 
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-</div>
+
 
 </body>
 </html>
