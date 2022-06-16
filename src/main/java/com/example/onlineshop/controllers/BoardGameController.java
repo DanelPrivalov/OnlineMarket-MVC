@@ -76,18 +76,19 @@ public class BoardGameController {
     @PostMapping("/games-create")
     public String createBoardGame(BoardGame boardGame) {
         boardGameRepository.save(boardGame);
+
         return "redirect:/games";
     }
 
     @GetMapping("/games-delete/{productId}")
-    public String deleteBoardGame(@PathVariable("productId") Long productId) {
-        boardGameRepository.deleteById(productId);
+    public String deleteBoardGame(@PathVariable("productId") Long id) {
+        boardGameRepository.deleteById(id);
         return "redirect:/games";
     }
 
     @GetMapping("/games-update/{productId}")
-    public String updateBoardGameForm(@PathVariable("productId") Long productId, Model model) {
-        BoardGame boardGame = boardGameRepository.getReferenceById(productId);
+    public String updateBoardGameForm(@PathVariable("productId") Long id, Model model) {
+        BoardGame boardGame = boardGameRepository.getReferenceById(id);
         model.addAttribute("boardGame", boardGame);
         return "games-update";
     }

@@ -1,10 +1,7 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
-import com.example.onlineshop.entity.product.Product;
-import com.example.onlineshop.repository.OrderRepository;
-import com.example.onlineshop.repository.ProductRepository;
-import com.example.onlineshop.repository.UserRepository;
+import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +17,15 @@ public class OrderController {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final ProductInOrderRepository productInOrderRepository;
+    private final ConditionRepository conditionRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository, ProductInOrderRepository productInOrderRepository, ConditionRepository conditionRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
+                this.productInOrderRepository = productInOrderRepository;
+        this.conditionRepository = conditionRepository;
         this.productRepository = productRepository;
     }
 
@@ -35,8 +36,9 @@ public class OrderController {
         return "orders"; // список заказов
     }
 
-    @GetMapping("/order-create")
+    @GetMapping("/order-create")   //создание заказа
     public String createOrderForm(Model model) {
+        model.addAttribute("conditions", conditionRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("order", new Order());
@@ -44,10 +46,9 @@ public class OrderController {
     }
 
     @PostMapping("/order-create")
-    public String createOrder(Order order, Model model, Product product) {
+    public String createOrder(Order order) {
         orderRepository.save(order);
-        model.addAttribute("orders", orderRepository.findAll());
-        return "redirect:/order";
+              return "redirect:/order";
     }
 
     @GetMapping("/order-delete/{orderId}")
@@ -58,15 +59,18 @@ public class OrderController {
 
     @GetMapping("/order-update/{orderId}")
     public String updateOrderForm(@PathVariable("orderId") Long orderId, Model model) {
-        Order order = orderRepository.getReferenceById(orderId);
+        Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("Invalid type ID" + orderId));;
         model.addAttribute("order", order);
+        model.addAttribute("conditions", conditionRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("products", productsRepository.findAll());
         return "order-update";
     }
 
     @PostMapping("/order-update")
     public String updateOrder(Order order, Model model) {
         orderRepository.save(order);
-        model.addAttribute("orders", orderRepository.findAll());
         return "redirect:/order";
     }
 }
