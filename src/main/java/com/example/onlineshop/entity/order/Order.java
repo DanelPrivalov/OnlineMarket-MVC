@@ -18,14 +18,14 @@ public class Order {
     @JoinColumn(name = "user_id")//, insertable = false, updatable = false)
     private User user;//раскомментить когда добавят юзера
 
-    @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "condition_id")//, insertable = false, updatable = false)
     private Condition condition;
 
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL ) //mappedBy = "order"
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH ) //mappedBy = "order"
     @JoinColumn(name = "order_Id")
     private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
 

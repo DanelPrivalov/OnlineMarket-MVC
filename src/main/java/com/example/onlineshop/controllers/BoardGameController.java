@@ -1,5 +1,6 @@
 package com.example.onlineshop.controllers;
 
+import com.example.onlineshop.entity.order.Order;
 import com.example.onlineshop.entity.product.ProductType;
 import com.example.onlineshop.entity.product.SEO;
 import com.example.onlineshop.entity.product.Sale;
@@ -50,25 +51,15 @@ public class BoardGameController {
 
     @GetMapping("/games-create")
     public String createBoardGameForm(Model model) {
-        List<BoardGameProducer> boardGameProducers = boardGameProducerRepository.findAll();
-        List<DifficultyLevel> difficultyLevels = difficultyLevelRepository.findAll();
-        List<Genre> genres = genreRepository.findAll();
-        List<Age> ages = ageRepository.findAll();
-        List<PlayTime> playTimes = playTimeRepository.findAll();
-        List<Option> options = optionRepository.findAll();
-        List<SEO> seos = seoRepository.findAll();
-        List<ProductType> productTypes = productTypeRepository.findAll();
-        List<Sale> sales = saleRepository.findAll();
-
-        model.addAttribute("boardGameProducers", boardGameProducers);
-        model.addAttribute("difficultyLevels", difficultyLevels);
-        model.addAttribute("genres", genres);
-        model.addAttribute("ages", ages);
-        model.addAttribute("options", options);
-        model.addAttribute("playTimes", playTimes);
-        model.addAttribute("seos", seos);
-        model.addAttribute("productTypes", productTypes);
-        model.addAttribute("sales", sales);
+        model.addAttribute("boardGameProducers", boardGameProducerRepository.findAll());
+        model.addAttribute("difficultyLevels", difficultyLevelRepository.findAll());
+        model.addAttribute("genres", genreRepository.findAll());
+        model.addAttribute("ages", ageRepository.findAll());
+        model.addAttribute("options", optionRepository.findAll());
+        model.addAttribute("playTimes", playTimeRepository.findAll());
+        model.addAttribute("seos", seoRepository.findAll());
+        model.addAttribute("productTypes", productTypeRepository.findAll());
+        model.addAttribute("sales", saleRepository.findAll());
         model.addAttribute("boardGame", new BoardGame());
         return "games-create";
     }
@@ -80,16 +71,28 @@ public class BoardGameController {
         return "redirect:/games";
     }
 
-    @GetMapping("/games-delete/{productId}")
-    public String deleteBoardGame(@PathVariable("productId") Long id) {
+    @GetMapping("/games-delete/{id}")
+    public String deleteBoardGame(@PathVariable("id") Long id) {
         boardGameRepository.deleteById(id);
         return "redirect:/games";
     }
 
-    @GetMapping("/games-update/{productId}")
-    public String updateBoardGameForm(@PathVariable("productId") Long id, Model model) {
-        BoardGame boardGame = boardGameRepository.getReferenceById(id);
+    @GetMapping("/games-update/{id}")
+    public String updateBoardGameForm(@PathVariable("id") Long id, Model model) {
+        BoardGame boardGame = boardGameRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid type ID" + id));
         model.addAttribute("boardGame", boardGame);
+
+        model.addAttribute("boardGameProducers", boardGameProducerRepository.findAll());
+        model.addAttribute("difficultyLevels", difficultyLevelRepository.findAll());
+        model.addAttribute("genres", genreRepository.findAll());
+        model.addAttribute("ages", ageRepository.findAll());
+        model.addAttribute("options", optionRepository.findAll());
+        model.addAttribute("playTimes", playTimeRepository.findAll());
+        model.addAttribute("seos", seoRepository.findAll());
+        model.addAttribute("productTypes", productTypeRepository.findAll());
+        model.addAttribute("sales", saleRepository.findAll());
+
         return "games-update";
     }
 
@@ -99,4 +102,5 @@ public class BoardGameController {
         return "redirect:/games";
     }
 
+    //метод для добавления в модель  вместо повторения всех строк
 }

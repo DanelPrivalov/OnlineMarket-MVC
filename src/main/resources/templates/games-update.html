@@ -59,7 +59,8 @@
                 <select th:name="seo" > <!--проверить работает ли-->
                     <option th:each="seo:${seos}"
                             th:value="${seo.SEOAttributeId}"
-                            th:text="${seo.name}">
+                            th:text="${seo.name}"
+                        th:selected="${boardGame.seo.SEOAttributeId == seo.SEOAttributeId}">
                     </option>
                 </select>
             </label>
@@ -70,7 +71,8 @@
                 <select th:name="productType" >
                     <option th:each="productType:${productTypes}"
                             th:value="${productType.productTypeId}"
-                            th:text="${productType.name}">
+                            th:text="${productType.name}"
+                            th:selected="${boardGame.productType.productTypeId == productType.productTypeId}">
                     </option>
                 </select>
             </label>
@@ -86,7 +88,8 @@
                 <select th:name="sale">
                     <option th:each="sale:${sales}"
                             th:value="${sale.saleId}"
-                            th:text="${sale.value}">
+                            th:text="${sale.value}"
+                            th:selected="${boardGame.sale.saleId == sale.saleId}">
                     </option>
                 </select>
             </label>
@@ -97,7 +100,8 @@
                 <select th:name="boardGameProducer">
                     <option th:each="boardGameProducer:${boardGameProducers}"
                             th:value="${boardGameProducer.boardGameProducerId}"
-                            th:text="${boardGameProducer.name}">
+                            th:text="${boardGameProducer.name}"
+                            th:selected="${boardGame.boardGameProducer.boardGameProducerId ==boardGameProducer.boardGameProducerId}">
                     </option>
                 </select>
             </label>
@@ -108,7 +112,8 @@
                 <select th:name="difficultyLevel">
                     <option th:each="difficultyLevel:${difficultyLevels}"
                             th:value="${difficultyLevel.difficultyLevelId}"
-                            th:text="${difficultyLevel.name}">
+                            th:text="${difficultyLevel.name}"
+                            th:selected="${boardGame.difficultyLevel.difficultyLevelId ==difficultyLevel.difficultyLevelId}">
                     </option>
                 </select>
             </label>
@@ -119,7 +124,8 @@
                 <select th:name="genre">
                     <option th:each="genre:${genres}"
                             th:value="${genre.genreId}"
-                            th:text="${genre.name}">
+                            th:text="${genre.name}"
+                            th:selected="${boardGame.genre.genreId == genre.genreId}">
                     </option>
                 </select>
             </label>
@@ -130,7 +136,8 @@
                 <select th:name="age">
                     <option th:each="age:${ages}"
                             th:value="${age.id}"
-                            th:text="${age.name}">
+                            th:text="${age.name}"
+                            th:selected="${boardGame.age.id == age.id}">
                     </option>
                 </select>
             </label>
@@ -144,7 +151,8 @@
                     <option th:value="3">3</option>
                     <option th:value="4">4</option>
                     <option th:value="5">5</option>
-                    <option th:value="6">6</option>
+                    <option th:value="6" th:selected="${boardGame.playersNumMin == playersNumMin}">6</option>
+
                 </select>
             </label>
             <!---->
@@ -169,7 +177,7 @@
                     <option th:value="17">17</option>
                     <option th:value="18">18</option>
                     <option th:value="19">19</option>
-                    <option th:value="20">20</option>
+                    <option th:value="20" th:selected="${boardGame.playersNumMax == playersNumMax}">20</option>
                 </select>
             </label>
         </div>
@@ -179,18 +187,22 @@
                 <select th:name="playTime">
                     <option th:each="playTime:${playTimes}"
                             th:value="${playTime.playTimeId}"
-                            th:text="${playTime.name}">опция
+                            th:text="${playTime.name}"
+                            th:selected="${boardGame.playTime.playTimeId == playTime.playTimeId}">
                     </option>
                 </select>
             </label>
         </div>
         <br>
+
+
         <div>
             <label>Выберите доп.опцию игры
-                <select th:name="option">
+                <select th:name="options[0].optionId">
                     <option th:each="option:${options}"
                             th:value="${option.optionId}"
-                            th:text="${option.name}">опция
+                            th:text="${option.name}"
+                            th:selected="${boardGame.options[0].optionId == option.optionId}">
                     </option>
                 </select>
             </label>
