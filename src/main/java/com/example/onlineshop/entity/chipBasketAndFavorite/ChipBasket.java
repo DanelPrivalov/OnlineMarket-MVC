@@ -1,6 +1,6 @@
 package com.example.onlineshop.entity.chipBasketAndFavorite;
 
-import com.example.onlineshop.entity.product.Products;
+import com.example.onlineshop.entity.product.Product;
 import com.example.onlineshop.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class ChipBasket {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Product_id")
-    private Products products;
+    private Product product;
 
     @Column(name = "quantity")
     private Integer quantity;

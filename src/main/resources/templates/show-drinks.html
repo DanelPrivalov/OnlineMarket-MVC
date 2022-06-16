@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div th:switch="${drinks}">
+    <div>
+        <div>
+            <h2 th:case="null">No drinks yet!</h2>
+            <div th:case="*">
+                <h2>Drinks</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Descripton</th>
+                        <th>Price</th>
+                        <th>Availability</th>
+                        <th>SEO_attributes</th>
+                        <th>Product_type_id</th>
+                        <th>Rating_id</th>
+                        <th>Sale_id</th>
+<!--                        <th>Drink_id</th>-->
+                        <th>Drink_producer</th>
+                        <th>Drink_Type</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="drink : ${drinks}">
+                        <td th:text="${drink.name}"></td>
+                        <td th:text="${drink.description}"></td>
+                        <td th:text="${drink.price}"></td>
+                        <td th:text="${drink.availability}"></td>
+                        <td th:text="${drink.seo.name}"></td>
+                        <td th:text="${drink.productType.name}"></td>
+                        <td th:text="${drink.ratingId}"></td>
+                        <td th:text="${drink.sale.value}"></td>
+<!--                        <td th:text="${drink.drinkId}"></td>-->
+                        <td th:text="${drink.drinkProducer.name}"></td>
+                        <td th:text="${drink.drinkType.name}"></td>
+                        <td><a th:href="@{/edit-drink/{id}(id=${drink.id})}">Edit<i></i></a></td>
+                        <td><a th:href="@{/delete-drink/{id}(id=${drink.id})}">Delete<i></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="/add-drink">Create drink<i></i></a></p>
+            <p><a href="/products">Back to product<i></i></a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

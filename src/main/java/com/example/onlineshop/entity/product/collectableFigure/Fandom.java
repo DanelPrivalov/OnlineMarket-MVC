@@ -1,4 +1,4 @@
-package com.example.onlineshop.entity.product.collectableFigures;
+package com.example.onlineshop.entity.product.collectableFigure;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "fandom")
 public class Fandom {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fandom_id")
     private Long FandomId;
 

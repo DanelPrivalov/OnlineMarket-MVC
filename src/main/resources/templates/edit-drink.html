@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Edit Drink</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div>
+    <h2>Edit drink</h2>
+    <div>
+        <div>
+            <form action="#" th:action="@{/edit-drink/{id}(id=${drink.id})}" th:object="${drink}" method="post">
+                <div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div>
+                        <label for ="description">Description</label>
+                        <input type="text" th:field="*{description}" id="description" placeholder="Description">
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                    </div>
+                    <div>
+                        <label for="images">Images</label>
+                        <input type="text" th:field="*{images}" id="images" placeholder="Images">
+                        <span th:if="${#fields.hasErrors('images')}" th:errors="*{images}"></span>
+                    </div>
+                    <div>
+                        <label for="price">Price</label>
+                        <input type="text" th:field="*{price}" id="price" placeholder="Price">
+                        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" ></span>
+                    </div>
+                    <div>
+                        <label for="availability">Availability</label>
+                        <input type="text" th:field="*{availability}" id="availability" placeholder="Availability">
+                        <span th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></span>
+                    </div>
+                    <!--SEO-->
+                    <div>
+                        <label>SEO attributes</label>
+                        <select class = "form-control" th:name="selectSeo" th:id="selectSeo">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="seo: ${SEO}" th:value="${seo}"
+                                    th:text="${seo.name}"
+                                    th:selected = "${drink.seo.SEOAttributeId == seo.SEOAttributeId}"
+                                    th:seo-id="${seo.SEOAttributeId}">
+
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{seo.SEOAttributeId}" class="form-control" id="SEOAttributeId" placeholder="seoId">
+                    </div>
+
+                    <div>
+                        <label for="ratingId">Rating</label>
+                        <input type="text" th:field="*{ratingId}" id="ratingId" placeholder="rating Id">
+                        <span th:if="${#fields.hasErrors('ratingId')}" th:errors="*{ratingId}"></span>
+                    </div>
+                    <!--Sale-->
+                    <div>
+                        <label>Sale</label>
+                        <select class = "form-control" th:name="selectSale" th:id="selectSale">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="sale: ${sales}" th:value="${sale}"
+                                    th:text="${sale.value}"
+                                    th:selected = "${drink.sale.saleId == sale.saleId}"
+                                    th:sale-id="${sale.saleId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{sale.saleId}" class="form-control" id="saleId" placeholder="saleId">
+                    </div>
+
+                    <!--Producer-->
+                    <div>
+                        <label>Producer</label>
+                        <select class = "form-control" th:name="selectProducer" th:id="selectProducer">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="producer: ${drinkProducers}" th:value="${producer}"
+                                    th:text="${producer.name}"
+                                    th:selected = "${drink.drinkProducer.drinkProducerId == producer.drinkProducerId}"
+                                    th:producer-id="${producer.drinkProducerId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{drinkProducer.drinkProducerId}" class="form-control" id="drinkProducerId" placeholder="producerId">
+                    </div>
+
+                    <!--DrinkType-->
+                    <div>
+                        <label>Drink type</label>
+                        <select class = "form-control" th:name="selectDrinkType" th:id="selectDrinkType">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="drinkType: ${drinkTypes}" th:value="${drinkType}"
+                                    th:text="${drinkType.name}"
+                                    th:selected = "${drink.drinkType.drinkTypeId == drinkType.drinkTypeId}"
+                                    th:drinkType-id="${drinkType.drinkTypeId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{drinkType.drinkTypeId}" class="form-control" id="drinkTypeId" placeholder="drinkTypeId">
+                    </div>
+
+                </div>
+                <div>
+                    <input type="submit" value="Edit drink">
+                </div>
+            </form>
+        </div>
+        <p><a href="/drinks">Cancel<i></i></a></p>
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#selectSeo").change(function() {
+            $("#SEOAttributeId").val($("#selectSeo option:selected").attr("seo-id"));
+        });
+        $("#selectType").change(function() {
+            $("#productTypeId").val($("#selectType option:selected").attr("type-id"));
+        });
+        $("#selectSale").change(function() {
+            $("#saleId").val($("#selectSale option:selected").attr("sale-id"));
+        });
+        $("#selectProducer").change(function() {
+            $("#drinkProducerId").val($("#selectProducer option:selected").attr("producer-id"));
+        });
+        $("#selectDrinkType").change(function() {
+            $("#drinkTypeId").val($("#selectDrinkType option:selected").attr("drinkType-id"));
+        });
+    });
+</script>
+</html>

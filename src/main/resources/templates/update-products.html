@@ -11,7 +11,7 @@
     <h2>Update Products</h2>
     <div>
         <div>
-            <form action="#" th:action="@{/update/{id}(id=${products.id})}" th:object="${products}" method="post">
+            <form action="#" th:action="@{/update/{id}(id=${product.id})}" th:object="${product}" method="post">
                 <div>
                     <div>
                         <label for="name">Name</label>
@@ -49,19 +49,19 @@
                         <span th:if="${#fields.hasErrors('productType.productTypeId')}" th:errors="*{productTypeId}"></span>
                     </div>
                     <div>
-                        <label for="ratingId">Sale</label>
+                        <label for="ratingId">Rating</label>
                         <input type="text" th:field="*{ratingId}" id="ratingId" placeholder="rating Id">
                         <span th:if="${#fields.hasErrors('ratingId')}" th:errors="*{ratingId}"></span>
                     </div>
                     <div>
-                        <label for="sales.saleId">Rating</label>
-                        <input type="text" th:field="*{sales.saleId}" id="sales.saleId" placeholder="sale Id">
+                        <label for="sales.saleId">Sale</label>
+                        <input type="text" th:field="*{sale.saleId}" id="sales.saleId" placeholder="sale Id">
                         <span th:if="${#fields.hasErrors('sales.saleId')}" th:errors="*{saleId}"></span>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <input type="submit" value="Update Human">
+                        <input type="submit" value="Update Product">
                     </div>
                 </div>
             </form>

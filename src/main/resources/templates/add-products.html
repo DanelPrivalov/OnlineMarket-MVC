@@ -11,7 +11,7 @@
   <h2>New product</h2>
   <div>
     <div>
-      <form action="#" th:action="@{/add-products}" th:object="${products}" method="post">
+      <form action="#" th:action="@{/add-product}" th:object="${product}" method="post">
         <div>
           <div>
             <label for="name">Name</label>
@@ -56,7 +56,7 @@
           <div>
             <label for="sales.saleId">Sale</label>
             <input type="text" th:field="*{sales.saleId}" id="sales.saleId" placeholder="sale Id">
-            <span th:if="${#fields.hasErrors('sales.saleId')}" th:errors="*{saleId}"></span>
+            <span th:if="${#fields.hasErrors('sale.saleId')}" th:errors="*{saleId}"></span>
           </div>
         </div>
         <div>

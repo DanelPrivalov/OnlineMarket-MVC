@@ -10,24 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 //@RequestMapping("/order") для того, чтобы повесить /ордер на все методы
 @Controller
 public class OrderController {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final ProductsRepository productsRepository;
+    private final ProductRepository productRepository;
     private final ProductInOrderRepository productInOrderRepository;
     private final ConditionRepository conditionRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductsRepository productsRepository, ProductInOrderRepository productInOrderRepository, ConditionRepository conditionRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository, ProductInOrderRepository productInOrderRepository, ConditionRepository conditionRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.productsRepository = productsRepository;
-        this.productInOrderRepository = productInOrderRepository;
+                this.productInOrderRepository = productInOrderRepository;
         this.conditionRepository = conditionRepository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/order")
@@ -41,7 +40,7 @@ public class OrderController {
     public String createOrderForm(Model model) {
         model.addAttribute("conditions", conditionRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("products", productsRepository.findAll());
+        model.addAttribute("products", productRepository.findAll());
         model.addAttribute("order", new Order());
         return "order-create";
     }
@@ -49,9 +48,7 @@ public class OrderController {
     @PostMapping("/order-create")
     public String createOrder(Order order) {
         orderRepository.save(order);
-        // model.addAttribute("orders", orderRepository.findAll());
-        return "redirect:/order";
-
+              return "redirect:/order";
     }
 
     @GetMapping("/order-delete/{orderId}")

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Figure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div>
+    <h2>Add collectable figure</h2>
+    <div>
+        <div>
+            <form action="#" th:action="@{/add-figure}" th:object="${collectableFigure}" method="post">
+                <div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div>
+                        <label for ="description">Description</label>
+                        <input type="text" th:field="*{description}" id="description" placeholder="Description">
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                    </div>
+                    <div>
+                        <label for="images">Images</label>
+                        <input type="text" th:field="*{images}" id="images" placeholder="Images">
+                        <span th:if="${#fields.hasErrors('images')}" th:errors="*{images}"></span>
+                    </div>
+                    <div>
+                        <label for="price">Price</label>
+                        <input type="text" th:field="*{price}" id="price" placeholder="Price">
+                        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" ></span>
+                    </div>
+                    <div>
+                        <label for="availability">Availability</label>
+                        <input type="text" th:field="*{availability}" id="availability" placeholder="Availability">
+                        <span th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></span>
+                    </div>
+                    <!--SEO-->
+                    <div>
+                        <label>SEO attributes</label>
+                        <select class = "form-control" th:name="selectSeo" th:id="selectSeo">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="seo: ${SEO}" th:value="${seo}"
+                                    th:text="${seo.name}"
+                                    th:seo-id="${seo.SEOAttributeId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{seo.SEOAttributeId}" class="form-control" id="SEOAttributeId" placeholder="seoId">
+                    </div>
+
+
+                    <div>
+                        <label for="ratingId">Rating</label>
+                        <input type="text" th:field="*{ratingId}" id="ratingId" placeholder="rating Id">
+                        <span th:if="${#fields.hasErrors('ratingId')}" th:errors="*{ratingId}"></span>
+                    </div>
+                    <!--Sale-->
+                    <div>
+                        <label>Sale</label>
+                        <select class = "form-control" th:name="selectSale" th:id="selectSale">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="sale: ${sales}" th:value="${sale}"
+                                    th:text="${sale.value}"
+                                    th:sale-id="${sale.saleId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{sale.saleId}" class="form-control" id="saleId" placeholder="saleId">
+                    </div>
+
+                    <!--Producer-->
+                    <div>
+                        <label>Figure producer</label>
+                        <select class = "form-control" th:name="selectFigureProducer" th:id="selectFigureProducer">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="figureProducer: ${figureProducers}" th:value="${figureProducer}"
+                                    th:text="${figureProducer.name}"
+                                    th:figproducer-id="${figureProducer.collectableFiguresProducerId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{collectableFigureProducer.collectableFiguresProducerId}" class="form-control" id="collectableFiguresProducerId" placeholder="FiguresProducerId">
+                    </div>
+
+
+                    <div>
+                        <label for="height">Height</label>
+                        <input type="text" th:field="*{height}" id="height" placeholder="Height">
+                        <span th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></span>
+                    </div>
+
+                    <div>
+                        <label for="width">Width</label>
+                        <input type="text" th:field="*{width}" id="width" placeholder="Width">
+                        <span th:if="${#fields.hasErrors('width')}" th:errors="*{width}"></span>
+                    </div>
+
+                    <!--Fandom-->
+                    <div>
+                        <label>Fandom</label>
+                        <select class = "form-control" th:name="selectFandom" th:id="selectFandom">
+                            <option selected value = "">Please choose one</option>
+                            <option th:each="fandom: ${fandoms}" th:value="${fandom}"
+                                    th:text="${fandom.name}"
+                                    th:fandom-id="${fandom.fandomId}">
+                            </option>
+                        </select>
+                        <input type="hidden" th:field="*{fandom.fandomId}" class="form-control" id="fandomId" placeholder="fandomId">
+                    </div>
+
+                    <div>
+                        <label>Flexibility</label>
+                        <select th:field="*{flexibility}">
+                            <option th:value="true">true</option>
+                            <option th:value="false">false</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Add figure">
+                </div>
+            </form>
+        </div>
+        <p><a href="/figures">Cancel<i></i></a></p>
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#selectSeo").change(function() {
+            $("#SEOAttributeId").val($("#selectSeo option:selected").attr("seo-id"));
+        });
+        $("#selectType").change(function() {
+            $("#productTypeId").val($("#selectType option:selected").attr("type-id"));
+        });
+        $("#selectSale").change(function() {
+            $("#saleId").val($("#selectSale option:selected").attr("sale-id"));
+        });
+        $("#selectFigureProducer").change(function() {
+            $("#collectableFiguresProducerId").val($("#selectFigureProducer option:selected").attr("figproducer-id"));
+        });
+        $("#selectFandom").change(function() {
+            $("#fandomId").val($("#selectFandom option:selected").attr("fandom-id"));
+        });
+    });
+</script>
+
+</html>

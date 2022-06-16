@@ -1,13 +1,15 @@
 package com.example.onlineshop.entity.order;
 
-import com.example.onlineshop.entity.product.Products;
-import lombok.NoArgsConstructor;
+import com.example.onlineshop.entity.product.Product;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
-@Table(name = "product_in_order")
+@Table(name="product_in_order")
 public class ProductInOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,14 +27,14 @@ public class ProductInOrder {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")    //, insertable = false, updatable = false)
-    private Products products;
+    private Product product;
 
-    public ProductInOrder(Long id, Integer finalPrice, Integer quantity, Order order, Products products) {
+    public ProductInOrder(Long id, Integer finalPrice, Integer quantity, Order order, Product product) {
         this.id = id;
         this.finalPrice = finalPrice;
         this.quantity = quantity;
        // this.order = order;
-        this.products = products;
+        this.product = product;
     }
 
     public Long getId() {
@@ -67,11 +69,11 @@ public class ProductInOrder {
 //        this.order = order;
 //    }
 
-    public Products getProducts() {
-        return products;
+    public Products getProduct() {
+        return product;
     }
 
-    public void setProducts(Products products) {
-        this.products = products;
+    public void setProducts(Product product) {
+        this.product = product;
     }
 }
