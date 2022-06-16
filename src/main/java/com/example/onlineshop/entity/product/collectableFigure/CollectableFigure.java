@@ -17,8 +17,8 @@ import javax.persistence.*;
 
 public class CollectableFigure extends Product {
 
-    @Column(name = "collectable_figures_id")
-    private Long collectableFiguresId;
+//    @Column(name = "collectable_figures_id")
+//    private Long collectableFiguresId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "collectable_figures_producer_id")

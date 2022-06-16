@@ -1,9 +1,9 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
-import com.example.onlineshop.entity.product.Products;
+import com.example.onlineshop.entity.product.Product;
 import com.example.onlineshop.repository.OrderRepository;
-import com.example.onlineshop.repository.ProductsRepository;
+import com.example.onlineshop.repository.ProductRepository;
 import com.example.onlineshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,13 @@ import java.util.List;
 public class OrderController {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final ProductsRepository productsRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductsRepository productsRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.productsRepository = productsRepository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/order")
@@ -38,13 +38,13 @@ public class OrderController {
     @GetMapping("/order-create")
     public String createOrderForm(Model model) {
         model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("products", productsRepository.findAll());
+        model.addAttribute("products", productRepository.findAll());
         model.addAttribute("order", new Order());
         return "order-create";
     }
 
     @PostMapping("/order-create")
-    public String createOrder(Order order, Model model, Products product) {
+    public String createOrder(Order order, Model model, Product product) {
         orderRepository.save(order);
         model.addAttribute("orders", orderRepository.findAll());
         return "redirect:/order";

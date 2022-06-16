@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class CollectableFigureProducer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "collectable_figures_producer_id")
     private Long collectableFiguresProducerId;
 

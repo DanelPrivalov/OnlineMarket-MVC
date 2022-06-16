@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Add Drink</title>
+    <title>Edit Drink</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div>
-    <h2>Add drink</h2>
+    <h2>Edit drink</h2>
     <div>
         <div>
-            <form action="#" th:action="@{/add-drink}" th:object="${drink}" method="post">
+            <form action="#" th:action="@{/edit-drink/{id}(id=${drink.id})}" th:object="${drink}" method="post">
                 <div>
                     <div>
                         <label for="name">Name</label>
@@ -38,7 +38,7 @@
                         <input type="text" th:field="*{availability}" id="availability" placeholder="Availability">
                         <span th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></span>
                     </div>
-<!--SEO-->
+                    <!--SEO-->
                     <div>
                         <label>SEO attributes</label>
                         <select class = "form-control" th:name="selectSeo" th:id="selectSeo">
@@ -46,29 +46,18 @@
                             <option th:each="seo: ${SEO}" th:value="${seo}"
                                     th:text="${seo.name}"
                                     th:seo-id="${seo.SEOAttributeId}">
+
                             </option>
                         </select>
                         <input type="hidden" th:field="*{seo.SEOAttributeId}" class="form-control" id="SEOAttributeId" placeholder="seoId">
                     </div>
-<!--Type-->
-<!--                    <div>-->
-<!--                        <label>Product type</label>-->
-<!--                        <select class = "form-control" th:name="selectType" th:id="selectType">-->
-<!--                            <option selected value = "">Please choose one</option>-->
-<!--                            <option th:each="productType: ${productTypes}" th:value="${productType}"-->
-<!--                                    th:text="${productType.name}"-->
-<!--                                    th:type-id="${productType.productTypeId}">-->
-<!--                            </option>-->
-<!--                        </select>-->
-<!--                        <input type="hidden" th:field="*{productType.productTypeId}" class="form-control" id="productTypeId" placeholder="typeId" value="2">-->
-<!--                    </div>-->
 
                     <div>
                         <label for="ratingId">Rating</label>
                         <input type="text" th:field="*{ratingId}" id="ratingId" placeholder="rating Id">
                         <span th:if="${#fields.hasErrors('ratingId')}" th:errors="*{ratingId}"></span>
                     </div>
-<!--Sale-->
+                    <!--Sale-->
                     <div>
                         <label>Sale</label>
                         <select class = "form-control" th:name="selectSale" th:id="selectSale">
@@ -81,12 +70,7 @@
                         <input type="hidden" th:field="*{sale.saleId}" class="form-control" id="saleId" placeholder="saleId">
                     </div>
 
-<!--                    <div>-->
-<!--                        <label for="drinkId">Drink ID</label>-->
-<!--                        <input type="text" th:field="*{drinkId}" id="drinkId" placeholder="drink Id">-->
-<!--&lt;!&ndash;                        <span th:if="${#fields.hasErrors('sales.saleId')}" th:errors="*{saleId}"></span>&ndash;&gt;-->
-<!--                    </div>-->
-<!--Producer-->
+                    <!--Producer-->
                     <div>
                         <label>Producer</label>
                         <select class = "form-control" th:name="selectProducer" th:id="selectProducer">
@@ -99,7 +83,7 @@
                         <input type="hidden" th:field="*{drinkProducer.drinkProducerId}" class="form-control" id="drinkProducerId" placeholder="producerId">
                     </div>
 
-<!--DrinkType-->
+                    <!--DrinkType-->
                     <div>
                         <label>Drink type</label>
                         <select class = "form-control" th:name="selectDrinkType" th:id="selectDrinkType">
@@ -114,7 +98,7 @@
 
                 </div>
                 <div>
-                    <input type="submit" value="Add drink">
+                    <input type="submit" value="Edit drink">
                 </div>
             </form>
         </div>
@@ -143,27 +127,4 @@
         });
     });
 </script>
-
-<!--<script type="text/javascript">-->
-<!--    $(document).ready(function () {-->
-<!--        $("#selectSeo").change(function() {-->
-<!--            $("#SEOAttributeId").val($("#selectSeo option:selected").attr("seo-id"));-->
-<!--        });-->
-
-<!--    });-->
-<!--</script>-->
-<!--<script type="text/javascript">-->
-<!--    $(document).ready(function () {-->
-<!--        $("#selectType").change(function() {-->
-<!--            $("#productTypeId").val($("#selectType option:selected").attr("type-id"));-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-<!--<script type="text/javascript">-->
-<!--    $(document).ready(function () {-->
-<!--        $("#selectType").change(function() {-->
-<!--            $("#productTypeId").val($("#selectType option:selected").attr("type-id"));-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 </html>

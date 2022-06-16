@@ -40,18 +40,18 @@
                         <td th:text="${drink.seo.name}"></td>
                         <td th:text="${drink.productType.name}"></td>
                         <td th:text="${drink.ratingId}"></td>
-                        <td th:text="${drink.sales.value}"></td>
+                        <td th:text="${drink.sale.value}"></td>
 <!--                        <td th:text="${drink.drinkId}"></td>-->
                         <td th:text="${drink.drinkProducer.name}"></td>
                         <td th:text="${drink.drinkType.name}"></td>
-                        <td><a th:href="@{/editDrink/{id}(id=${drink.id})}">Edit<i></i></a></td>
-                        <td><a th:href="@{/deleteDrink/{id}(id=${drink.id})}">Delete<i></i></a></td>
+                        <td><a th:href="@{/edit-drink/{id}(id=${drink.id})}">Edit<i></i></a></td>
+                        <td><a th:href="@{/delete-drink/{id}(id=${drink.id})}">Delete<i></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <p><a href="/add-drink">Create drink<i></i></a></p>
-            <p><a href="/index">Back to product<i></i></a></p>
+            <p><a href="/products">Back to product<i></i></a></p>
         </div>
     </div>
 </div>

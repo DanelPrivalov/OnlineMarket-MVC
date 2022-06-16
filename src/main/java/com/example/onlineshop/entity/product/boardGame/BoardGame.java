@@ -1,6 +1,6 @@
 package com.example.onlineshop.entity.product.boardGame;
 
-import com.example.onlineshop.entity.product.Products;
+import com.example.onlineshop.entity.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "board_games")
-public class BoardGame extends Products {
+public class BoardGame extends Product {
 
 //@GeneratedValue(strategy = GenerationType.IDENTITY)// проверить будет ли работать с автогенерацией
 //    @Column(name = "board_game_id")

@@ -17,7 +17,7 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Descripton</th>
+                        <th>Description</th>
                         <th>Price</th>
                         <th>Availability</th>
                         <th>SEO_attributes</th>
@@ -37,7 +37,7 @@
                         <td th:text="${product.seo.name}"></td>
                         <td th:text="${product.productType.name}"></td>
                         <td th:text="${product.ratingId}"></td>
-                        <td th:text="${product.sales.value}"></td>
+                        <td th:text="${product.sale.value}"></td>
                         <td><a th:href="@{/edit/{id}(id=${product.id})}">Edit<i></i></a></td>
                         <td><a th:href="@{/delete/{id}(id=${product.id})}">Delete<i></i></a></td>
                     </tr>

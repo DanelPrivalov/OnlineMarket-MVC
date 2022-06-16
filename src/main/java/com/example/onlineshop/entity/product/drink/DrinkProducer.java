@@ -1,7 +1,6 @@
 package com.example.onlineshop.entity.product.drink;
 
 import com.example.onlineshop.entity.product.Country;
-import com.example.onlineshop.entity.product.Sales;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import javax.persistence.*;
 public class DrinkProducer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "drink_producer_id")
     private Long drinkProducerId;
 

@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "fandom")
 public class Fandom {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fandom_id")
     private Long FandomId;
 

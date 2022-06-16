@@ -17,14 +17,14 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Descripton</th>
+                        <th>Description</th>
                         <th>Price</th>
                         <th>Availability</th>
                         <th>SEO_attributes</th>
                         <th>Product_type_id</th>
                         <th>Rating_id</th>
                         <th>Sale_id</th>
-                        <th>Figure_id</th>
+<!--                        <th>Figure_id</th>-->
                         <th>Figure_producer</th>
                         <th>Height</th>
                         <th>Width</th>
@@ -43,20 +43,21 @@
                         <td th:text="${figure.seo.name}"></td>
                         <td th:text="${figure.productType.name}"></td>
                         <td th:text="${figure.ratingId}"></td>
-                        <td th:text="${figure.sales.value}"></td>
-                        <td th:text="${figure.collectableFiguresId}"></td>
-                        <td th:text="${figure.collectableFiguresProducer.name}"></td>
+                        <td th:text="${figure.sale.value}"></td>
+<!--                        <td th:text="${figure.collectableFiguresId}"></td>-->
+                        <td th:text="${figure.collectableFigureProducer.name}"></td>
                         <td th:text="${figure.height}"></td>
                         <td th:text="${figure.width}"></td>
                         <td th:text="${figure.fandom.name}"></td>
                         <td th:text="${figure.flexibility}"></td>
-                        <td><a th:href="@{/edit/{id}(id=${figure.id})}">Edit<i></i></a></td>
-                        <td><a th:href="@{/delete/{id}(id=${figure.id})}">Delete<i></i></a></td>
+                        <td><a th:href="@{/edit-figure/{id}(id=${figure.id})}">Edit<i></i></a></td>
+                        <td><a th:href="@{/delete-figure/{id}(id=${figure.id})}">Delete<i></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p><a href="/signup">Create figure<i></i></a></p>
+            <p><a href="/add-figure">Create figure<i></i></a></p>
+            <p><a href="/products">Back to product<i></i></a></p>
         </div>
     </div>
 </div>
