@@ -3,6 +3,7 @@ package com.example.onlineshop.entity.order;
 import com.example.onlineshop.entity.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -69,7 +70,7 @@ public class ProductInOrder {
 //        this.order = order;
 //    }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 

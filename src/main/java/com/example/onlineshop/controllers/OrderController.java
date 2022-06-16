@@ -1,6 +1,7 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
+import com.example.onlineshop.entity.order.ProductInOrder;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,8 +65,8 @@ public class OrderController {
         model.addAttribute("order", order);
         model.addAttribute("conditions", conditionRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("products", productsRepository.findAll());
-        return "order-update";
+        model.addAttribute("products", productRepository.findAll());
+           return "order-update";
     }
 
     @PostMapping("/order-update")
