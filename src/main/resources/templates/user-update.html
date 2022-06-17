@@ -1,46 +1,49 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="../css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Edit a user</title>
 </head>
 <body>
 
 <div>
-    <h2>Edit a chosen user</h2>
-    <div>
+    <h2 class="header">Edit a chosen user</h2>
+    <div class="container">
         <div>
             <form th:method="post"  th:action="@{/users/update/{id}(id = ${user.id})}" th:object="${user}" >
-                <div>
+                <div class = "label">
                     <div>
-                        <label for="name">Введите имя</label>
+                        <label for="name">Введите имя </label>
                         <input type="text" th:field="*{firstName}" id="name" placeholder="Иван">
                         <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
                     </div>
                     <div>
-                        <label for="lastName">Введите фамилию</label>
+                        <label for="lastName">Введите фамилию </label>
                         <input type="text" th:field="*{lastName}" id="lastName" placeholder="Иванов">
                         <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                     </div>
                     <div>
-                        <label for="dateOfBirth">Введите дату рождения</label>
+                        <label for="dateOfBirth">Введите дату рождения </label>
                         <input type="text" th:field="*{dateOfBirth}" id="dateOfBirth" placeholder="01.01.2000">
                         <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
                     </div>
                     <div>
-                        <label for="login">Введите логин</label>
+                        <label for="login">Введите логин </label>
                         <input type="text" th:field="*{login}" id="login">
                         <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
                     </div>
                     <div>
-                        <label for="password">Введите пароль</label>
+                        <label for="password">Введите пароль </label>
                         <input type="text" th:field="*{password}" id="password">
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                     </div>
 
                 </div>
-                <div>
-                    <input type="submit" value="Изменить">
+                <div class="button">
+                    <input  type="submit" value="Изменить">
+                    <br>
                     <br>
                     <a href="/users">Перейти к списку пользователей</a>
                 </div>

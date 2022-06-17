@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+
+    background: url("img/background.jpg");
+    background-size: cover;
+    color: #F2BC69;
+    font: lighter 16px 'Roboto Condensed', sans-serif;
+}
+
+
+.header h1, h2 {
+    position: center;
+    text-align: center;
+    display: inline-block;
+    background: #E6E5E1;
+    margin-bottom: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: .5rem 1.5rem;
+    border: 5px solid #F2BC69;
+    color: #F2BC69;
+}
+
+
+.wideText p {
+   color: #F2BC69;
+    font-style: italic;
+    /*text-transform: uppercase;*/
+    letter-spacing: 2px;
+    word-spacing: 10px;
+}
+
+.links a{
+    cursor: pointer;
+    color: #F2BC69;
+}
+
+a:visited {
+    color:grey;
+}
+
+.select {
+    position: relative;
+    font-family: inherit;
+}
+
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+}
+
+
+.container {
+    max-width:85%;
+    margin: auto;
+    font-style: italic;
+    background-color: #151009;
+    padding: 25px;
+    border: 5px solid #F2BC69;
+    border-radius: 20px;
+    // фон на вводе текста
+}
+
+.container input {
+    background-color: #E6E5E1;
+    width:30%;
+    padding: 5px 8px;
+
+}
+
+.button input [type=button], input [type=submit], input [type=reset] {
+    color: #FFFFE0;
+    background-color: #F2BC69;
+    padding: 10px 20px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
+.label div {
+    margin-bottom: 8px;
+}
+
+.table {
+    background-color: #151009;
+    width: 80%;
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: #F2BC69;
+
+}
+.table td {
+    padding-bottom: 10px;
+}
+
+.table th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: #F2BC69;
+}
