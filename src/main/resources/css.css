@@ -1,19 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 body {
-    /*background-color: #FFFFE0;*/
-    background-color: #d2b48c;
-    color: #483D8B;
-
-    /*font-size: 18px;*/
-    /*font-weight: lighter;*/
-    /*font-family: 'Roboto Condensed', sans-serif; ;*/
-
+    /*background-image: url("https://disk.yandex.ru/i/ucishvjEHhD7NQ");*/
+    /*background-color: #d2b48c;*/
+    background: url("img/background.jpg");
+    color: #F2BC69;
     font: lighter 16px 'Roboto Condensed', sans-serif;
 }
 
+
+.header h1, h2 {
+    position: relative;
+    /*margin-bottom: .5rem;*/
+    text-align: center;
+    display: inline-block;
+    background: #fff;
+    margin-bottom: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: .5rem 1.5rem;
+    border: 5px solid #F2BC69;
+    color: #F2BC69;
+}
+
+/*.header-h1-dark h1 {*/
+/*    background: #6a1b9a;*/
+/*    color: #fff;*/
+/*}*/
+
 .wideText p {
-   color: #483D8B;
+   color: #F2BC69;
     font-style: italic;
     /*text-transform: uppercase;*/
     letter-spacing: 2px;
@@ -22,12 +38,8 @@ body {
 
 .links a{
     cursor: pointer;
-    color: #483D8B;
+    color: #F2BC69;
 }
-
-/*a:hover{*/
-/*    text-decoration: underline;*/
-/*}*/
 
 a:visited {
     color:grey;
@@ -39,7 +51,6 @@ a:visited {
 }
 
 
-}
 .select-selected:after {
     position: absolute;
     content: "";
@@ -48,7 +59,6 @@ a:visited {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-
 }
 
 
@@ -56,12 +66,30 @@ a:visited {
     max-width:85%;
     margin: auto;
     font-style: italic;
-    background-color: #696969;
+    background-color: #151009;
     padding: 25px;
-    border: 5px solid #483D8B;
+    border: 5px solid #F2BC69;
     border-radius: 20px;
+    // фон на вводе текста
+}
+
+.container input {
+    background-color: #E6E5E1;
+    width:30%;
+    padding: 5px 8px;
 
 }
+
+.button input [type=button], input [type=submit], input [type=reset] {
+    color: #FFFFE0;
+    background-color: #F2BC68;
+    padding: 10px 20px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 
 .label div {
     margin-bottom: 8px;
@@ -84,17 +112,3 @@ a:visited {
     border-width: 0 1px 1px 0;
     border-color: white;
 }
-.button {
-    color: #FFFFE0;
-    background-color: #483D8B;
-    padding: 10px 20px;
-    font-family: inherit;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-
-
-
-
-}
-
