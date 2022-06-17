@@ -65,6 +65,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="sale: ${sales}" th:value="${sale}"
                                     th:text="${sale.value}"
+                                    th:selected = "${figure.sale.saleId == sale.saleId}"
                                     th:sale-id="${sale.saleId}">
                             </option>
                         </select>
@@ -78,6 +79,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="figureProducer: ${figureProducers}" th:value="${figureProducer}"
                                     th:text="${figureProducer.name}"
+                                    th:selected = "${figure.collectableFigureProducer.collectableFiguresProducerId == figureProducer.collectableFiguresProducerId}"
                                     th:figproducer-id="${figureProducer.collectableFiguresProducerId}">
                             </option>
                         </select>
@@ -104,6 +106,7 @@
                             <option selected value = "">Please choose one</option>
                             <option th:each="fandom: ${fandoms}" th:value="${fandom}"
                                     th:text="${fandom.name}"
+                                    th:selected = "${figure.fandom.fandomId == fandom.fandomId}"
                                     th:fandom-id="${fandom.fandomId}">
                             </option>
                         </select>

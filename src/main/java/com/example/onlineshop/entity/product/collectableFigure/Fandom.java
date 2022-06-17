@@ -17,7 +17,7 @@ public class Fandom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fandom_id")
-    private Long FandomId;
+    private Long fandomId;
 
     @Column(name = "name")
     private String name;
