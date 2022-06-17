@@ -1,7 +1,9 @@
 package com.example.onlineshop.controllers;
 
 
+import com.example.onlineshop.entity.chipBasketAndFavorite.ChipBasket;
 import com.example.onlineshop.entity.order.Order;
+import com.example.onlineshop.entity.product.Products;
 import com.example.onlineshop.repository.ChipBasketRepository;
 import com.example.onlineshop.repository.ProductInOrderRepository;
 import com.example.onlineshop.repository.ProductsRepository;
@@ -30,9 +32,11 @@ public class ChipBasketController {
     }
 
     @GetMapping("/Basket")
-    public String homePage(Model model) {
-        List<Order> order = orderRepository.findAll();
-        model.addAttribute("order", order);
+    public String Basket(Model model) {
+        List<ChipBasket> chipBasket = chipBasketRepository.findAll();
+        List<Products> products = productsRepository.findAll();
+        model.addAttribute("ChipBasket", chipBasket);
+        model.addAttribute("products", products);
         return "Basket";
     }
 

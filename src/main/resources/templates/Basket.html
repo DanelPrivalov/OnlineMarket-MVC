@@ -19,11 +19,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="order : ${order}">
-                    <td th:text="${order.userId}"></td>
-                    <td th:text="${order.condition.conditionName}"></td>
-                    <td th:text="${order.date}"></td>
-                    <td th:text="${order.comment}"></td>
+                <tr th:each="ChipBasket : ${chipBasket}">
+                    <td th:text="${chipBasket.ChipBasketId}"></td>
+                    <td th:text="${chipBasket.user.firstname}"></td>
+                    <td th:text="${chipBasket.quantity}"></td>
+                    <td th:text="${chipBasket.Commentription}"></td>
                     <table>
                         <thead>
                         <tr>
@@ -33,10 +33,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="productInOrder : ${productInOrder}">
-                            <td th:text="${productInOrder.order.name}"></td>
-                            <td th:text="${productInOrder.quantity}"></td>
-                            <td th:text="${productInOrder.finalPrice}"></td>
+                        <tr th:each="Products : ${products}">
+                            <td th:text="${products.order.name}"></td>
+                            <td th:text="${products.quantity}"></td>
+                            <td th:text="${products.finalPrice}"></td>
                         </tbody>
                     </table>
                 </tr>
