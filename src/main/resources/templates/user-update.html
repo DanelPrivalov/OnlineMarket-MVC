@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="../css.css">
     <meta charset="UTF-8">
     <title>Edit a user</title>
 </head>
 <body>
 
-<div>
-    <h2>Edit a chosen user</h2>
+<div class="container">
+    <h2 class="header">Edit a chosen user</h2>
     <div>
         <div>
             <form th:method="post"  th:action="@{/users/update/{id}(id = ${user.id})}" th:object="${user}" >
-                <div>
+                <div class = "label">
                     <div>
                         <label for="name">Введите имя</label>
                         <input type="text" th:field="*{firstName}" id="name" placeholder="Иван">
@@ -39,8 +40,9 @@
                     </div>
 
                 </div>
-                <div>
-                    <input type="submit" value="Изменить">
+                <div class="button">
+                    <input  type="submit" value="Изменить">
+                    <br>
                     <br>
                     <a href="/users">Перейти к списку пользователей</a>
                 </div>

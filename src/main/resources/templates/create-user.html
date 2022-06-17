@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="../css.css">
     <meta charset="UTF-8">
-    <title>Create a new user</title>
+    <title>Create a user</title>
 </head>
 <body>
 
 <div>
-    <h2>Create a new user</h2>
+    <h2 class="header">Create a new user</h2>
     <div>
-        <div>
-            <form th:method="post"  th:action="@{/users/createuser}" th:object="${user}" >
-                <div>
+        <div class="container">
+            <form th:method="post" th:action="@{/users/createuser}" th:object="${user}">
+                <div class = "label" >
                     <div>
                         <label for="name">Введите имя</label>
                         <input type="text" th:field="*{firstName}" id="name" placeholder="Иван">
@@ -38,16 +39,29 @@
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                     </div>
 
+                    <div class="select">
+                        <label>Выберите город</label>
+                        <select th:city="city">
+                            <option th:each="city:${city}"
+                                    th:value="${city.city_id}"
+                                    th:text="${city.value}">
+                            </option>
+                        </select>
+
+                    </div>
+
                 </div>
-                <div>
-                    <input type="submit" value="Добавить">
+                <div class="wideText" class="links">
+                    <input class="button" type="submit" value="Добавить">
                     <br>
+                    <p>Если вы передумали создавать нового пользователя, то вы всегда можете</p>
                     <a href="/users">Перейти к списку пользователей</a>
                 </div>
 
-        </form>
+
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 </body>
