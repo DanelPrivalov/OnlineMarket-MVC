@@ -46,6 +46,11 @@ public class ProductController {
         return "show-products";
     }
 
+    @GetMapping("/map")
+    public String showMap(Model model) {
+        return "map";
+    }
+
 //    @GetMapping("/games")
 //    public String showGames(Model model) {
 //        model.addAttribute("games", boardGameRepository.findAll());

@@ -6,9 +6,17 @@
     <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8/>
 </head>
 <body>
-<td th:text="${name}"></td>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+
+<h1>Добро пожаловать!</h1>
+<p><a href="/products">Каталог товаров<i></i></a></p>
+<p><a href="/users">Пользователи<i></i></a></p>
+<p><a href="/order">Заказы<i></i></a></p>
+<p><a href="/">Корзина не работает<i></i></a></p>
+
+    <td th:text="${name}"></td>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
 </body>
 </html>
