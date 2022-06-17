@@ -1,20 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 body {
-    /*background-image: url("https://disk.yandex.ru/i/ucishvjEHhD7NQ");*/
-    /*background-color: #d2b48c;*/
+
     background: url("img/background.jpg");
+    background-size: cover;
     color: #F2BC69;
     font: lighter 16px 'Roboto Condensed', sans-serif;
 }
 
 
 .header h1, h2 {
-    position: relative;
-    /*margin-bottom: .5rem;*/
+    position: center;
     text-align: center;
     display: inline-block;
-    background: #fff;
+    background: #E6E5E1;
     margin-bottom: 0;
     font-size: 20px;
     text-transform: uppercase;
@@ -23,10 +22,6 @@ body {
     color: #F2BC69;
 }
 
-/*.header-h1-dark h1 {*/
-/*    background: #6a1b9a;*/
-/*    color: #fff;*/
-/*}*/
 
 .wideText p {
    color: #F2BC69;
@@ -82,7 +77,7 @@ a:visited {
 
 .button input [type=button], input [type=submit], input [type=reset] {
     color: #FFFFE0;
-    background-color: #F2BC68;
+    background-color: #F2BC69;
     padding: 10px 20px;
     font-family: inherit;
     border: none;
@@ -96,11 +91,11 @@ a:visited {
 }
 
 .table {
-    background-color: antiquewhite;
+    background-color: #151009;
     width: 80%;
     border-style: solid;
     border-width: 2px 2px 2px 2px;
-    border-color: white;
+    border-color: #F2BC69;
 
 }
 .table td {
@@ -110,5 +105,5 @@ a:visited {
 .table th, td {
     border-style: solid;
     border-width: 0 1px 1px 0;
-    border-color: white;
+    border-color: #F2BC69;
 }
