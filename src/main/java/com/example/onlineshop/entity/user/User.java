@@ -3,9 +3,12 @@ package com.example.onlineshop.entity.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
-import java.util.ArrayList;
 
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -14,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
     @Id
     @Column(name = "user_id")//, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,16 +52,17 @@ public class User {
     //    @OneToMany (mappedBy = "access_level_id")
 //    @Column (name = "access_level_id", nullable = false)
 //    private Set <Integer> accessLevelID;
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+
+    @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
     @CollectionTable(name="user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<ERole> roles;
 
-    public Set<Role> getRoles() {
+    public Set<ERole> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<ERole> roles) {
         this.roles = roles;
     }
 
@@ -108,8 +112,38 @@ public class User {
         this.login = login;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isActive();
     }
 
     public void setPassword(String password) {

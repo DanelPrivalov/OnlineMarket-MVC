@@ -1,6 +1,6 @@
 package com.example.onlineshop.controllers;
 
-import com.example.onlineshop.entity.user.Role;
+import com.example.onlineshop.entity.user.ERole;
 import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class RegistrationController {
             return "registration";
         }
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.CUSTOMER));
+        user.setRoles(Collections.singleton(ERole.CUSTOMER));
         userRepository.save(user);
 
         return "redirect:/login";
