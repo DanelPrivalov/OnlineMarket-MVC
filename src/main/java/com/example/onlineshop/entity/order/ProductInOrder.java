@@ -22,20 +22,15 @@ public class ProductInOrder {
     @Column(name = "quantity")
     private Integer quantity;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "order_id")    //, insertable = false, updatable = false)
-//    private Order order;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")    //, insertable = false, updatable = false)
     private Product product;
 
-    public ProductInOrder(Long id, Integer finalPrice, Integer quantity, Order order, Product product) {
+    public ProductInOrder(Long id, Integer finalPrice, Integer quantity,Product product) {
         this.id = id;
         this.finalPrice = finalPrice;
         this.quantity = quantity;
-       // this.order = order;
-        this.product = product;
+              this.product = product;
     }
 
     public Long getId() {
@@ -62,19 +57,11 @@ public class ProductInOrder {
         this.quantity = quantity;
     }
 
-//    public Order getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(Order order) {
-//        this.order = order;
-//    }
-
     public Product getProduct() {
         return product;
     }
 
-    public void setProducts(Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }
