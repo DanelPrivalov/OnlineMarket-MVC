@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Orders</title>
 </head>
@@ -8,8 +10,9 @@
 <div th:switch="${orders}">
     <h2 th:case="null">No orders found!</h2>
     <div th:case="*">
-        <h2>Orders</h2>
-        <table border="1">
+        <h2 class="header">Orders</h2>
+        <div class="container links">
+            <table border="1">
             <thead>
             <tr>
                 <th>order_id</th>
@@ -31,6 +34,7 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </div>
     <p><a href="/order-create">Create order</a></p>
     <p><a href="/home">На главную<i></i></a></p>

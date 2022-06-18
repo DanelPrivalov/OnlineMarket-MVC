@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Add Figure</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div>
-    <h2>Add collectable figure</h2>
-    <div>
-        <div>
+    <h2 class="header">Add a collectable figure</h2>
+    <div class="container wideText links">
+        <div class="label">
             <form action="#" th:action="@{/add-figure}" th:object="${collectableFigure}" method="post">
                 <div>
                     <div>

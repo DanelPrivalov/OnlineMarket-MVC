@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Edit Drink</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div>
-    <h2>Edit drink</h2>
-    <div>
+    <h2 class="header">Edit drink</h2>
+    <div class="container label links">
         <div>
             <form action="#" th:action="@{/edit-drink/{id}(id=${drink.id})}" th:object="${drink}" method="post">
                 <div>
