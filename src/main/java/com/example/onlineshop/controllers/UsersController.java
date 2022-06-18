@@ -1,6 +1,7 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.user.User;
+import com.example.onlineshop.repository.CityRepository;
 import com.example.onlineshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,43 +16,40 @@ import java.util.List;
 @RequestMapping("/users")
 public class UsersController {
     private final UserRepository userRepository;
+    private final CityRepository cityRepository;
 
     @Autowired
-    public UsersController(UserRepository userRepository) {
+    public UsersController(UserRepository userRepository, CityRepository cityRepository) {
         this.userRepository = userRepository;
+        this.cityRepository = cityRepository;
     }
 
     @GetMapping()
     public String showUserList(Model model) {
-        List<User> users = userRepository.findAll();
-        model.addAttribute("users", users);
+        model.addAttribute("users", userRepository.findAll());
+//        model.addAttribute("cities", cityRepository.findAll());
         return "users-list";
     }
 
-//    @GetMapping ("/{id}")
-//    public String showCertainUser (@PathVariable("id") Long id, Model model){
-//        return "create-user";
-//    }
-
-//    @GetMapping ("/new")
-//    public String createUser (@RequestParam(value = "name", required = false) String name, Model model){
-//        model.addAttribute("greeting", "Hello," + name);
-//        return "create-user";
-//    }
 
     @GetMapping("/new")
-    public String createUser(Model model) {
-        model.addAttribute("user", new User());
+    public String createUser(Model model, User user) {
+        model.addAttribute("cities", cityRepository.findAll());
         return "create-user";
     }
 
     @PostMapping("/createuser")
-    public String addUser(@ModelAttribute("user") User user, BindingResult result) {
+    public String addUser(@ModelAttribute("user") User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "create-user";
         }
-        user.setActive(true);
+
+//        var cityID = cityRepository.findById(user.getCity().getCityID()).orElseThrow();
+//        user.setCity(cityID);
+
+//        user.setActive(true);
         userRepository.save(user);
+
         return "redirect:/users";
     }
 
@@ -60,6 +58,7 @@ public class UsersController {
     public String editForm(@PathVariable("id") long id, Model model) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("user", user);
+        model.addAttribute("city", cityRepository.findAll());
 
         return "user-update";
     }
@@ -70,6 +69,8 @@ public class UsersController {
             user.setId(id);
             return "user-update";
         }
+//        var cityID = cityRepository.findById(user.getCity().getCityID()).orElseThrow();
+//        user.setCity(cityID);
 
         userRepository.save(user);
 

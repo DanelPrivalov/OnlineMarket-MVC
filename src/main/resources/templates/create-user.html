@@ -1,7 +1,8 @@
-<!--<!DOCTYPE html>-->
+<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" href="../css.css">
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Create a user</title>
 </head>
@@ -39,15 +40,14 @@
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                     </div>
 
-                    <div class="select">
-                        <label>Выберите город</label>
-                        <select th:city="city">
-                            <option th:each="city:${city}"
-                                    th:value="${city.city_id}"
+                    <div>
+                        <label> Выберите город </label>
+                        <select th:name="city">
+                            <option th:each="city:${cities}"
+                                    th:value="${city.cityID}"
                                     th:text="${city.value}">
                             </option>
                         </select>
-
                     </div>
 
                 </div>
