@@ -19,4 +19,23 @@ public class City {
     @Column(name = "value")
     private String value;
 
+
+    public Integer getCityID() {
+        return cityID;
+    }
+
+    public void setCityID(Integer cityID) {
+        this.cityID = cityID;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
 }
+
