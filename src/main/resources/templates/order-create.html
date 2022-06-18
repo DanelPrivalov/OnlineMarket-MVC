@@ -37,7 +37,7 @@
         <br>
         <div>
             <label> Выберите продукт</label>
-            <select name="productInOrder[0].products.id">
+            <select name="productInOrder[0].product.id">
                 <option th:each="product:${products}"
                         th:value="${product.id}"
                         th:text="${product.name}">Наименование продукта
