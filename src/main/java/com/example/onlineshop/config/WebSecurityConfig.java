@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -51,6 +52,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("select login, password, active from user where login=?")
                 .authoritiesByUsernameQuery("select u.login, ur.roles from user u inner join user_role ur on u.user_id = ur.user_id where u.login=?");
     }
+
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/loginpage.css");
+
+    }
+
+
 
 //    @Bean
 //    @Override
