@@ -52,14 +52,14 @@
                         </option>
                     </select>
                 </div>
-                <div>
-                    <label> Количество</label>
-                    <input type="text" name="productInOrder[0].quantity" placeholder="Количество товара"/>
-                </div>
-                <div>
-                    <label> Итоговая цена</label>
-                    <input type="text" name="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
-                </div>
+                <br>
+        <div>
+            <label> Количество</label>
+            <input type="text" th:field="*{productInOrder[0].quantity}" id="productInOrder[0].quantity" placeholder="Количество товара"/>
+            <br>
+            <label> Итоговая цена</label>
+            <input type="text" th:field="*{productInOrder[0].finalPrice}" id="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
+            <br>
                 <div>
                     <label for="date">Дата заказа</label>
                     <input type="text" th:field="*{date}" id="date" placeholder="Date">
@@ -73,12 +73,14 @@
                         th:selected="${order.condition.conditionId == condition.conditionId}">
                 </option>
             </select>
-        </label>
-    </div>
-    <div>
-        <label for="comment">Комментарий к заказу</label>
-        <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
-    </div>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label for="comment">Комментарий к заказу</label>
+            <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+        </div>
+
     </fieldset>
 
     <input type="submit" value="Изменить">

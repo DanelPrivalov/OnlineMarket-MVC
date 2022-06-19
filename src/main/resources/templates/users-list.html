@@ -23,7 +23,7 @@
                             <th>Логин</th>
                             <th>Пароль</th>
                             <th>Город</th>
-
+                            <th>role</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,8 +34,10 @@
                             <td th:text="${user.login}"></td>
                             <td th:text="${user.password}"></td>
                             <td th:text="${user.city.value}"></td>
+                            <!--                            добавила строчку с ролями пользователя-->
 
-                            <td><a th:href="@{users/edit/{id}(id=${user.id})}">Edit<i></i></a></td>
+                            <td th:each="role : ${user.roles}" th:text="${role}"></td>
+                                                       <td><a th:href="@{users/edit/{id}(id=${user.id})}">Edit<i></i></a></td>
                             <td><a th:href="@{users/delete/{id}(id=${user.id})}">Delete<i></i></a></td>
                         </tr>
                         </tbody>
