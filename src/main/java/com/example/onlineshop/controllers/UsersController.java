@@ -1,19 +1,21 @@
 package com.example.onlineshop.controllers;
 
+import com.example.onlineshop.entity.user.ERole;
 import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.CityRepository;
 import com.example.onlineshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import java.util.Arrays;
 
 
 @Controller
 @RequestMapping("/users")
+@PreAuthorize("hasAuthority('ADMIN')") //доступ разрешен только ADMIN
 public class UsersController {
     private final UserRepository userRepository;
     private final CityRepository cityRepository;
@@ -27,53 +29,52 @@ public class UsersController {
     @GetMapping()
     public String showUserList(Model model) {
         model.addAttribute("users", userRepository.findAll());
-//        model.addAttribute("cities", cityRepository.findAll());
         return "users-list";
     }
-
 
     @GetMapping("/new")
     public String createUser(Model model, User user) {
         model.addAttribute("cities", cityRepository.findAll());
+        model.addAttribute("roles", ERole.values());
+
         return "create-user";
     }
 
     @PostMapping("/createuser")
-    public String addUser(@ModelAttribute("user") User user, BindingResult result, Model model) {
+    public String addUser(@RequestParam(name = "roles[]", required = false) String[] roles,@ModelAttribute("user") User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "create-user";
         }
-
-//        var cityID = cityRepository.findById(user.getCity().getCityID()).orElseThrow();
-//        user.setCity(cityID);
-
-//        user.setActive(true);
+        user.setActive(true);
+        user.getRoles().clear();
+        if (roles != null) {
+            Arrays.stream(roles).forEach(r -> user.getRoles().add(ERole.valueOf(r)));
+        }
         userRepository.save(user);
-
         return "redirect:/users";
     }
 
-
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable("id") long id, Model model) {
+    public String editForm(@PathVariable("id") Long id, Model model) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("user", user);
         model.addAttribute("city", cityRepository.findAll());
-
+        model.addAttribute("roles", ERole.values());
         return "user-update";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id, BindingResult result) {
+    @PostMapping(value = "/update/{id}")
+    public String userSave(@RequestParam(name = "roles[]", required = false) String[] roles,
+                           @ModelAttribute("user") User user, @PathVariable("id") Long id, BindingResult result) {
         if (result.hasErrors()) {
             user.setId(id);
             return "user-update";
         }
-//        var cityID = cityRepository.findById(user.getCity().getCityID()).orElseThrow();
-//        user.setCity(cityID);
-
+        user.getRoles().clear();
+        if (roles != null) {
+            Arrays.stream(roles).forEach(r -> user.getRoles().add(ERole.valueOf(r)));
+        }
         userRepository.save(user);
-
         return "redirect:/users";
     }
 
@@ -81,7 +82,6 @@ public class UsersController {
     public String deleteUser(@PathVariable("id") long id, Model model) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         userRepository.delete(user);
-
         return "redirect:/users";
     }
 

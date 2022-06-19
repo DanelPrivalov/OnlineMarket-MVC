@@ -7,7 +7,6 @@
     <title>Edit a user</title>
 </head>
 <body>
-
 <div>
     <h2 class="header">Edit a chosen user</h2>
     <div class="container">
@@ -43,7 +42,7 @@
                     <div>
                         <label> Выберите город
                             <select th:name="city">
-                                <option th:each="city:${cities}"
+                                <option th:each="city:${city}"
                                         th:value="${city.cityID}"
                                         th:text="${city.value}">
                                 </option>
@@ -51,6 +50,11 @@
                         </label>
                     </div>
 
+                    <div th:each="role : ${roles}">
+                        <input th:id="${role}" type="checkbox" th:name="roles[]" th:value="${role}"
+                               th:checked="${#lists.contains(user.roles, role)}"/>
+                        <label th:text="${role}"> </label>
+                    </div>
                 </div>
                 <div class="button">
                     <input type="submit" value="Изменить">
@@ -63,7 +67,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
