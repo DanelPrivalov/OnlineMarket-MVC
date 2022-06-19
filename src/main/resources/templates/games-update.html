@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
 <head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Games Update</title>
 </head>
 <body>
-<h1> Настольные игры / редактирование </h1>
-<style>
-    fieldset {
-        background-color: #eeeeee;
-    }
+<h2 class="header"> Настольные игры / редактирование </h2>
 
-    legend {
-        background-color: gray;
-        color: white;
-        padding: 1px 10px;
-    }
-
-    input {
-        margin: 5px;
-    }
-</style>
 <form action="#" th:action="@{/games-update}" th:object="${boardGame}" method="post">
-    <br>
     <fieldset>
         <legend>Редактирование игры</legend>
         <div>

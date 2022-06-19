@@ -35,15 +35,17 @@
             </select>
         </div>
         <br>
-        <div>
+        <div th:id="productSelectContainer">
             <label> Выберите продукт</label>
-            <select name="productInOrder[0].product.id">
+            <select class="productSelect" th:id="productSelectList1" name="productInOrder[0].products.id">
                 <option th:each="product:${products}"
                         th:value="${product.id}"
                         th:text="${product.name}">Наименование продукта
                 </option>
             </select>
         </div>
+        <button type="button" id="addProductSelect">Добавить еще товар</button>
+        <button type="button" id="deleteLastProductSelect">Удалить последний товар</button>
         <br>
         <div>
             <label> Количество</label>
@@ -74,6 +76,36 @@
     </fieldset>
     <input type="submit" value="Создать">
     <p><a href="/order">Cancel<i></i></a></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+                    $('#addProductSelect').on('click', function(){            // Триггер на изменение нажатие кнопки
+ //                 $(".productSelect:last-child").change(function (){    // Триггер на изменение поля товар
+                    var oldId = $("#productSelectContainer .productSelect:last-child").attr("ID") // Получаем ID последнего добавленного класса
+                    var selName = "productSelectList";                          // ID класса ( используется для вычиследния длинны и создания ID нового класса
+                    var newIDNumber = Number(oldId.substring(selName.length))+1; //Берем номер ID последнего добавленного класса и добавляем 1
+                    var newId = selName+newIDNumber;                            // Генерируем новый ID
+                    var cloneClass = $(".productSelect:last-child").clone(true,true) //клонируем последний добавленный класс(это нужно для того чтобы не копировать полностью весь класс иначе уходит в разнос
+                    cloneClass.attr("id",newId);                                //Прописываем склонированному классу новый ID
+                    $("#productSelectContainer").append(cloneClass);            //Добавляем склонированный класс к контейнеру
+                });
+            }
+        );
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+                $('#deleteLastProductSelect').on('click', function(){            // Триггер на изменение нажатие кнопки
+                    var first = $("#productSelectContainer .productSelect").attr("ID") // Получаем ID первого класса
+                    var last = $("#productSelectContainer .productSelect:last-child").attr("ID") // Получаем ID последнего класса
+                    if (first !=  last) {                                                   //Проверка нужна для того, чтобы мы не удалили единственный товар( иначе кнопка добавить больше не будет работать)
+                        $("#productSelectContainer .productSelect:last-child").remove();    //Удаляем последний добавленный класс
+                    }
+                });
+            }
+        );
+    </script>
 </form>
 </body>
 </html>
+
+
