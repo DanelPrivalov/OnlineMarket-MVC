@@ -2,21 +2,24 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title> home </title>
-
-    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8/>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta charset="UTF-8">
 </head>
 <body>
 
-<h1>Добро пожаловать!</h1>
-<p><a href="/products">Каталог товаров<i></i></a></p>
-<p><a href="/users">Пользователи<i></i></a></p>
-<p><a href="/order">Заказы<i></i></a></p>
-<p><a href="/">Корзина не работает<i></i></a></p>
+<h2 class="header">Добро пожаловать!</h2>
+<div class="container links">
+    <p><a href="/products">Каталог товаров<i></i></a></p>
+    <p><a href="/users">Пользователи<i></i></a></p>
+    <p><a href="/order">Заказы<i></i></a></p>
+    <p><a href="/">Корзина не работает<i></i></a></p>
+</div>
 
-    <td th:text="${name}"></td>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
+<!--<td th:text="${name}"></td>-->
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 
 </body>
 </html>
