@@ -52,10 +52,11 @@
         <br>
         <div>
             <label> Количество</label>
-            <input type="text" name="productInOrder[0].quantity" placeholder="Количество товара"/>
+            <input type="text" th:field="*{productInOrder[0].quantity}" id="productInOrder[0].quantity" placeholder="Количество товара"/>
             <br>
             <label> Итоговая цена</label>
-            <input type="text" name="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
+            <input type="text" th:field="*{productInOrder[0].finalPrice}" id="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
+<!--            name="productInOrder[0].finalPrice"-->
             <br>
             <label for="date">Дата заказа</label>
             <input type="text" th:field="*{date}" id="date" placeholder="Date">
