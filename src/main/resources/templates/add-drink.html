@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <title>Add Drink</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div>
-    <h2>Add drink</h2>
-    <div>
-        <div>
+    <h2 class="header">Add drink</h2>
+    <div  class="container wideText">
+        <div class="label">
             <form action="#" th:action="@{/add-drink}" th:object="${drink}" method="post">
                 <div>
                     <div>

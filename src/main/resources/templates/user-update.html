@@ -1,7 +1,7 @@
-<!--<!DOCTYPE html>-->
+<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" href="../css.css">
+    <link rel="stylesheet" href="/css.css">
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Edit a user</title>
@@ -12,8 +12,8 @@
     <h2 class="header">Edit a chosen user</h2>
     <div class="container">
         <div>
-            <form th:method="post"  th:action="@{/users/update/{id}(id = ${user.id})}" th:object="${user}" >
-                <div class = "label">
+            <form th:method="post" th:action="@{/users/update/{id}(id = ${user.id})}" th:object="${user}">
+                <div class="label">
                     <div>
                         <label for="name">Введите имя </label>
                         <input type="text" th:field="*{firstName}" id="name" placeholder="Иван">
@@ -40,9 +40,20 @@
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                     </div>
 
+                    <div>
+                        <label> Выберите город
+                            <select th:name="city">
+                                <option th:each="city:${cities}"
+                                        th:value="${city.cityID}"
+                                        th:text="${city.value}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+
                 </div>
                 <div class="button">
-                    <input  type="submit" value="Изменить">
+                    <input type="submit" value="Изменить">
                     <br>
                     <br>
                     <a href="/users">Перейти к списку пользователей</a>
