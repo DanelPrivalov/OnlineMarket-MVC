@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -23,14 +24,11 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(name = "last_name")//, nullable = false)
     private String lastName;
 
     @Column(name = "first_name")//, nullable = false)
     private String firstName;
-
-  
 
     @Column(name = "login")//, nullable = false)
     private String login;
@@ -41,6 +39,11 @@ public class User implements UserDetails {
     @Column
     private boolean active;
 
+    @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<ERole> roles;
+
     public boolean isActive() {
         return active;
     }
@@ -49,15 +52,6 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-    //    @OneToMany (mappedBy = "access_level_id")
-//    @Column (name = "access_level_id", nullable = false)
-//    private Set <Integer> accessLevelID;
-
-    @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
-    @CollectionTable(name="user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<ERole> roles;
-
     public Set<ERole> getRoles() {
         return roles;
     }
@@ -65,9 +59,6 @@ public class User implements UserDetails {
     public void setRoles(Set<ERole> roles) {
         this.roles = roles;
     }
-
-    @Column(name = "access_level_id")
-    private Level accessLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
 //не пишем joincolumn потому что нам не нужна двойная связь. Он автоматически свяжет с сити по айди
@@ -79,14 +70,82 @@ public class User implements UserDetails {
     @Column(name = "discount")
     private double discount; //customer
 
-      public User(Long id, String firstName, String lastName, String login, String password) {
-        this.id = id;
-        this.firstName = firstName;
+    public User(String lastName, String firstName, String login, String password, boolean active, Set<ERole> roles, City city, String dateOfBirth, double discount) {
         this.lastName = lastName;
+        this.firstName = firstName;
         this.login = login;
         this.password = password;
-    }
+        this.active = active;
+        this.roles = new Set<ERole>() {
+            @Override
+            public int size() {
+                return 0;
+            }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<ERole> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(ERole eRole) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends ERole> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+        } ;
+        this.city = city;
+        this.dateOfBirth = dateOfBirth;
+        this.discount = discount;
+    }
 
     public Long getId() {
         return id;
@@ -112,13 +171,13 @@ public class User implements UserDetails {
         this.login = login;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     @Override
@@ -148,14 +207,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Level getAccessLevel() {
-        return accessLevel;
-    }
-
-    public void setAccessLevel(Level accessLevel) {
-        this.accessLevel = accessLevel;
     }
 
     public City getCity() {
@@ -188,5 +239,25 @@ public class User implements UserDetails {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public User(Set<ERole> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
+                ", city=" + city +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", discount=" + discount +
+                '}';
     }
 }

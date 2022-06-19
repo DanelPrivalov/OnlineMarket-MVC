@@ -49,7 +49,10 @@
                             </option>
                         </select>
                     </div>
-
+                    <div th:each="role : ${roles}">
+                        <input th:id="${role}" type="checkbox" th:name="roles[]" th:value="${role}"/>
+                        <label th:text="${role}"> </label>
+                    </div>
                 </div>
                 <div class="wideText links">
                     <input class="button" type="submit" value="Добавить">
@@ -57,12 +60,9 @@
                     <p>Если вы передумали создавать нового пользователя, то вы всегда можете</p>
                     <a href="/users">Перейти к списку пользователей</a>
                 </div>
-
-
             </form>
         </div>
     </div>
 </div>
-
 </body>
 </html>
