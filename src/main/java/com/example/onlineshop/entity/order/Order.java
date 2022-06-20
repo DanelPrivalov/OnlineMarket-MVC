@@ -1,6 +1,7 @@
 package com.example.onlineshop.entity.order;
 import com.example.onlineshop.entity.user.User;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Order {
     @JoinColumn(name = "condition_id")//, insertable = false, updatable = false)
     private Condition condition;
 
+@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 

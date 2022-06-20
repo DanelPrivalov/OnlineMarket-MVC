@@ -17,27 +17,30 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
-   @Autowired
+
+    @Autowired
     public WebSecurityConfig(UserService userService) {
-    this.userService = userService;
-      }
+        this.userService = userService;
+    }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/","/registration").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
+                .antMatchers("/", "/registration").permitAll()
+                .anyRequest().authenticated()
+                .and()
+
 
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    //.and().rememberMe()
-                    .and()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                //.and().rememberMe()
+                .and()
                 .logout()
-                    .permitAll();
+                .permitAll();
     }
 
     @Override
@@ -51,7 +54,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/loginpage.css");
 
     }
-
 
 
 //    @Bean
