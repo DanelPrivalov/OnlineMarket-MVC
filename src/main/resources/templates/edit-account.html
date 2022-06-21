@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta charset="UTF-8">
+    <title>Editing your account</title>
+</head>
+<body>
+<div>
+    <h2 class="header">Edit your account</h2>
+    <div class="container">
+        <div>
+            <form th:method="post" th:action="@{/account/{id}(id = ${user.id})}" th:object="${user}">
+                <div class="label">
+                    <div>
+                        <label for="name">Изменить имя </label>
+                        <input type="text" th:field="*{firstName}" id="name">
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                    </div>
+                    <div>
+                        <label for="lastName">Изменить фамилию </label>
+                        <input type="text" th:field="*{lastName}" id="lastName">
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                    </div>
+                    <div>
+                        <label for="dateOfBirth">Изменить дату рождения </label>
+                        <input type="text" th:field="*{dateOfBirth}" id="dateOfBirth">
+                        <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
+                    </div>
+                    <div>
+                        <label for="login">Изменить логин </label>
+                        <input type="text" th:field="*{login}" id="login">
+                        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                    </div>
+                    <div>
+                        <label for="password">Изменить пароль </label>
+                        <input type="password" th:field="*{password}" id="password">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </div>
+                    <div>
+                        <label> Выберите город
+                            <select th:name="city">
+                                <option th:each="city:${city}"
+                                        th:value="${city.cityID}"
+                                        th:text="${city.value}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Изменить">
+                    <br>
+                    <br>
+                    <a class="links" href="/home">На главную страницу</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
