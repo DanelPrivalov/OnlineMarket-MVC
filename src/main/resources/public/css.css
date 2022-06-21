@@ -91,16 +91,18 @@ a:visited {
 
 .table {
     background-color: #151009;
-    width: 80%;
     word-break: break-all;
     table-layout: fixed;
     border-style: solid;
     border-width: 2px 2px 2px 2px;
     border-color: #F2BC69;
-
+    width:100%
 }
 .table td {
     padding-bottom: 10px;
+}
+td {
+    word-wrap:break-word;
 }
 
 .table th, td {
