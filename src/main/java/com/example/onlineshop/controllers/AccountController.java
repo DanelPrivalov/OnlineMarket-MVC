@@ -3,7 +3,10 @@ package com.example.onlineshop.controllers;
 import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.CityRepository;
 import com.example.onlineshop.repository.UserRepository;
+import com.example.onlineshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,8 +33,8 @@ public class AccountController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable("id") Long id, Model model) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+    public String editForm(@AuthenticationPrincipal User authUser, @PathVariable("id") Long id, Model model) {
+               User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("user", user);
         model.addAttribute("city", cityRepository.findAll());
         return "edit-account";

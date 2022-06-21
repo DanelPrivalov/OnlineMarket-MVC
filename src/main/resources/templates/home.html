@@ -18,8 +18,9 @@
 
 <!--</div>-->
 
-<div class="container links">
-    <h2 class="header">Добро пожаловать!</h2>
+<div class="container links" >
+    <h2 class="header"  th:text="'Добро пожаловать, '+${user.firstName}" ></h2>
+
     <p><a href="/products">Каталог товаров<i></i></a></p>
     <p><a href="/users">Пользователи<i></i></a></p>
     <p><a href="/order">Заказы<i></i></a></p>
