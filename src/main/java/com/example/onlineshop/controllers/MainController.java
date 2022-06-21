@@ -25,7 +25,7 @@ public class MainController {
 
     @GetMapping("/home")
     public String main(Model model, @AuthenticationPrincipal User user)  {
-        model.addAttribute("name","Добро пожаловать");
+//        model.addAttribute("name","Добро пожаловать");
         model.addAttribute("user",user);
         return "home";
     }
