@@ -7,7 +7,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-@NoArgsConstructor
+
+
 @Entity
 @Table(name = "order")
 public class Order {
@@ -19,29 +20,45 @@ public class Order {
     @JoinColumn(name = "user_id")//, insertable = false, updatable = false)
     private User user;//раскомментить когда добавят юзера
 
-    @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "condition_id")//, insertable = false, updatable = false)
     private Condition condition;
 
-@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //mappedBy = "order" , cascade = CascadeType.ALL
     @JoinColumn(name = "order_Id")
-    private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
+    private List<ProductInOrder> productInOrders;//разобраться в каком случае двойные связи
 
     @Column(name = "comment")
     private String comment;
 
-    public Order(Long orderId, User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrder, String comment) {
+    public Order() {
+        this.productInOrders = new ArrayList<>();
+    }
+
+    public Order(Long orderId, User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrders, String comment) {
         this.orderId = orderId;
         this.user = user;
         this.condition = condition;
         this.date = date;
-        this.productInOrder = productInOrder;
+
         this.comment = comment;
     }
+
+//    public Order createOrder(User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrders) {
+//        Order order = new Order();
+//        order.setUser(user);
+//        order.setCondition(condition);
+//        for (ProductInOrder productInOrder : productInOrders) {
+//            productInOrders.add(productInOrder);
+//        }
+//        order.setComment(comment);
+//        order.setDate(LocalDate.now());
+//        return order;
+//    }
 
     public Long getOrderId() {
         return orderId;
@@ -75,12 +92,12 @@ public class Order {
         this.date = date;
     }
 
-    public List<ProductInOrder> getProductInOrder() {
-        return productInOrder;
+    public List<ProductInOrder> getProductInOrders() {
+        return productInOrders;
     }
 
-    public void setProductInOrder(List<ProductInOrder> productInOrder) {
-        this.productInOrder = productInOrder;
+    public void setProductInOrders(List<ProductInOrder> productInOrders) {
+        this.productInOrders = productInOrders;
     }
 
     public String getComment() {

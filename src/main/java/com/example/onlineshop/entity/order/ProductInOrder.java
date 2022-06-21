@@ -32,7 +32,15 @@ public class ProductInOrder {
         this.quantity = quantity;
               this.product = product;
     }
-
+//    public ProductInOrder createProductInOrder(Product product, Integer finalPrice, Integer quantity) {
+//       ProductInOrder productInOrder =new ProductInOrder();
+//        productInOrder.setProduct(product);
+//        productInOrder.setFinalPrice(finalPrice);
+//        productInOrder.setQuantity(quantity);
+//// подумать над количесвтом остатков при заказе
+//
+//        return productInOrder;
+//    }
     public Long getId() {
         return id;
     }
@@ -64,4 +72,5 @@ public class ProductInOrder {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }
