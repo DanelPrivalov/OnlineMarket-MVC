@@ -21,6 +21,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Price</th>
+                            <th>Picture</th>
                             <th>Availability</th>
                             <th>SEO_attributes</th>
                             <th>Product_type_id</th>
@@ -36,6 +37,7 @@
                             <td th:text="${product.name}"></td>
                             <td th:text="${product.description}"></td>
                             <td th:text="${product.price}"></td>
+                            <td> <img th:src="@{${product.images}}" alt="Фото продукта" width="200" height="100"> </td>
                             <td th:text="${product.availability}"></td>
                             <td th:text="${product.seo.name}"></td>
                             <td th:text="${product.productType.name}"></td>
@@ -54,7 +56,8 @@
                 <p><a href="/games">See board games<i></i></a></p>
                 <p><a href="/figures">See figures<i></i></a></p>
                 <p><a href="/home">На главную<i></i></a></p>
-                <p><a href="/map">Map<i></i></a></p>
+                <img src="img/toad1.jpg" width="200" height="100">
+                <img src="img/toad2.jpg" width="200" height="100">
             </div>
         </div>
     </div>
