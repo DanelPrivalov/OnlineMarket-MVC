@@ -47,47 +47,49 @@
                     <select name="productInOrder[0].product.id">
                         <option th:each="product:${products}"
                                 th:value="${product.id}"
-                                th:text="${product.name}" Наименование продукта
-                                th:selected="${order.productInOrder[0].product.id == product.id}">
+                                th:text="${product.name}" Наименование продукта>
+                            <!--                                th:selected="${order.productInOrder[0].product.id == product.id}">-->
                         </option>
                     </select>
                 </div>
                 <br>
-        <div>
-            <label> Количество</label>
-            <input type="text" th:field="*{productInOrder[0].quantity}" id="productInOrder[0].quantity" placeholder="Количество товара"/>
-            <br>
-            <label> Итоговая цена</label>
-            <input type="text" th:field="*{productInOrder[0].finalPrice}" id="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
-            <br>
                 <div>
-                    <label for="date">Дата заказа</label>
-                    <input type="text" th:field="*{date}" id="date" placeholder="Date">
+                    <label> Количество</label>
+                    <input type="text" th:field="*{productInOrder[0].quantity}" id="productInOrder[0].quantity"
+                           placeholder="Количество товара"/>
+                    <br>
+                    <label> Итоговая цена</label>
+                    <input type="text" th:field="*{productInOrder[0].finalPrice}" id="productInOrder[0].finalPrice"
+                           placeholder="Итоговая цена"/>
+                    <br>
+                    <div>
+                        <label for="date">Дата заказа</label>
+                        <input type="text" th:field="*{date}" id="date" placeholder="Date">
+                    </div>
+                    <div>
+                        <label> Состояние заказа
+                            <select name="condition">
+                                <option th:each="condition:${conditions}"
+                                        th:value="${condition.conditionId}"
+                                        th:text="${condition.conditionName}" Состояние заказа
+                                        th:selected="${order.condition.conditionId == condition.conditionId}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="comment">Комментарий к заказу</label>
+                        <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+                    </div>
                 </div>
-    <div>
-        <label> Состояние заказа
-            <select name="condition">
-                <option th:each="condition:${conditions}"
-                        th:value="${condition.conditionId}"
-                        th:text="${condition.conditionName}" Состояние заказа
-                        th:selected="${order.condition.conditionId == condition.conditionId}">
-                </option>
-            </select>
-            </label>
-        </div>
-        <br>
-        <div>
-            <label for="comment">Комментарий к заказу</label>
-            <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
-        </div>
+            </fieldset>
 
-    </fieldset>
+            <input type="submit" value="Изменить">
+            <p><a href="/order">Cancel<i></i></a></p>
 
-    <input type="submit" value="Изменить">
-    <p><a href="/order">Cancel<i></i></a></p>
-
-    </form>
-</div>
+        </form>
+    </div>
 </div>
 
 </body>

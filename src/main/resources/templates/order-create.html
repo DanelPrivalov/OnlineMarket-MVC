@@ -10,13 +10,11 @@
     fieldset {
         background-color: #eeeeee;
     }
-
     legend {
         background-color: gray;
         color: white;
         padding: 1px 10px;
     }
-
     input {
         margin: 5px;
     }
@@ -35,25 +33,28 @@
             </select>
         </div>
         <br>
-        <div th:id="productSelectContainer">
+        <div id="productSelectContainer">
             <label> Выберите продукт</label>
-            <select class="productSelect" th:id="productSelectList1" name="productInOrder[0].products.id">
-                <option th:each="product:${products}"
-                        th:value="${product.id}"
-                        th:text="${product.name}">Наименование продукта
-                </option>
-            </select>
+            <div class="addProductClass" th:id="addProduct0">
+                <select class="productSelectClass"  th:field="*{productInOrder[0].product.id}" id="productSelectList0" >
+                    <option th:each="product :${products}"
+                            th:value="${product.id}"
+                            th:text="${product.name}">Наименование продукта
+                    </option>
+                </select>
+                <label> Количество</label>
+                <input type="text" class="productQuantityClass" th:field="*{productInOrder[0].quantity}" id="productQuantity0" placeholder="Количество товара"/>
+                <br>
+                <label> Итоговая цена</label>
+                <input type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"  id="productFinalPrice0" placeholder="Итоговая цена"/>
+                <br>
+            </div>
         </div>
+        <br>
         <button type="button" id="addProductSelect">Добавить еще товар</button>
         <button type="button" id="deleteLastProductSelect">Удалить последний товар</button>
         <br>
         <div>
-            <label> Количество</label>
-            <input type="text" name="productInOrder[0].quantity" placeholder="Количество товара"/>
-            <br>
-            <label> Итоговая цена</label>
-            <input type="text" name="productInOrder[0].finalPrice" placeholder="Итоговая цена"/>
-            <br>
             <label for="date">Дата заказа</label>
             <input type="date" th:field="*{date}" id="date" placeholder="Date">
         </div>
@@ -78,27 +79,51 @@
     <p><a href="/order">Cancel<i></i></a></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function (){
-                    $('#addProductSelect').on('click', function(){            // Триггер на изменение нажатие кнопки
- //                 $(".productSelect:last-child").change(function (){    // Триггер на изменение поля товар
-                    var oldId = $("#productSelectContainer .productSelect:last-child").attr("ID") // Получаем ID последнего добавленного класса
-                    var selName = "productSelectList";                          // ID класса ( используется для вычиследния длинны и создания ID нового класса
-                    var newIDNumber = Number(oldId.substring(selName.length))+1; //Берем номер ID последнего добавленного класса и добавляем 1
-                    var newId = selName+newIDNumber;                            // Генерируем новый ID
-                    var cloneClass = $(".productSelect:last-child").clone(true,true) //клонируем последний добавленный класс(это нужно для того чтобы не копировать полностью весь класс иначе уходит в разнос
-                    cloneClass.attr("id",newId);                                //Прописываем склонированному классу новый ID
-                    $("#productSelectContainer").append(cloneClass);            //Добавляем склонированный класс к контейнеру
+        $(document).ready(function () {
+                $('#addProductSelect').on('click', function () {            // Триггер на изменение нажатие кнопки
+                    var oldIdProductSelectContainer = $("#productSelectContainer .addProductClass:last-child").attr("ID") // Получаем ID последнего добавленного класса
+                    var subStringIdAddProductClass = "addProduct";                          // ID класса ( используется для вычиследния длинны и создания ID нового класса
+                    var oldNumber = Number(oldIdProductSelectContainer.substring(subStringIdAddProductClass.length))
+                    var newNumber = oldNumber + 1;
+                    var newIdProductSelectContainer = subStringIdAddProductClass + newNumber;                            // Генерируем новый ID
+                    var cloneClass = $(".addProductClass:last-child").clone(true, true) //клонируем последний добавленный класс(это нужно для того чтобы не копировать полностью весь класс иначе уходит в разнос
+                    cloneClass.attr("id", newIdProductSelectContainer);                                //Прописываем склонированному классу новый ID
+
+                    var nameFirstPart = "productInOrder[";  // Первая часть имени для select и input (одинаковая у всех)
+// Select товар
+                    var idSelectFirstPart = "productSelectList";  // Первая часть ID для select
+                    var selNameLastPart = "].product.id";         // Последняя часть name для select
+                    var newSelectName = nameFirstPart + newNumber + selNameLastPart; // Создаем новый name
+                    var newSelectId = idSelectFirstPart + newNumber;// Создаем новый ID
+                    cloneClass.children()[0].setAttribute("name", newSelectName); //Присваиваем новый name
+                    cloneClass.children()[0].setAttribute("id", newSelectId); // Присваиваем новый ID
+// input количество
+                    var idQuantityFirstPart = "productQuantity"; // Первая часть ID
+                    var quantityNameLastPart = "].quantity";    // Последняя часть name
+                    var newQuantityName = nameFirstPart + newNumber + quantityNameLastPart; // Создаем новый name
+                    var newQuantityId = idQuantityFirstPart + newNumber    // Создаем новый ID
+                    cloneClass.children()[2].setAttribute("name", newQuantityName); //Присваиваем новый name
+                    cloneClass.children()[2].setAttribute("id", newQuantityId); // Присваиваем новый ID
+// input итоговая цена
+                    var idFinalPriceFirstPart = "productFinalPrice"; // Первая часть ID
+                    var finalPriceNameLastPart = "].finalPrice";     // Последняя часть name для
+                    var newFinalPriceName = nameFirstPart + newNumber + finalPriceNameLastPart;  // Создаем новый name
+                    var newFinalPriceId = idFinalPriceFirstPart + newNumber; // Создаем новый ID
+                    cloneClass.children()[5].setAttribute("name", newFinalPriceName); //Присваиваем новый name
+                    cloneClass.children()[5].setAttribute("id", newFinalPriceId); // Присваиваем новый ID
+
+                    $("#productSelectContainer").append(cloneClass);  //Присоединяем новый класс
                 });
             }
         );
     </script>
     <script type="text/javascript">
-        $(document).ready(function (){
-                $('#deleteLastProductSelect').on('click', function(){            // Триггер на изменение нажатие кнопки
-                    var first = $("#productSelectContainer .productSelect").attr("ID") // Получаем ID первого класса
-                    var last = $("#productSelectContainer .productSelect:last-child").attr("ID") // Получаем ID последнего класса
-                    if (first !=  last) {                                                   //Проверка нужна для того, чтобы мы не удалили единственный товар( иначе кнопка добавить больше не будет работать)
-                        $("#productSelectContainer .productSelect:last-child").remove();    //Удаляем последний добавленный класс
+        $(document).ready(function () {
+                $('#deleteLastProductSelect').on('click', function () {            // Триггер на изменение нажатие кнопки
+                    var firstIdProductSelectContainer = $("#productSelectContainer").attr("ID") // Получаем ID первого класса
+                    var lastIdProductSelectContainer = $("#productSelectContainer .addProductClass:last-child").attr("ID") // Получаем ID последнего класса
+                    if (firstIdProductSelectContainer != lastIdProductSelectContainer) {  //Проверка нужна для того, чтобы мы не удалили единственный товар( иначе кнопка добавить больше не будет работать)
+                        $("#productSelectContainer .addProductClass:last-child").remove();    //Удаляем последний добавленный класс
                     }
                 });
             }
@@ -107,5 +132,3 @@
 </form>
 </body>
 </html>
-
-

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
+
 @Entity
 @Table(name="product_in_order")
 public class ProductInOrder {
@@ -26,11 +26,24 @@ public class ProductInOrder {
     @JoinColumn(name = "product_id")    //, insertable = false, updatable = false)
     private Product product;
 
-    public ProductInOrder(Long id, Integer finalPrice, Integer quantity,Product product) {
+
+//    public ProductInOrder createProductInOrder(Product product, Integer finalPrice, Integer quantity) {
+//       ProductInOrder productInOrder =new ProductInOrder();
+//        productInOrder.setProduct(product);
+//        productInOrder.setFinalPrice(finalPrice);
+//        productInOrder.setQuantity(quantity);
+//// подумать над количесвтом остатков при заказе
+//        return productInOrder;
+//    }
+
+    public ProductInOrder(Long id, Integer finalPrice, Integer quantity, Product product) {
         this.id = id;
         this.finalPrice = finalPrice;
         this.quantity = quantity;
-              this.product = product;
+        this.product = product;
+    }
+
+    public ProductInOrder() {
     }
 
     public Long getId() {
