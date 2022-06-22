@@ -26,7 +26,6 @@
                             <th>SEO_attributes</th>
                             <th>Product_type_id</th>
                             <th>Rating_id</th>
-                            <th>image</th>
                             <th>Sale_id</th>
                             <!--                        <th>Edit</th>-->
                             <th>Delete</th>
@@ -42,8 +41,6 @@
                             <td th:text="${product.seo.name}"></td>
                             <td th:text="${product.productType.name}"></td>
                             <td th:text="${product.ratingId}"></td>
-                            <td>  <img th:src="@{${product.images}}" width="100" height="50"/> </td>
-
                             <td th:text="${product.sale.value}"></td>
                             <!--                        <td><a th:href="@{/edit/{id}(id=${product.id})}">Edit<i></i></a></td>-->
                             <td><a th:href="@{/delete/{id}(id=${product.id})}">Delete<i></i></a></td>
@@ -56,8 +53,7 @@
                 <p><a href="/games">See board games<i></i></a></p>
                 <p><a href="/figures">See figures<i></i></a></p>
                 <p><a href="/home">На главную<i></i></a></p>
-                <img src="img/toad1.jpg" width="200" height="100">
-                <img src="img/toad2.jpg" width="200" height="100">
+
             </div>
         </div>
     </div>
