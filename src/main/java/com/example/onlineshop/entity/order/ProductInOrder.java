@@ -38,21 +38,13 @@ public class ProductInOrder {
 //        return productInOrder;
 //    }
 
-    public ProductInOrder(@AuthenticationPrincipal User user, Long id, Integer finalPrice, Integer quantity, Product product) {
-        this.id = id;
-        this.finalPrice = calculateFinalPrice(user);
-        this.quantity = quantity;
-        this.product = product;
-    }
+
 
     public ProductInOrder() {
+
     }
 
-    public Integer calculateFinalPrice(@AuthenticationPrincipal User user) {
-
-        Integer finalPrice =  product.getPrice() - ((int) user.getDiscount() / 100 * product.getPrice());
-        return finalPrice;
-    }
+   
 
     public Long getId() {
         return id;
