@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
+
 
 //@RequestMapping("/order") для того, чтобы повесить /ордер на все методы
 @Controller
@@ -53,6 +55,9 @@ public class OrderController {
 
     @PostMapping("/order-create")
     public String createOrder(Order order) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        order.setDate(dateTime.format(formatter));
         orderRepository.save(order);
         return "redirect:/order";
     }

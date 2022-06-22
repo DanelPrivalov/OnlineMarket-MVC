@@ -1,13 +1,7 @@
 package com.example.onlineshop.entity.order;
 import com.example.onlineshop.entity.user.User;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -26,10 +20,8 @@ public class Order {
     @JoinColumn(name = "condition_id")//, insertable = false, updatable = false)
     private Condition condition;
 
-    @UpdateTimestamp
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
-    private LocalDate date; //разобраться с Date LocalDate и тд
+    private String date; //разобраться с Date LocalDate и тд
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //mappedBy = "order" , cascade = CascadeType.ALL
     @JoinColumn(name = "order_Id")
@@ -41,28 +33,6 @@ public class Order {
     public Order() {
 
     }
-
-    public Order(Long orderId, User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrder, String comment) {
-        this.orderId = orderId;
-        this.user = user;
-        this.condition = condition;
-        this.date = date;
-        this.productInOrder = productInOrder;
-        this.comment = comment;
-    }
-
-//    public Order createOrder(User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrders) {
-//        Order order = new Order();
-//        order.setUser(user);
-//        order.setCondition(condition);
-//        for (ProductInOrder productInOrder : productInOrders) {
-//            productInOrders.add(productInOrder);
-//        }
-//        order.setComment(comment);
-//        order.setDate(LocalDate.now());
-//        return order;
-//    }
-
 
     public Long getOrderId() {
         return orderId;
@@ -88,11 +58,11 @@ public class Order {
         this.condition = condition;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
