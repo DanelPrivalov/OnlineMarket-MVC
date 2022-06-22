@@ -21,6 +21,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Price</th>
+                            <th>Picture</th>
                             <th>Availability</th>
                             <th>SEO_attributes</th>
                             <th>Product_type_id</th>
@@ -41,6 +42,7 @@
                             <td th:text="${figure.name}"></td>
                             <td th:text="${figure.description}"></td>
                             <td th:text="${figure.price}"></td>
+                            <td> <img th:src="@{${figure.images}}" alt="Фото продукта" width="200" height="100"> </td>
                             <td th:text="${figure.availability}"></td>
                             <td th:text="${figure.seo.name}"></td>
                             <td th:text="${figure.productType.name}"></td>

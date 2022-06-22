@@ -20,6 +20,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Picture</th>
                     <th>Availability</th>
                     <th>SEO_attributes</th>
                     <th>Product_type_id</th>
@@ -41,6 +42,7 @@
                     <td th:text="${boardGame.name}"></td>
                     <td th:text="${boardGame.description}"></td>
                     <td th:text="${boardGame.price}"></td>
+                    <td> <img th:src="@{${boardGame.images}}" alt="Фото продукта" width="200" height="100"> </td>
                     <td th:text="${boardGame.availability}"></td>
                     <td th:text="${boardGame.seo.name}"></td>
                     <td th:text="${boardGame.productType.name}"></td>
