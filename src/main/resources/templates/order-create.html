@@ -39,15 +39,15 @@
                 <select class="productSelectClass"  th:field="*{productInOrder[0].product.id}" id="productSelectList0" >
                     <option th:each="product :${products}"
                             th:value="${product.id}"
-                            th:text="${product.name}">Наименование продукта
+                            th:text="${product.name}"Наименование продукта
+                            th:price-id="${product.price}">
                     </option>
                 </select>
-
                 <label> Количество</label>
                 <input type="text" class="productQuantityClass" th:field="*{productInOrder[0].quantity}" id="productQuantity0" placeholder="Количество товара"/>
                 <br>
                 <label> Итоговая цена</label>
-                <input type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].product.price}"  id="productFinalPrice0" placeholder="Итоговая цена"/>
+                <input disabled type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"  id="productFinalPrice0" placeholder="Итоговая цена"/>
                 <br>
             </div>
         </div>
@@ -139,6 +139,13 @@
             });
         }
         );
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#productSelectList0").change(function () {
+                $("#productFinalPrice0").val($("#productSelectList0 option:selected").attr("price-id"));
+            });
+        });
     </script>
 </form>
 </body>
