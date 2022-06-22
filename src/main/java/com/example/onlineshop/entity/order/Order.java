@@ -26,7 +26,6 @@ public class Order {
     @JoinColumn(name = "condition_id")//, insertable = false, updatable = false)
     private Condition condition;
 
-    @UpdateTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date; //разобраться с Date LocalDate и тд
