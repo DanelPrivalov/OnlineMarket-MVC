@@ -3,6 +3,7 @@ package com.example.onlineshop.controllers;
 import com.example.onlineshop.entity.order.Order;
 import com.example.onlineshop.entity.order.ProductInOrder;
 import com.example.onlineshop.entity.product.Product;
+import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +47,7 @@ public class OrderController {
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("order", new Order());
+
         return "order-create";
     }
 
@@ -77,4 +79,5 @@ public class OrderController {
         orderRepository.save(order);
         return "redirect:/order";
     }
+
 }

@@ -46,7 +46,7 @@
                 <input type="text" class="productQuantityClass" th:field="*{productInOrder[0].quantity}" id="productQuantity0" placeholder="Количество товара"/>
                 <br>
                 <label> Итоговая цена</label>
-                <input type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"  id="productFinalPrice0" placeholder="Итоговая цена"/>
+                <input type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].product.price}"  id="productFinalPrice0" placeholder="Итоговая цена"/>
                 <br>
             </div>
         </div>

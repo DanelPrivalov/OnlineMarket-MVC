@@ -1,16 +1,18 @@
 package com.example.onlineshop.entity.order;
 
 import com.example.onlineshop.entity.product.Product;
+import com.example.onlineshop.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import javax.persistence.*;
 
 
 @Entity
-@Table(name="product_in_order")
+@Table(name = "product_in_order")
 public class ProductInOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,14 +38,20 @@ public class ProductInOrder {
 //        return productInOrder;
 //    }
 
-    public ProductInOrder(Long id, Integer finalPrice, Integer quantity, Product product) {
+    public ProductInOrder(@AuthenticationPrincipal User user, Long id, Integer finalPrice, Integer quantity, Product product) {
         this.id = id;
-        this.finalPrice = finalPrice;
+        this.finalPrice = calculateFinalPrice(user);
         this.quantity = quantity;
         this.product = product;
     }
 
     public ProductInOrder() {
+    }
+
+    public Integer calculateFinalPrice(@AuthenticationPrincipal User user) {
+
+        Integer finalPrice =  product.getPrice() - ((int) user.getDiscount() / 100 * product.getPrice());
+        return finalPrice;
     }
 
     public Long getId() {
