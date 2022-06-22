@@ -30,21 +30,21 @@ public class Order {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //mappedBy = "order" , cascade = CascadeType.ALL
     @JoinColumn(name = "order_Id")
-    private List<ProductInOrder> productInOrders;//разобраться в каком случае двойные связи
+    private List<ProductInOrder> productInOrder;//разобраться в каком случае двойные связи
 
     @Column(name = "comment")
     private String comment;
 
     public Order() {
-        this.productInOrders = new ArrayList<>();
+
     }
 
-    public Order(Long orderId, User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrders, String comment) {
+    public Order(Long orderId, User user, Condition condition, LocalDate date, List<ProductInOrder> productInOrder, String comment) {
         this.orderId = orderId;
         this.user = user;
         this.condition = condition;
         this.date = date;
-
+        this.productInOrder = productInOrder;
         this.comment = comment;
     }
 
@@ -59,6 +59,7 @@ public class Order {
 //        order.setDate(LocalDate.now());
 //        return order;
 //    }
+
 
     public Long getOrderId() {
         return orderId;
@@ -92,12 +93,12 @@ public class Order {
         this.date = date;
     }
 
-    public List<ProductInOrder> getProductInOrders() {
-        return productInOrders;
+    public List<ProductInOrder> getProductInOrder() {
+        return productInOrder;
     }
 
-    public void setProductInOrders(List<ProductInOrder> productInOrders) {
-        this.productInOrders = productInOrders;
+    public void setProductInOrder(List<ProductInOrder> productInOrder) {
+        this.productInOrder = productInOrder;
     }
 
     public String getComment() {

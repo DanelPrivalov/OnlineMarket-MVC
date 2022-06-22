@@ -23,14 +23,12 @@ public class OrderController {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
-    private final ProductInOrderRepository productInOrderRepository;
     private final ConditionRepository conditionRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository, ProductInOrderRepository productInOrderRepository, ConditionRepository conditionRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository, ConditionRepository conditionRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.productInOrderRepository = productInOrderRepository;
         this.conditionRepository = conditionRepository;
         this.productRepository = productRepository;
     }
@@ -47,15 +45,12 @@ public class OrderController {
         model.addAttribute("conditions", conditionRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
-     //   model.addAttribute("productInOrders", productInOrderRepository.findAll());
         model.addAttribute("order", new Order());
         return "order-create";
     }
 
     @PostMapping("/order-create")
     public String createOrder(Order order) {
-       // order.getProductInOrders().add(new ProductInOrder());//???
-
         orderRepository.save(order);
         return "redirect:/order";
     }
@@ -70,7 +65,6 @@ public class OrderController {
     public String updateOrderForm(@PathVariable("orderId") Long orderId, Model model) {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new IllegalArgumentException("Invalid type ID" + orderId));
-        ;
         model.addAttribute("order", order);
         model.addAttribute("conditions", conditionRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
@@ -80,10 +74,6 @@ public class OrderController {
 
     @PostMapping("/order-update")
     public String updateOrder(@Valid Order order, BindingResult bindingResult, Model model, Product product, Integer quantity, Integer finalPrice) {
-        // order.getProductInOrder().add(productInOrder);
-//ProductInOrder productInOrder=new ProductInOrder();
-//productInOrder.createProductInOrder(product,finalPrice,quantity);
-//order.setProductInOrders();
         orderRepository.save(order);
         return "redirect:/order";
     }
