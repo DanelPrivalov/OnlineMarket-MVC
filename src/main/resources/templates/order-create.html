@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>OrderCreate</title>
 </head>
 <body>
-<h1>Заказы</h1>
-<style>
-    fieldset {
-        background-color: #eeeeee;
-    }
-    legend {
-        background-color: gray;
-        color: white;
-        padding: 1px 10px;
-    }
-    input {
-        margin: 5px;
-    }
-</style>
+<h1 class="header">Заказы</h1>
+<div class="container">
+    <div class="label">
+<!--<style>-->
+<!--    fieldset {-->
+<!--        background-color: #eeeeee;-->
+<!--    }-->
+
+<!--    legend {-->
+<!--        background-color: gray;-->
+<!--        color: white;-->
+<!--        padding: 1px 10px;-->
+<!--    }-->
+
+<!--    input {-->
+<!--        margin: 5px;-->
+<!--    }-->
+<!--</style>-->
 <form action="#" th:action="@{/order-create}" th:object="${order}" method="post">
     <br>
     <fieldset>
@@ -36,18 +42,20 @@
         <div id="productSelectContainer">
             <label> Выберите продукт</label>
             <div class="addProductClass" th:id="addProduct0">
-                <select class="productSelectClass"  th:field="*{productInOrder[0].product.id}" id="productSelectList0" >
+                <select class="productSelectClass" th:field="*{productInOrder[0].product.id}" id="productSelectList0">
                     <option th:each="product :${products}"
                             th:value="${product.id}"
-                            th:text="${product.name}"Наименование продукта
+                            th:text="${product.name}" Наименование продукта
                             th:price-id="${product.price}">
                     </option>
                 </select>
                 <label> Количество</label>
-                <input type="text" class="productQuantityClass" th:field="*{productInOrder[0].quantity}" id="productQuantity0" placeholder="Количество товара"/>
+                <input type="text" class="productQuantityClass" th:field="*{productInOrder[0].quantity}"
+                       id="productQuantity0" placeholder="Количество товара"/>
                 <br>
                 <label> Итоговая цена</label>
-                <input disabled type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"  id="productFinalPrice0" placeholder="Итоговая цена"/>
+                <input disabled type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"
+                       id="productFinalPrice0" placeholder="Итоговая цена"/>
                 <br>
             </div>
         </div>
@@ -158,5 +166,7 @@
         });
     </script>
 </form>
+    </div>
+</div>
 </body>
 </html>
