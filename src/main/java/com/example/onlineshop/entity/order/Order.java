@@ -1,6 +1,8 @@
 package com.example.onlineshop.entity.order;
 import com.example.onlineshop.entity.user.User;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
