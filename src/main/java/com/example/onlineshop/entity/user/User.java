@@ -163,9 +163,7 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public String getLogin() {
-        return login;
-    }
+
 
     public void setLogin(String login) {
         this.login = login;
@@ -176,14 +174,19 @@ public class User implements UserDetails {
     }
 
     @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
+
+//    public String getUsername() {
+//        return login;
+//    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -255,7 +258,7 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 ", roles=" + roles +
-                ", city=" + city +
+
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", discount=" + discount +
                 '}';

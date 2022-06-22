@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta charset="UTF-8">
+    <title>My account</title>
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="#notyet">Мое избранное</a>
+    <a href="#notyet">Моя корзина</a>
+</div>
+
+<div class="container">
+    <h2> Мой профиль </h2>
+    <div>
+        <form th:object="${user}">
+
+            <p th:text="${user.firstName}">value</p>
+            <p th:text="${user.lastName}">value</p>
+            <p th:text="${user.dateOfBirth}">value</p>
+            <p th:text="${user.login}">value</p>
+            <p th:password="${user.password}">******</p>
+            <p th:text="${user.city.value}">value</p>
+
+            <div class="links">
+                <a th:href="@{edit/{id}(id=${user.id})}">Редактировать мой профиль<i></i></a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
