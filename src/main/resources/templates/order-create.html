@@ -55,10 +55,11 @@
         <button type="button" id="addProductSelect">Добавить еще товар</button>
         <button type="button" id="deleteLastProductSelect">Удалить последний товар</button>
         <br>
-        <div>
-            <label for="date">Дата заказа</label>
-            <input type="date" th:field="*{date}" id="date" placeholder="Date">
-        </div>
+<!--        <div>-->
+<!--            <label for="date">Дата заказа</label>-->
+<!--            <input type="text" th:field="*{date}" id="date" placeholder="Date">-->
+
+<!--        </div>-->
         <br>
         <div>
             <label> Состояние заказа
@@ -121,7 +122,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
                 $('#deleteLastProductSelect').on('click', function () {            // Триггер на изменение нажатие кнопки
-                    var firstIdProductSelectContainer = $("#productSelectContainer").attr("ID") // Получаем ID первого класса
+                    var firstIdProductSelectContainer = $("#productSelectContainer .addProductClass").attr("ID") // Получаем ID первого класса
                     var lastIdProductSelectContainer = $("#productSelectContainer .addProductClass:last-child").attr("ID") // Получаем ID последнего класса
                     if (firstIdProductSelectContainer != lastIdProductSelectContainer) {  //Проверка нужна для того, чтобы мы не удалили единственный товар( иначе кнопка добавить больше не будет работать)
                         $("#productSelectContainer .addProductClass:last-child").remove();    //Удаляем последний добавленный класс
