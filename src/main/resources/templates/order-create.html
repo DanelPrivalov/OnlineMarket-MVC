@@ -141,10 +141,19 @@
         );
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#productSelectList0").change(function () {
-                $("#productFinalPrice0").val($("#productSelectList0 option:selected").attr("price-id"));
-            });
+        $('.productQuantityClass').on('change', function () {
+            console.log("Поле отредактированно")
+            console.log($(this).attr("id"));
+            var idQuantity = $(this).attr("id")
+            var idQuantityFirstPart = "productQuantity";
+            var idProductFinalPriceFirstPart = "productFinalPrice";
+            var number = Number(idQuantity.substring(idQuantityFirstPart.length))
+            var idProductFinalPrice = idProductFinalPriceFirstPart + number
+            //           var oldValueProductFinalPrice = $("#"+idProductFinalPrice).val();
+            var idProductSelectList = "productSelectList" + number
+            var ValueProductFinalPrice = $("#"+idProductSelectList+" option:selected").attr("price-id");
+            var valueQuantity = $(this).val();
+            $("#"+idProductFinalPrice).val(ValueProductFinalPrice*valueQuantity)
         });
     </script>
 </form>
