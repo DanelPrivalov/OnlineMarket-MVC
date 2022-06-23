@@ -7,24 +7,25 @@
     <title>OrderCreate</title>
 </head>
 <body>
-<h1 class="header">Заказы</h1>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/products">Список товаров</a>
+    <a href="/drinks">Список напитков</a>
+    <a href="/games">Список игр</a>
+    <a href="/figures">Список фигурок</a>
+    <a href="/users">Список пользователей</a>
+    <a href="javascript: document.logoutForm.submit()" > Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
+</div>
+
 <div class="container">
+    <h2 class="header">Заказы</h2>
     <div class="label">
-<!--<style>-->
-<!--    fieldset {-->
-<!--        background-color: #eeeeee;-->
-<!--    }-->
 
-<!--    legend {-->
-<!--        background-color: gray;-->
-<!--        color: white;-->
-<!--        padding: 1px 10px;-->
-<!--    }-->
-
-<!--    input {-->
-<!--        margin: 5px;-->
-<!--    }-->
-<!--</style>-->
 <form action="#" th:action="@{/order-create}" th:object="${order}" method="post">
     <br>
     <fieldset>

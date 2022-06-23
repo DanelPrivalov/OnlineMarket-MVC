@@ -14,6 +14,12 @@
     <a href="/drinks">Список напитков</a>
     <a href="/games">Список игр</a>
     <a href="/figures">Список фигурок</a>
+    <a href="/users">Список пользователей</a>
+    <a href="javascript: document.logoutForm.submit()" > Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
 </div>
 <div class="container">
     <div class="label">

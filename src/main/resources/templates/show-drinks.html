@@ -9,12 +9,18 @@
 </head>
 <body>
 <div class="topnav">
-    <a href="/home">Главная страница</a>
+    <a class="active" href="/home">Главная страница</a>
     <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
     <a href="/products">Список товаров</a>
     <a href="/drinks">Список напитков</a>
     <a href="/games">Список игр</a>
     <a href="/figures">Список фигурок</a>
+    <a href="/users">Список пользователей</a>
+    <a href="javascript: document.logoutForm.submit()" > Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
 </div>
 <div class="container links">
 <div th:switch="${drinks}">
