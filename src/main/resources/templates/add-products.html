@@ -9,7 +9,15 @@
 </head>
 <body>
 <div>
-    <h2 class="header">New product</h2>
+    <div class="topnav">
+        <a class="active" href="/home">Главная страница</a>
+        <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+        <a href="/products">Список товаров</a>
+        <a href="/drinks">Список напитков</a>
+        <a href="/games">Список игр</a>
+        <a href="/figures">Список фигурок</a>
+    </div>
+
     <div class="container wideText links">
         <div>
             <form action="#" th:action="@{/add-product}" th:object="${product}" method="post">

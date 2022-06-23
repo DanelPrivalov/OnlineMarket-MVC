@@ -9,8 +9,14 @@
 </head>
 <body>
 <div>
-    <h2 class="header">Edit drink</h2>
-    <div class="container label links">
+    <div class="topnav">
+        <a class="active" href="/home">Главная страница</a>
+        <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+        <a href="/products">Список товаров</a>
+        <a href="/drinks">Список напитков</a>
+        <a href="/games">Список игр</a>
+        <a href="/figures">Список фигурок</a>
+    </div>
         <div>
             <form action="#" th:action="@{/edit-drink/{id}(id=${drink.id})}" th:object="${drink}" method="post">
                 <div>

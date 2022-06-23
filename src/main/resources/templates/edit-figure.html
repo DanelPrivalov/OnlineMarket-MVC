@@ -9,7 +9,16 @@
 </head>
 <body>
 <div>
-    <h2 class="header">Edit a figure</h2>
+    <div class="topnav">
+        <a class="active" href="/home">Главная страница</a>
+        <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+        <a href="/products">Список товаров</a>
+        <a href="/drinks">Список напитков</a>
+        <a href="/games">Список игр</a>
+        <a href="/figures">Список фигурок</a>
+    </div>
+
+    <h2 class="header">Редактировать фигурку</h2>
     <div class="container label links">
         <div>
             <form action="#" th:action="@{/edit-figure/{id}(id=${figure.id})}" th:object="${figure}" method="post">
