@@ -1,9 +1,7 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
-import com.example.onlineshop.entity.order.ProductInOrder;
 import com.example.onlineshop.entity.product.Product;
-import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -49,7 +46,6 @@ public class OrderController {
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("order", new Order());
-
         return "order-create";
     }
 
@@ -80,7 +76,7 @@ public class OrderController {
     }
 
     @PostMapping("/order-update")
-    public String updateOrder(@Valid Order order, BindingResult bindingResult, Model model, Product product, Integer quantity, Integer finalPrice) {
+    public String updateOrder(@Valid Order order, BindingResult bindingResult, Model model, Product product, Integer quantity, Double finalPrice) {
         orderRepository.save(order);
         return "redirect:/order";
     }
