@@ -1,5 +1,6 @@
 package com.example.onlineshop.entity.user;
 
+import com.example.onlineshop.entity.Cart.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
@@ -69,6 +70,10 @@ public class User implements UserDetails {
 
     @Column(name = "discount")
     private double discount; //customer
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
 
     public User(String lastName, String firstName, String login, String password, boolean active, Set<ERole> roles, City city, String dateOfBirth, double discount) {
         this.lastName = lastName;

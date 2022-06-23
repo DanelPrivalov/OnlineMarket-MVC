@@ -1,5 +1,6 @@
 package com.example.onlineshop.controllers;
 
+import com.example.onlineshop.entity.Cart.Cart;
 import com.example.onlineshop.entity.user.ERole;
 import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.CityRepository;
@@ -50,6 +51,10 @@ public class UsersController {
         if (roles != null) {
             Arrays.stream(roles).forEach(r -> user.getRoles().add(ERole.valueOf(r)));
         }
+        Cart cart=new Cart();// нужно ли прописывать это ? чтобы создалась корзина при создании нового пользователя
+        if (user.getRoles().contains("CUSTOMER"))
+        {user.setCart(cart); }
+
         userRepository.save(user);
         return "redirect:/users";
     }
@@ -74,6 +79,9 @@ public class UsersController {
         if (roles != null) {
             Arrays.stream(roles).forEach(r -> user.getRoles().add(ERole.valueOf(r)));
         }
+
+       // if (user.getRoles().contains("CUSTOMER")||user.getRoles().contains("ADMIN")) //удалить корзину при смене роли??
+
         userRepository.save(user);
         return "redirect:/users";
     }

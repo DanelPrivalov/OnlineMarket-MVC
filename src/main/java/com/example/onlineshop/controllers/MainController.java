@@ -1,20 +1,22 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.user.User;
+import com.example.onlineshop.repository.ProductRepository;
 import com.example.onlineshop.repository.UserRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class MainController {
 
     private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
-    public MainController(UserRepository userRepository) {
+    public MainController(UserRepository userRepository, ProductRepository productRepository) {
         this.userRepository = userRepository;
+        this.productRepository = productRepository;
     }
 
 
@@ -27,6 +29,7 @@ public class MainController {
     public String main(Model model, @AuthenticationPrincipal User user)  {
 //        model.addAttribute("name","Добро пожаловать");
         model.addAttribute("user",user);
+        model.addAttribute("products", productRepository.findAll());
         return "home";
     }
 //
