@@ -7,6 +7,15 @@
     <title>Настольные игры</title>
 </head>
 <body>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/products">Список товаров</a>
+    <a href="/drinks">Список напитков</a>
+    <a href="/games">Список игр</a>
+    <a href="/figures">Список фигурок</a>
+</div>
+
 <div class="container links table">
 
     <div th:switch="${boardGames}">

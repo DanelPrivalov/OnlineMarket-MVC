@@ -8,8 +8,8 @@
 </head>
 <body>
 <div>
-    <h2 class="header">Edit your account</h2>
     <div class="container">
+        <h2 class="header">Редактирование профиля</h2>
         <div>
             <form th:method="post" th:action="@{/account/{id}(id = ${user.id})}" th:object="${user}">
                 <div class="label">
@@ -43,12 +43,19 @@
                             <select th:name="city">
                                 <option th:each="city:${city}"
                                         th:value="${city.cityID}"
-                                        th:text="${city.value}">
+                                        th:text="${city.value}"
+                                th:selected="${user.city.cityID == city.cityID}" >
                                 </option>
                             </select>
                         </label>
                     </div>
                 </div>
+
+                <div>
+                    <input type="hidden" th:field="*{active}" id="active">
+                    <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}"></span>
+                </div>
+
                 <div class="button">
                     <input type="submit" value="Изменить">
                     <br>
