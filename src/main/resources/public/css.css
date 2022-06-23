@@ -187,6 +187,7 @@ td {
     border: 2px solid #c0a97a;
     transform: translate(-50%, -50%) scale(0);
     transition: .3s ease-in-out;
+
 }
 
 .button:before {
