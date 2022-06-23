@@ -1,39 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-
+    background: url("img/background.jpg");
     background-size: cover;
-    background-color: gray;
-    color: #F2BC69;
-    font: lighter 16px 'Roboto Condensed', sans-serif;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    z-index:1;
+    font-weight: 300;
+    font-size: 17px;
 }
 
 .header h1, h2 {
     position: center;
     text-align: center;
     display: inline-block;
-    background: #E6E5E1;
-    margin-bottom: 0;
-    font-size: 20px;
+    /*background: #E6E5E1;*/
+    /*margin-bottom: 0;*/
+    font-size: 36px;
     text-transform: uppercase;
-    padding: .5rem 1.5rem;
-    border: 5px solid #F2BC69;
-    color: #F2BC69;
+    /*padding: .5rem 1.5rem;*/
+    /*border: 5px solid #F2BC69;*/
+    color: #ee9f22;
+    font-weight: 700;
+    z-index:4;
 }
 
 .links a{
     cursor: pointer;
-    color: #F2BC69;
+    color: #ee9f22;
 }
 
 .container {
-    max-width:90%;
+    max-width:95%;
     margin: auto;
-    font-style: italic;
-    background-color: #151009;
+    /*font-style: italic;*/
+    background-color: rgba(0,0,0,.5);
+    /*opacity: .1;*/
     padding: 25px;
-    border: 5px solid #F2BC69;
-    border-radius: 20px;
+    /*border: 5px solid #F2BC69;*/
+    /*border-radius: 20px;*/
+    z-index:1;
+    position: relative;
 }
 
 .container input {
