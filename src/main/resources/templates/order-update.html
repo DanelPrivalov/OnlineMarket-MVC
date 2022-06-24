@@ -22,12 +22,11 @@
     </form>
 </div>
 <div class="container">
-    <div class="label">
-
+        <h2 class="header">Редактировать заказ</h2>
         <form action="#" th:action="@{/order-update}" th:object="${order}" method="post">
             <br>
             <fieldset>
-                <legend>Редактирование заказа</legend>
+
                 <label for="orderId">Заказ № (id)</label>
                 <input readonly type="text" th:field="*{orderId}" id="orderId" placeholder="orderId">
                 <div>
@@ -89,7 +88,7 @@
                     <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
                 </div>
             </fieldset>
-            <input type="submit" value="Редактировать">
+            <button type="submit" class="button">Редактировать</button>
             <p><a href="/order">Cancel<i></i></a></p>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script type="text/javascript">
@@ -171,6 +170,5 @@
             </script>
         </form>
     </div>
-</div>
 </body>
 </html>

@@ -23,7 +23,7 @@
 </div>
 
 <div class="container wideText">
-    <h2 class="header"> Настольные игры / создание </h2>
+    <h2 class="header"> Создать настольную игру </h2>
 
     <form action="#" th:action="@{/games-create}" th:object="${boardGame}" method="post">
         <fieldset>
@@ -198,7 +198,7 @@
                 </label>
             </div>
         </fieldset>
-        <input type="submit" value="Create BoardGame">
+        <button type="submit" class="button">Create BoardGame</button>
         <p><a href="/products">Cancel<i></i></a></p>
     </form>
 </div>

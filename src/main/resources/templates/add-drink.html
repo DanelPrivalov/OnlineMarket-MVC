@@ -24,8 +24,9 @@
 
 
 <div>
-    <h2 class="header">Add drink</h2>
+
     <div  class="container wideText">
+        <h2 class="header">Add drink</h2>
         <div class="label">
             <form action="#" th:action="@{/add-drink}" th:object="${drink}" method="post">
                 <div>
@@ -130,7 +131,7 @@
 
                 </div>
                 <div>
-                    <input type="submit" value="Add drink">
+                    <button type="submit" class="button">Add drink</button>
                 </div>
             </form>
         </div>

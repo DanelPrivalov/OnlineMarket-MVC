@@ -21,8 +21,9 @@
         <input hidden type="submit" value="Logout"/>
     </form>
 
-    <h2 class="header">Add a collectable figure</h2>
+
     <div class="container wideText links">
+        <h2 class="header">Add a collectable figure</h2>
         <div class="label">
             <form action="#" th:action="@{/add-figure}" th:object="${collectableFigure}" method="post">
                 <div>
@@ -131,7 +132,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" value="Add figure">
+                    <button type="submit" class="button">Add figure</button>
                 </div>
             </form>
         </div>

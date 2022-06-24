@@ -145,3 +145,27 @@ td {
     background-color: #ee9f22;
     color: white;
 }
+
+.button {
+    padding: 10px 20px;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #ee9f22;
+    margin: 5px 2px;
+
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+}
+
+.button:hover {background-color:#ebb969
+}
+
+.button:active {
+    background-color: #6f480b;
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
+}

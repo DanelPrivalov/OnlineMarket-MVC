@@ -22,7 +22,8 @@
             <input hidden type="submit" value="Logout"/>
         </form>
     </div>
-        <div>
+        <div class="container">
+            <h2 class="header">Редактировать напиток</h2>
             <form action="#" th:action="@{/edit-drink/{id}(id=${drink.id})}" th:object="${drink}" method="post">
                 <div>
                     <div>
@@ -114,7 +115,7 @@
 
                 </div>
                 <div>
-                    <input type="submit" value="Edit drink">
+                    <button type="submit" class="button">Edit drink</button>
                 </div>
             </form>
         </div>

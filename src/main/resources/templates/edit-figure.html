@@ -24,8 +24,9 @@
         </form>
     </div>
 
-    <h2 class="header">Редактировать фигурку</h2>
+
     <div class="container label links">
+        <h2 class="header">Редактировать фигурку</h2>
         <div>
             <form action="#" th:action="@{/edit-figure/{id}(id=${figure.id})}" th:object="${figure}" method="post">
                 <div>
@@ -138,7 +139,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" value="Edit figure">
+                    <button type="submit" class="button">Edit figure</button>
                 </div>
             </form>
         </div>
