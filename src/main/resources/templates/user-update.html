@@ -8,8 +8,24 @@
 </head>
 <body>
 <div>
-    <h2 class="header">Edit a chosen user</h2>
+    <div class="topnav">
+        <a class="active" href="/home">Главная страница</a>
+        <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+        <a href="/products">Список товаров</a>
+        <a href="/drinks">Список напитков</a>
+        <a href="/games">Список игр</a>
+        <a href="/figures">Список фигурок</a>
+        <a href="/users">Список пользователей</a>
+        <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Logout"/>
+        </form>
+    </div>
+
+
     <div class="container">
+        <h2 class="header">Изменить выбранного пользователя</h2>
         <div>
             <form th:method="post" th:action="@{/users/update/{id}(id = ${user.id})}" th:object="${user}">
                 <div class="label">
@@ -57,7 +73,7 @@
                     </div>
                 </div>
                 <div class="button">
-                    <input type="submit" value="Изменить">
+                    <button type="submit" class="button">Изменить</button>
                     <br>
                     <br>
                     <a href="/users">Перейти к списку пользователей</a>

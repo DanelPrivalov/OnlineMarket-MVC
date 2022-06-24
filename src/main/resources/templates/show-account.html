@@ -8,14 +8,19 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="/home">Главная страница</a>
-    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/home">Главная страница</a>
+    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
     <a href="#notyet">Мое избранное</a>
     <a href="#notyet">Моя корзина</a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
 </div>
 
-<div class="container">
-    <h2> Мой профиль </h2>
+<div class="container links">
+    <h2 class="header"> Мой профиль </h2>
     <div>
         <form th:object="${user}">
 

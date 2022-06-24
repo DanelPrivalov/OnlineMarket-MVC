@@ -9,9 +9,25 @@
 <body>
 
 <div>
-    <h2 class="header">Create a new user</h2>
+    <div class="topnav">
+        <a class="active" href="/home">Главная страница</a>
+        <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+        <a href="/products">Список товаров</a>
+        <a href="/drinks">Список напитков</a>
+        <a href="/games">Список игр</a>
+        <a href="/figures">Список фигурок</a>
+        <a href="/users">Список пользователей</a>
+        <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Logout"/>
+        </form>
+    </div>
+
+
     <div>
         <div class="container">
+            <h2 class="header">Создать нового пользователя</h2>
             <form th:method="post" th:action="@{/users/createuser}" th:object="${user}">
                 <div class = "label" >
                     <div>
@@ -55,7 +71,7 @@
                     </div>
                 </div>
                 <div class="wideText links">
-                    <input class="button" type="submit" value="Добавить">
+                    <button type="submit" class="button">Добавить</button>
                     <br>
                     <p>Если вы передумали создавать нового пользователя, то вы всегда можете</p>
                     <a href="/users">Перейти к списку пользователей</a>

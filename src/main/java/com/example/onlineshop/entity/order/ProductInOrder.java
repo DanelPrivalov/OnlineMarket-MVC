@@ -19,7 +19,7 @@ public class ProductInOrder {
     private Long id;
 
     @Column(name = "final_price")
-    private Integer finalPrice;
+    private Double finalPrice;
 
     @Column(name = "quantity")
     private Integer quantity;
@@ -54,11 +54,11 @@ public class ProductInOrder {
         this.id = id;
     }
 
-    public Integer getFinalPrice() {
+    public Double getFinalPrice() {
         return finalPrice;
     }
 
-    public void setFinalPrice(Integer finalPrice) {
+    public void setFinalPrice(Double finalPrice) {
         this.finalPrice = finalPrice;
     }
 

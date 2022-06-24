@@ -9,8 +9,24 @@
 </head>
 <body>
 <div>
-    <h2 class="header">Update Products</h2>
-    <div class="container wideText links">
+    <div class="topnav">
+        <a class="active" href="/home">Главная страница</a>
+        <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+        <a href="/products">Список товаров</a>
+        <a href="/drinks">Список напитков</a>
+        <a href="/games">Список игр</a>
+        <a href="/figures">Список фигурок</a>
+        <a href="/users">Список пользователей</a>
+        <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Logout"/>
+        </form>
+    </div>
+
+
+    <div class="container links">
+        <h2 class="header">Update Products</h2>
         <div class="label">
             <form action="#" th:action="@{/update/{id}(id=${product.id})}" th:object="${product}" method="post">
                 <div>
@@ -62,7 +78,7 @@
                 </div>
                 <div>
                     <div>
-                        <input type="submit" value="Update Product">
+                        <button type="submit" class="button">Update product</button>
                     </div>
                 </div>
             </form>

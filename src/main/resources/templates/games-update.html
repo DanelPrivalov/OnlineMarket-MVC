@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css.css">
     <meta http-equiv="Content-Type" content="text/html">
@@ -7,7 +7,22 @@
     <title>Games Update</title>
 </head>
 <body>
-<h2 class="header"> Настольные игры / редактирование </h2>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/products">Список товаров</a>
+    <a href="/drinks">Список напитков</a>
+    <a href="/games">Список игр</a>
+    <a href="/figures">Список фигурок</a>
+    <a href="/users">Список пользователей</a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
+</div>
+<div class="container">
+<h2 class="header"> Редактировать настольную игру </h2>
 
 <form action="#" th:action="@{/games-update}" th:object="${boardGame}" method="post">
     <fieldset>
@@ -43,11 +58,11 @@
         <br>
         <div>
             <label>Тег
-                <select th:name="seo" > <!--проверить работает ли-->
+                <select th:name="seo"> <!--проверить работает ли-->
                     <option th:each="seo:${seos}"
                             th:value="${seo.SEOAttributeId}"
                             th:text="${seo.name}"
-                        th:selected="${boardGame.seo.SEOAttributeId == seo.SEOAttributeId}">
+                            th:selected="${boardGame.seo.SEOAttributeId == seo.SEOAttributeId}">
                     </option>
                 </select>
             </label>
@@ -55,7 +70,7 @@
         <br>
         <div>
             <label>Тип продукта
-                <select th:name="productType" >
+                <select th:name="productType">
                     <option th:each="productType:${productTypes}"
                             th:value="${productType.productTypeId}"
                             th:text="${productType.name}"
@@ -195,9 +210,10 @@
             </label>
         </div>
     </fieldset>
-    <input type="submit" value="Update BoardGame">
+    <button type="submit" class="button">Update board game</button>
     <p><a href="/games">Cancel<i></i></a></p>
     </fieldset>
 </form>
+</div>
 </body>
 </html>

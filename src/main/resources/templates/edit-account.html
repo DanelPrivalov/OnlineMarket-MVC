@@ -8,8 +8,20 @@
 </head>
 <body>
 <div>
-    <h2 class="header">Edit your account</h2>
+    <div class="topnav">
+        <a href="/home">Главная страница</a>
+        <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
+        <a href="#notyet">Мое избранное</a>
+        <a href="#notyet">Моя корзина</a>
+        <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Logout"/>
+        </form>
+    </div>
+
     <div class="container">
+        <h2 class="header">Редактирование профиля</h2>
         <div>
             <form th:method="post" th:action="@{/account/{id}(id = ${user.id})}" th:object="${user}">
                 <div class="label">
@@ -43,14 +55,21 @@
                             <select th:name="city">
                                 <option th:each="city:${city}"
                                         th:value="${city.cityID}"
-                                        th:text="${city.value}">
+                                        th:text="${city.value}"
+                                th:selected="${user.city.cityID == city.cityID}" >
                                 </option>
                             </select>
                         </label>
                     </div>
                 </div>
-                <div class="button">
-                    <input type="submit" value="Изменить">
+
+                <div>
+                    <input type="hidden" th:field="*{active}" id="active">
+                    <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}"></span>
+                </div>
+
+                <div>
+                    <button type="submit" class="button">Изменить</button>
                     <br>
                     <br>
                     <a class="links" href="/home">На главную страницу</a>

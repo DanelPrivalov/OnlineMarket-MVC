@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
 
     background: url("img/background.jpg");
     background-size: cover;
-    color: #F2BC69;
-    font: lighter 16px 'Roboto Condensed', sans-serif;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    z-index:1;
+    font-weight: 300;
+    font-size: 17px;
 }
 
 
@@ -13,31 +16,35 @@ body {
     position: center;
     text-align: center;
     display: inline-block;
-    background: #E6E5E1;
-    margin-bottom: 0;
-    font-size: 20px;
+    /*background: #E6E5E1;*/
+    /*margin-bottom: 0;*/
+    font-size: 36px;
     text-transform: uppercase;
-    padding: .5rem 1.5rem;
-    border: 5px solid #F2BC69;
-    color: #F2BC69;
+    /*padding: .5rem 1.5rem;*/
+    /*border: 5px solid #F2BC69;*/
+    color: #ee9f22;
+    font-weight: 700;
+    z-index:4;
+
 }
 
 
-.wideText p {
-    color: #F2BC69;
-    font-style: italic;
-    /*text-transform: uppercase;*/
-    letter-spacing: 2px;
-    word-spacing: 10px;
-}
+/*.wideText p {*/
+/*   color: #ee9f22;*/
+/*    !*font-style: italic;*!*/
+/*    !*text-transform: uppercase;*!*/
+/*    letter-spacing: 2px;*/
+/*    word-spacing: 10px;*/
+/*}*/
 
-.links a {
+.links a{
+    font-size: 17px;
     cursor: pointer;
-    color: #F2BC69;
+    color: #ee9f22;
 }
 
 a:visited {
-    color: #FFFFE0;
+    color:white;
 }
 
 .select {
@@ -58,25 +65,29 @@ a:visited {
 
 
 .container {
-    max-width: 85%;
+    max-width:95%;
     margin: auto;
-    font-style: italic;
-    background-color: #151009;
+    /*font-style: italic;*/
+    background-color: rgba(0,0,0,.5);
+    /*opacity: .1;*/
     padding: 25px;
-    border: 5px solid #F2BC69;
-    border-radius: 20px;
+    /*border: 5px solid #F2BC69;*/
+    /*border-radius: 20px;*/
+    z-index:1;
+    position: relative;
+
 }
 
 .container input {
-    background-color: #E6E5E1;
-    width: 30%;
+    background-color: white;
+    width:30%;
     padding: 5px 8px;
 
 }
 
 .button input [type=button], input [type=submit], input [type=reset] {
-    color: #FFFFE0;
-    background-color: #F2BC69;
+    color: white;
+    background-color: #ee9f22;
     padding: 10px 20px;
     font-family: inherit;
     border: none;
@@ -95,22 +106,20 @@ a:visited {
     table-layout: fixed;
     border-style: solid;
     border-width: 2px 2px 2px 2px;
-    border-color: #F2BC69;
-    width: 100%
+    border-color: #ee9f22;
+    width:100%
 }
-
 .table td {
     padding-bottom: 10px;
 }
-
 td {
-    word-wrap: break-word;
+    word-wrap:break-word;
 }
 
 .table th, td {
     border-style: solid;
     border-width: 0 1px 1px 0;
-    border-color: #F2BC69;
+    border-color: #ee9f22;
 }
 
 .topnav {
@@ -128,15 +137,132 @@ td {
 }
 
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: #ffffff;
     color: black;
 }
 
 .topnav a:visited {
-    background-color: #F2BC69;
+    background-color: #ee9f22;
     color: white;
 }
 
+.button {
+    padding: 10px 20px;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #ee9f22;
+    margin: 5px 2px;
+
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+}
+
+.button:hover {background-color:#ebb969
+}
+
+.button:active {
+    background-color: #6f480b;
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
+}
+
+/*Hover*/
+.dropbtn {
+    padding: 10px 20px;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #ee9f22;
+    margin: 5px 2px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #6f480b}
+
+/*pop up*/
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
 /*!*новое от И*!*/
 /** {*/
 /*    box-sizing: border-box;*/

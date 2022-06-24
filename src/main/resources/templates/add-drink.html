@@ -8,9 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/products">Список товаров</a>
+    <a href="/drinks">Список напитков</a>
+    <a href="/games">Список игр</a>
+    <a href="/figures">Список фигурок</a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
+</div>
+
+
 <div>
-    <h2 class="header">Add drink</h2>
+
     <div  class="container wideText">
+        <h2 class="header">Add drink</h2>
         <div class="label">
             <form action="#" th:action="@{/add-drink}" th:object="${drink}" method="post">
                 <div>
@@ -115,7 +131,7 @@
 
                 </div>
                 <div>
-                    <input type="submit" value="Add drink">
+                    <button type="submit" class="button">Add drink</button>
                 </div>
             </form>
         </div>

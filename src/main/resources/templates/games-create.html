@@ -7,8 +7,23 @@
     <title>Game_Create</title>
 </head>
 <body>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/products">Список товаров</a>
+    <a href="/drinks">Список напитков</a>
+    <a href="/games">Список игр</a>
+    <a href="/figures">Список фигурок</a>
+    <a href="/users">Список пользователей</a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
+</div>
+
 <div class="container wideText">
-    <h2 class="header"> Настольные игры / создание </h2>
+    <h2 class="header"> Создать настольную игру </h2>
 
     <form action="#" th:action="@{/games-create}" th:object="${boardGame}" method="post">
         <fieldset>
@@ -183,7 +198,7 @@
                 </label>
             </div>
         </fieldset>
-        <input type="submit" value="Create BoardGame">
+        <button type="submit" class="button">Create BoardGame</button>
         <p><a href="/products">Cancel<i></i></a></p>
     </form>
 </div>

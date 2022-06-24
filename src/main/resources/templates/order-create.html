@@ -7,36 +7,39 @@
     <title>OrderCreate</title>
 </head>
 <body>
-<h1 class="header">Заказы</h1>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="/products">Список товаров</a>
+    <a href="/drinks">Список напитков</a>
+    <a href="/games">Список игр</a>
+    <a href="/figures">Список фигурок</a>
+    <a href="/users">Список пользователей</a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
+</div>
+
 <div class="container">
+    <h2 class="header">Заказы</h2>
     <div class="label">
-<!--<style>-->
-<!--    fieldset {-->
-<!--        background-color: #eeeeee;-->
-<!--    }-->
 
-<!--    legend {-->
-<!--        background-color: gray;-->
-<!--        color: white;-->
-<!--        padding: 1px 10px;-->
-<!--    }-->
-
-<!--    input {-->
-<!--        margin: 5px;-->
-<!--    }-->
-<!--</style>-->
 <form action="#" th:action="@{/order-create}" th:object="${order}" method="post">
     <br>
     <fieldset>
         <legend>Создание заказа</legend>
         <div>
             <label> Выберите покупателя</label>
-            <select th:name="user">
+            <select th:name="user" id="selectUser" onchange="writeProductFinalPrice()">
                 <option th:each="user:${users}"
                         th:value="${user.id}"
-                        th:text="${user.login}">Логин покупателя
+                        th:text="${user.login}"
+                        th:discount="${user.discount}">Логин покупателя
                 </option>
             </select>
+<!--                <input type="text" th:name="{users.discount}" id="idUserDiscount" placeholder="Discount">-->
         </div>
         <br>
         <div id="productSelectContainer">
@@ -50,24 +53,17 @@
                     </option>
                 </select>
                 <label> Количество</label>
-                <input type="text" class="productQuantityClass" th:field="*{productInOrder[0].quantity}"
-                       id="productQuantity0" placeholder="Количество товара"/>
-                <br>
+                <input type="number" class="productQuantityClass" th:field="*{productInOrder[0].quantity}"
+                       id="productQuantity0" placeholder="Количество товара" onchange="writeProductFinalPrice()"/>
                 <label> Итоговая цена</label>
-                <input disabled type="text" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"
+                <input readonly type="number" class="productFinalPriceClass" th:field="*{productInOrder[0].finalPrice}"
                        id="productFinalPrice0" placeholder="Итоговая цена"/>
-                <br>
             </div>
         </div>
         <br>
         <button type="button" id="addProductSelect">Добавить еще товар</button>
         <button type="button" id="deleteLastProductSelect">Удалить последний товар</button>
         <br>
-<!--        <div>-->
-<!--            <label for="date">Дата заказа</label>-->
-<!--            <input type="text" th:field="*{date}" id="date" placeholder="Date">-->
-
-<!--        </div>-->
         <br>
         <div>
             <label> Состояние заказа
@@ -84,8 +80,12 @@
             <label for="comment">Комментарий к заказу</label>
             <input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
         </div>
+        <div>
+            <label for="orderPrice">Итоговая сумма заказа</label>
+            <input readonly type="number" th:field="*{orderPrice}" id="orderPrice" placeholder="orderPrice">
+        </div>
     </fieldset>
-    <input type="submit" value="Создать">
+    <button type="submit" class="button">Создать</button>
     <p><a href="/order">Cancel<i></i></a></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
@@ -114,13 +114,16 @@
                     var newQuantityId = idQuantityFirstPart + newNumber    // Создаем новый ID
                     cloneClass.children()[2].setAttribute("name", newQuantityName); //Присваиваем новый name
                     cloneClass.children()[2].setAttribute("id", newQuantityId); // Присваиваем новый ID
+                    cloneClass.children()[2].value = "";                    // Обнуляем значение
+                    console.log($("#user").value);
 // input итоговая цена
                     var idFinalPriceFirstPart = "productFinalPrice"; // Первая часть ID
                     var finalPriceNameLastPart = "].finalPrice";     // Последняя часть name для
                     var newFinalPriceName = nameFirstPart + newNumber + finalPriceNameLastPart;  // Создаем новый name
                     var newFinalPriceId = idFinalPriceFirstPart + newNumber; // Создаем новый ID
-                    cloneClass.children()[5].setAttribute("name", newFinalPriceName); //Присваиваем новый name
-                    cloneClass.children()[5].setAttribute("id", newFinalPriceId); // Присваиваем новый ID
+                    cloneClass.children()[4].setAttribute("name", newFinalPriceName); //Присваиваем новый name
+                    cloneClass.children()[4].setAttribute("id", newFinalPriceId); // Присваиваем новый ID
+                    cloneClass.children()[4].value = "";                        // Обнуляем значение
 
                     $("#productSelectContainer").append(cloneClass);  //Присоединяем новый класс
                 });
@@ -128,42 +131,66 @@
         );
     </script>
     <script type="text/javascript">
+        function writeOrderPrice () {
+            var userDiscountValue = Number($("#selectUser option:selected").attr("discount"));
+            $("#orderPrice").val(0)
+            $.each($('.productFinalPriceClass'), function (index, value) {
+                $(value).val(Number($(value).val())*userDiscountValue/100)
+                $("#orderPrice").val(Number($(value).val())+Number($("#orderPrice").val()))
+            })
+            };
+    </script>
+
+    <script type="text/javascript">
         $(document).ready(function () {
                 $('#deleteLastProductSelect').on('click', function () {            // Триггер на изменение нажатие кнопки
                     var firstIdProductSelectContainer = $("#productSelectContainer .addProductClass").attr("ID") // Получаем ID первого класса
                     var lastIdProductSelectContainer = $("#productSelectContainer .addProductClass:last-child").attr("ID") // Получаем ID последнего класса
                     if (firstIdProductSelectContainer != lastIdProductSelectContainer) {  //Проверка нужна для того, чтобы мы не удалили единственный товар( иначе кнопка добавить больше не будет работать)
                         $("#productSelectContainer .addProductClass:last-child").remove();    //Удаляем последний добавленный класс
+                        writeProductFinalPrice()
                     }
                 });
             }
         );
     </script>
-    <script>
-        $(document).ready(function () {
-            var select = document.getElementById('productSelectList0');
-            select.addEventListener('change', function () {
-                var getValue = this.value;
-                console.log(getValue);
-            });
-        }
-        );
+      <script type="text/javascript">
+            function writeProductFinalPrice () {
+            $.each($('.productQuantityClass'), function (index, value) {
+                    console.log("Поле отредактированно")
+                    console.log($(value).attr("id"));
+                    var idQuantity = $(value).attr("id")
+                    var idQuantityFirstPart = "productQuantity";
+                    var idProductFinalPriceFirstPart = "productFinalPrice";
+                    var number = Number(idQuantity.substring(idQuantityFirstPart.length))
+                    var idProductFinalPrice = idProductFinalPriceFirstPart + number
+                    var idProductSelectList = "productSelectList" + number
+                    var valueProductFinalPrice = Number($("#"+idProductSelectList+" option:selected").attr("price-id"))
+                    var valueQuantity = $(value).val();
+                    $("#"+idProductFinalPrice).val(valueProductFinalPrice*valueQuantity)
+                    writeOrderPrice()
+                });
+            }
     </script>
     <script type="text/javascript">
-        $('.productQuantityClass').on('change', function () {
-            console.log("Поле отредактированно")
-            console.log($(this).attr("id"));
-            var idQuantity = $(this).attr("id")
-            var idQuantityFirstPart = "productQuantity";
-            var idProductFinalPriceFirstPart = "productFinalPrice";
-            var number = Number(idQuantity.substring(idQuantityFirstPart.length))
-            var idProductFinalPrice = idProductFinalPriceFirstPart + number
-            //           var oldValueProductFinalPrice = $("#"+idProductFinalPrice).val();
-            var idProductSelectList = "productSelectList" + number
-            var ValueProductFinalPrice = $("#"+idProductSelectList+" option:selected").attr("price-id");
-            var valueQuantity = $(this).val();
-            $("#"+idProductFinalPrice).val(ValueProductFinalPrice*valueQuantity)
-        });
+        $('.addProductClass').on('change',
+            function () {
+                console.log("Поле отредактированно")
+                console.log($(this).attr("id"));
+                var idAddProduct = $(this).attr("id")
+                var idAddProductFirstPart = "addProduct";
+                var idProductFinalPriceFirstPart = "productFinalPrice";
+                var idQuantityFirstPart = "productQuantity";
+                var idProductSelectListFirstPart ="productSelectList"
+                var number = Number(idAddProduct.substring(idAddProductFirstPart.length))
+                var idProductFinalPrice = idProductFinalPriceFirstPart + number
+                var idQuantity = idQuantityFirstPart + number
+                var idProductSelectList = idProductSelectListFirstPart + number
+                var valueProductFinalPrice = $("#"+idProductSelectList+" option:selected").attr("price-id");
+                var valueQuantity = $("#"+idQuantity).val();
+                $("#"+idProductFinalPrice).val(valueProductFinalPrice*valueQuantity)
+                writeProductFinalPrice()
+            });
     </script>
 </form>
     </div>
