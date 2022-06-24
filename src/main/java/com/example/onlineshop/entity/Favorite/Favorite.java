@@ -1,4 +1,4 @@
-package com.example.onlineshop.entity.chipBasketAndFavorite;
+package com.example.onlineshop.entity.Favorite;
 
 import com.example.onlineshop.entity.product.Product;
 import com.example.onlineshop.entity.user.User;
