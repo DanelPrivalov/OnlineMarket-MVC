@@ -52,6 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/loginpage.css");
+        web.ignoring().antMatchers("/css.css");
+        web.ignoring().antMatchers("/img/background.jpg");
 
     }
 

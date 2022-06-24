@@ -14,7 +14,7 @@
     <a href="/drinks">Список напитков</a>
     <a href="/games">Список игр</a>
     <a href="/figures">Список фигурок</a>
-    <a href="javascript: document.logoutForm.submit()" > Выйти </a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
         <input hidden type="submit" value="Logout"/>
@@ -36,18 +36,18 @@
                     <th>Price</th>
                     <th>Picture</th>
                     <th>Availability</th>
-                    <th>SEO_attributes</th>
-                    <th>Product_type_id</th>
-                    <th>Rating_id</th>
-                    <th>Sale_id</th>
-                    <th>producer_game_id</th>
-                    <th>difficulty_level_id</th>
-                    <th>genre_id</th>
-                    <th>age_id</th>
-                    <th>players_num_min</th>
-                    <th>players_num_max</th>
-                    <th>play_time_id</th>
-                    <th>option_id</th>
+                    <th>SEO</th>
+                    <th>Product_type</th>
+                    <th>Rating</th>
+                    <th>Sale</th>
+                    <th>producer_game</th>
+                    <th>difficulty_level</th>
+                    <th>genre</th>
+                    <th>age</th>
+                    <th>players_min</th>
+                    <th>players_max</th>
+                    <th>play_time</th>
+                    <th>option</th>
                 </tr>
                 </thead>
                 <tbody>

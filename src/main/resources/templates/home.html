@@ -99,6 +99,7 @@
             from {opacity: .4}
             to {opacity: 1}
         }
+
     </style>
 </head>
 <body>
@@ -108,7 +109,7 @@
     <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
     <a href="#notyet">Мое избранное</a>
     <a href="#notyet">Моя корзина</a>
-    <a href="javascript: document.logoutForm.submit()" > Выйти </a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
         <input hidden type="submit" value="Logout"/>
@@ -118,11 +119,24 @@
 
 <div class="container links">
     <h2 class="header"  th:text="'Добро пожаловать, '+${user.firstName}"></h2>
-
-    <p><a href="/products">Каталог товаров<i></i></a></p>
+<p>
+    <div class="dropdown">
+        <button class="dropbtn">Каталог товаров</button>
+        <div class="dropdown-content">
+            <a href="/products">Все товары</a>
+            <a href="/drinks">Напитки</a>
+            <a href="/games">Настольные игры</a>
+            <a href="/figures">Фигурки</a>
+        </div>
+    </div>
+</p>
     <p><a href="/users">Пользователи<i></i></a></p>
     <p><a href="/order">Заказы<i></i></a></p>
-    <p><a href="/">Корзина не работает<i></i></a></p>
+    <div class="popup" onclick="myFunction()">Корзина
+        <span class="popuptext" id="myPopup">Данный раздел в разработке</span>
+    </div>
+<!--    <p><a href="/">Корзина<i></i></a></p>-->
+
 </div>
 
 <!-- Slideshow container -->
@@ -196,5 +210,13 @@
         dots[slideIndex-1].className += " active";
     }
 </script>
+<script>
+    // When the user clicks on div, open the popup
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
 </body>
 </html>
