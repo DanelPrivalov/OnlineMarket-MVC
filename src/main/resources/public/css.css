@@ -379,3 +379,14 @@ td {
     color: #c0a97a;
     font-weight: 700;
 }
+#rect1{
+    width: 400px;
+    height: 600px;
+    background: #ee9f22;
+}
+#rect2{
+    width: 400px;
+    height: 600px;
+    background: #ffffff;
+    transform: translate(20px, -10px);
+}
