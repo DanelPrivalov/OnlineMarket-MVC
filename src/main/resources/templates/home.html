@@ -115,7 +115,7 @@
 
 <div class="topnav">
     <a class="active" href="/home">Главная страница</a>
-    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
+<!--  /  <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
     <a href="#notyet">Мое избранное</a>
     <a href="#notyet" th:href="@{/cart}">Моя корзина</a>
 </div>
@@ -127,7 +127,7 @@
     <p><a href="/products">Каталог товаров<i></i></a></p>
     <p><a href="/users">Пользователи<i></i></a></p>
     <p><a href="/order">Заказы<i></i></a></p>
-    <p><a href="/">Корзина не работает<i></i></a></p>
+    <p><a href="@{/cart}">Корзина <i></i></a></p>
 </div>
 
 <!-- Slideshow container -->
@@ -176,17 +176,19 @@
 <div class="product-wrap">
     <div class="product-item" th:each="product:${products}">
              <img th:src="@{${product.images}}">
-        <div class="product-buttons">
-            <a href="" class="button">В корзину</a>
-        </div>
-
+<!--        <div class="product-buttons">-->
+<!--            <a href="" class="button">В корзину</a>-->
+<!--        </div>-->
+<!--        <form action="/home" method="post">-->
+<!--                       <button type="submit" name="add" th:value="${product.id}">В корзину</button>-->
+<!--        </form>-->
 <!--        <div class="product-buttons">-->
 <!--            <a href="" class="button1">В избранное</a>-->
 <!--        </div>-->
-
+       <p> <a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a> </p>
         <div class="product-title">
-            <a href="" th:text=" @{${product.name}}" ></a>
-            <span class="product-price" th:text="@{${product.price}}"> руб. </span>
+
+            <span class="product-price" th:text="@{${product.price}} + ' руб.'">  </span>
         </div>
     </div>
 </div>
