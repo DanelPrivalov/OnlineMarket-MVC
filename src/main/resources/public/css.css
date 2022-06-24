@@ -28,7 +28,29 @@ body {
 
 }
 
-
+.headerForProductCards  {
+    position: center;
+    text-align: center;
+    display: inline-block;
+    /*background: #E6E5E1;*/
+    /*margin-bottom: 10px;*/
+    font-size: 36px;
+    text-transform: uppercase;
+    /*padding: .5rem 1.5rem;*/
+    /*border: 5px solid #F2BC69;*/
+    color: #ee9f22;
+    font-weight: 700;
+    z-index:4;
+    text-indent: 630px;
+}
+.containerPrice{
+    border: 4px #ee9f22 solid;
+    background: transparent;
+    height: 200px;
+    width: 25%;
+    text-align: center;
+    float: right;
+    }
 /*.wideText p {*/
 /*   color: #ee9f22;*/
 /*    !*font-style: italic;*!*/
@@ -389,4 +411,12 @@ td {
     height: 600px;
     background: #ffffff;
     transform: translate(20px, -10px);
+}
+.box-model{
+    /*width: 25%; это в центре увеличиваем число- смещается влево*/
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: auto;*/
+    /*width: 6em*/
 }
