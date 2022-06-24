@@ -268,7 +268,7 @@ td {
     box-sizing: border-box;
 }
 
-.product-wrap div {
+.product-wrap  {
     width: 25%;
     margin: 0 auto;
     background: transparent;
