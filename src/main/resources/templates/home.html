@@ -182,12 +182,12 @@
 <hr>
 
 <!--товар-->
-<div class="product-wrap">
-    <div class="product-item" th:each="product:${products}">
+<div class="product-wrap" th:each="product:${products}">
+    <div class="product-item" >
              <img th:src="@{${product.images}}">
-<!--        <div class="product-buttons">-->
-<!--            <a href="" class="button">В корзину</a>-->
-<!--        </div>-->
+        <div class="product-buttons">
+            <a href="" class="button">В корзину</a>
+        </div></div>
 <!--        <form action="/home" method="post">-->
 <!--                       <button type="submit" name="add" th:value="${product.id}">В корзину</button>-->
 <!--        </form>-->
@@ -199,7 +199,7 @@
             <p> <a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a> </p>
             <span class="product-price" th:text="@{${product.price}} + ' руб.'">  </span>
         </div>
-    </div>
+
 </div>
 
 
