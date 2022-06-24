@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css.css">
     <meta http-equiv="Content-Type" content="text/html">
@@ -14,24 +14,24 @@
     <a href="@{/cart}">Моя корзина</a>
 </div>
 
-<!--<div class="container">-->
+<div class="container header">
 
-<h2 class="header" th:text="${product.name}"></h2>
-<div> <form th:object="${product}">
-    <div th:id="rect1">
-    <div th:id="rect2">
-        <p th:text="${product.description}">value</p>
+    <h2 class="headerForProductCards" th:text="${product.name}" style="text-align: center"></h2>
 
-        <p th:text="${product.price}">value</p>
-
-        <p th:text="${product.ratingId}">рейтинг</p>
-        <p th:text="${product.sale.value}">скидка?</p>
-        <img th:src="@{${product.images}}" width="150" height="250">
-
-
+    <div class="box-model">
+        <form th:object="${product}">
+                     <img th:src="@{${product.images}}" width="400" height="600">
+            <div class="containerPrice">
+                <p style="font-size: 30px" th:text="${product.price} +'  руб.'"></p>
+                <div class="dropdown">
+                    <button class="dropbtn">В корзину</button>
+                </div>
             </div>
-        </div>
-    </form>
+            <p th:text="${product.description}">value</p>
+            <p th:text="${product.ratingId}">рейтинг</p>
+            <p th:text="${product.sale.value}">скидка?</p>
+        </form>
+    </div>
 </div>
 </body>
 </html>
