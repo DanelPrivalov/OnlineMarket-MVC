@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/css.css">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta charset="UTF-8">
+    <title>Карточка товара</title>
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="/home">Главная страница</a>
+    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
+    <a href="#notyet">Мое избранное</a>
+    <a href="@{/cart}">Моя корзина</a>
+</div>
+
+<!--<div class="container">-->
+
+<h2 class="header" th:text="${product.name}"></h2>
+<div> <form th:object="${product}">
+    <div th:id="rect1">
+    <div th:id="rect2">
+        <p th:text="${product.description}">value</p>
+
+        <p th:text="${product.price}">value</p>
+
+        <p th:text="${product.ratingId}">рейтинг</p>
+        <p th:text="${product.sale.value}">скидка?</p>
+        <img th:src="@{${product.images}}" width="150" height="250">
+
+
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
