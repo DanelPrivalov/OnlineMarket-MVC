@@ -40,10 +40,11 @@
             <tbody>
             <tr th:each="order : ${orders}">
                 <td th:text="${order.orderId}"></td>
-                <td th:text="${order.user.id}"></td>
+                <td th:text="${order.user.login}"></td>
                 <td th:text="${order.date}"></td>
                 <td th:text="${order.condition.conditionName}"></td>
                 <td th:text="${order.comment}"></td>
+                <td th:text="${order.orderPrice}"></td>
                 <td><a th:href="@{order-update/{id}(id=${order.orderId})}">Edit</a></td>
                 <td><a th:href="@{order-delete/{id}(id=${order.orderId})}">Delete</a></td>
             </tr>

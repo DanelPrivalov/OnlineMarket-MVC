@@ -30,9 +30,9 @@ public class Order {
     @Column(name = "comment")
     private String comment;
 
-    public Order() {
+    @Column(name = "order_price")
+    private Double orderPrice;
 
-    }
 
     public Long getOrderId() {
         return orderId;
@@ -80,6 +80,14 @@ public class Order {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Double getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(Double orderPrice) {
+        this.orderPrice = orderPrice;
     }
 }
 
