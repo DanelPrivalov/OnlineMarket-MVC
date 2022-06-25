@@ -152,6 +152,10 @@
     <div class="popup" onclick="myFunction()">Корзина
         <span class="popuptext" id="myPopup">Данный раздел в разработке</span>
     </div>
+<!--    Показать роль текущего пользователя-->
+    <input  id="userRole" th:value="${user.getRoleString()}">
+<!--    Следующее поле отобразится только у CUSTOMER-->
+    <input  th:type = "${user.getRoleString()}=='CUSTOMER'?'text':'hidden'" value    = "TEST">
     <!--    <p><a href="/">Корзина<i></i></a></p>-->
 
 
