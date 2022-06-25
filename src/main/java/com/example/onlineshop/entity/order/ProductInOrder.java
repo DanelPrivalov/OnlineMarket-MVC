@@ -43,9 +43,6 @@ public class ProductInOrder {
     public ProductInOrder() {
 
     }
-
-   
-
     public Long getId() {
         return id;
     }
