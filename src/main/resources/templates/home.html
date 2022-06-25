@@ -6,7 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <style>
-        * {box-sizing:border-box}
+        * {
+            box-sizing: border-box
+        }
 
         /* Slideshow container */
         .slideshow-container {
@@ -43,7 +45,7 @@
 
         /* On hover, add a black background color with a little bit see-through */
         .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
         /* Caption text */
@@ -91,13 +93,21 @@
         }
 
         @-webkit-keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
         }
 
         @keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
         }
 
     </style>
@@ -108,7 +118,7 @@
     <a href="/home">Главная страница</a>
     <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
     <a href="#notyet">Мое избранное</a>
-    <a href="" th:href="@{/cart}" >Моя корзина </a>
+    <a href="" th:href="@{/cart}">Моя корзина </a>
     <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
@@ -118,8 +128,15 @@
 
 
 <div class="container links">
-    <h2 class="header"  th:text="'Добро пожаловать, '+${user.firstName}"></h2>
-<p>
+     <div>
+         <figure class="fig">
+    <img src="img/Logo.png" width="312" height="66">
+             <figcaption>
+    <h2 class="header" th:text="'Добро пожаловать, '+${user.firstName}"></h2>
+             </figcaption>
+         </figure>
+     </div>
+    <p>
     <div class="dropdown">
         <button class="dropbtn">Каталог товаров</button>
         <div class="dropdown-content">
@@ -129,13 +146,13 @@
             <a href="/figures">Фигурки</a>
         </div>
     </div>
-</p>
+    </p>
     <p><a href="/users">Пользователи<i></i></a></p>
     <p><a href="/order">Заказы<i></i></a></p>
     <div class="popup" onclick="myFunction()">Корзина
         <span class="popuptext" id="myPopup">Данный раздел в разработке</span>
     </div>
-<!--    <p><a href="/">Корзина<i></i></a></p>-->
+    <!--    <p><a href="/">Корзина<i></i></a></p>-->
 
 </div>
 
@@ -183,22 +200,23 @@
 
 <!--товар-->
 <div class="product-wrap" th:each="product:${products}">
-    <div class="product-item" >
-             <img th:src="@{${product.images}}" width="300" height="600">
+    <div class="product-item">
+        <img th:src="@{${product.images}}" width="300" height="600">
         <div class="product-buttons" th:id="AddToCart">
             <a href="" class="button">В корзину</a>
-        </div></div>
-<!--        <form action="/home" method="post">-->
-<!--                       <button type="submit" name="add" th:value="${product.id}">В корзину</button>-->
-<!--        </form>-->
-<!--        <div class="product-buttons">-->
-<!--            <a href="" class="button1">В избранное</a>-->
-<!--        </div>-->
-
-        <div class="product-title">
-            <p> <a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a> </p>
-            <span class="product-price" th:text="@{${product.price}} + ' руб.'">  </span>
         </div>
+    </div>
+    <!--        <form action="/home" method="post">-->
+    <!--                       <button type="submit" name="add" th:value="${product.id}">В корзину</button>-->
+    <!--        </form>-->
+    <!--        <div class="product-buttons">-->
+    <!--            <a href="" class="button1">В избранное</a>-->
+    <!--        </div>-->
+
+    <div class="product-title">
+        <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
+        <span class="product-price" th:text="@{${product.price}} + ' руб.'">  </span>
+    </div>
 
 </div>
 
@@ -221,16 +239,20 @@
         var i;
         var slides = document.getElementsByClassName("mySlides");
         var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
     }
 </script>
 <script>
