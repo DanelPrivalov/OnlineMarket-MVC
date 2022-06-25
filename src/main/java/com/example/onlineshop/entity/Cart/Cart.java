@@ -1,6 +1,7 @@
 package com.example.onlineshop.entity.Cart;
 
 
+import com.example.onlineshop.entity.product.Product;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -28,10 +29,22 @@ public class Cart {
     public void AddProductCart(ProductCart productCart) {
         productCarts.add(productCart);
     }
+    public void DeleteProductCart(ProductCart productCart_new){
+        System.out.println(productCart_new);
+        for (ProductCart productCarts : this.productCarts){
+            System.out.println(productCarts);
+        }
+       productCarts.remove(productCart_new);
+        for (ProductCart productCarts : this.productCarts){
+            System.out.println(productCarts);
+        }
+         }
 
-    //    public ProductCart getProductCart(Long id){
+//        public ProductCart getProductCart(Long id){
 //        return productCarts.stream().filter(productCart -> productCart.getId().equals(id)).findFirst().orElse(null);
 //    }
+
+
     public Long getId() {
         return id;
     }

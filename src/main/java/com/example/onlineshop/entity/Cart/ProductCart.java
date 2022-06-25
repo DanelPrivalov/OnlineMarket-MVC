@@ -4,9 +4,10 @@ import com.example.onlineshop.entity.product.Product;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@ToString
+//@ToString
 @Table(name = "product_cart")
 public class ProductCart {
     @Id

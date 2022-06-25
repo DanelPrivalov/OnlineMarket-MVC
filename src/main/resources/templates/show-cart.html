@@ -9,14 +9,55 @@
 <body>
 <div>
 
+    <div class="container links">
+        <h2 class="header" th:text="'Это ваша корзина, '+${user.firstName}"></h2>
 
-<h2 class="header"  th:text="'Это ваша корзина, '+${user.firstName}" ></h2>
+        <!--    <div th:if="!${#lists.isEmpty(productCarts)}">-->
+        <!--        <div th:each="product:${productCarts}">-->
 
-<!--    <div th:if="!${#lists.isEmpty(productCarts)}">-->
-<!--        <div th:each="product:${productCarts}">-->
+        <!--        </div>-->
+        <!--        </div>-->
 
-<!--        </div>-->
-<!--        </div>-->
+
+        <form th:object="${cart}">
+
+            <p th:text="${cart.id}">value</p>
+            <p th:text="${cart.sum}">value</p>
+
+            <table >
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="productCart : ${cart.productCarts}">
+                    <td th:text="${productCart.product.name}"></td>
+                    <td th:text="${productCart.product.description}"></td>
+                    <td> <img th:src="@{${productCart.product.images}}" alt="Фото продукта" width="200" height="100"> </td>
+                    <td th:text="${productCart.quantity}"></td>
+<!--                    <td th:text="${productCart.price}"></td>-->
+                    >
+
+                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}">Delete<i></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <div class="links">
+                <p><a href="/home">На главную<i></i></a></p>
+            </div>
+
+        </form>
+    </div>
 </div>
 </body>
 </html>
