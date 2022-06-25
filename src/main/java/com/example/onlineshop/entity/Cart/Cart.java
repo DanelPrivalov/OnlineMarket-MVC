@@ -1,12 +1,14 @@
 package com.example.onlineshop.entity.Cart;
 
 import com.example.onlineshop.entity.user.User;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
+@ToString
 @Table(name = "cart")
 public class Cart {
 
@@ -20,7 +22,7 @@ public class Cart {
 //    private User user;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //mappedBy = "order" , cascade = CascadeType.ALL
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "cart_Id")
     private List<ProductCart> productCarts;
 
     @Column(name = "sum")
