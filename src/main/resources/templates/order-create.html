@@ -135,7 +135,7 @@
             var userDiscountValue = Number($("#selectUser option:selected").attr("discount"));
             $("#orderPrice").val(0)
             $.each($('.productFinalPriceClass'), function (index, value) {
-                $(value).val(Number($(value).val())*userDiscountValue/100)
+                $(value).val(Number($(value).val())*(100-userDiscountValue)/100)
                 $("#orderPrice").val(Number($(value).val())+Number($("#orderPrice").val()))
             })
             };
