@@ -98,7 +98,6 @@
                     var newIdProductSelectContainer = subStringIdAddProductClass + newNumber;                            // Генерируем новый ID
                     var cloneClass = $(".addProductClass:last-child").clone(true, true) //клонируем последний добавленный класс(это нужно для того чтобы не копировать полностью весь класс иначе уходит в разнос
                     cloneClass.attr("id", newIdProductSelectContainer);                                //Прописываем склонированному классу новый ID
-
                     var nameFirstPart = "productInOrder[";  // Первая часть имени для select и input (одинаковая у всех)
 // Select товар
                     var idSelectFirstPart = "productSelectList";  // Первая часть ID для select
@@ -115,7 +114,6 @@
                     cloneClass.children()[2].setAttribute("name", newQuantityName); //Присваиваем новый name
                     cloneClass.children()[2].setAttribute("id", newQuantityId); // Присваиваем новый ID
                     cloneClass.children()[2].value = "";                    // Обнуляем значение
-                    console.log($("#user").value);
 // input итоговая цена
                     var idFinalPriceFirstPart = "productFinalPrice"; // Первая часть ID
                     var finalPriceNameLastPart = "].finalPrice";     // Последняя часть name для
@@ -124,18 +122,16 @@
                     cloneClass.children()[4].setAttribute("name", newFinalPriceName); //Присваиваем новый name
                     cloneClass.children()[4].setAttribute("id", newFinalPriceId); // Присваиваем новый ID
                     cloneClass.children()[4].value = "";                        // Обнуляем значение
-
                     $("#productSelectContainer").append(cloneClass);  //Присоединяем новый класс
+                    writeProductFinalPrice()
                 });
             }
         );
     </script>
     <script type="text/javascript">
         function writeOrderPrice () {
-            var userDiscountValue = Number($("#selectUser option:selected").attr("discount"));
             $("#orderPrice").val(0)
             $.each($('.productFinalPriceClass'), function (index, value) {
-                $(value).val(Number($(value).val())*(100-userDiscountValue)/100)
                 $("#orderPrice").val(Number($(value).val())+Number($("#orderPrice").val()))
             })
             };
@@ -157,15 +153,14 @@
       <script type="text/javascript">
             function writeProductFinalPrice () {
             $.each($('.productQuantityClass'), function (index, value) {
-                    console.log("Поле отредактированно")
-                    console.log($(value).attr("id"));
                     var idQuantity = $(value).attr("id")
                     var idQuantityFirstPart = "productQuantity";
                     var idProductFinalPriceFirstPart = "productFinalPrice";
                     var number = Number(idQuantity.substring(idQuantityFirstPart.length))
                     var idProductFinalPrice = idProductFinalPriceFirstPart + number
                     var idProductSelectList = "productSelectList" + number
-                    var valueProductFinalPrice = Number($("#"+idProductSelectList+" option:selected").attr("price-id"))
+                    var userDiscountValue = Number($("#selectUser option:selected").attr("discount"));
+                    var valueProductFinalPrice = Number($("#"+idProductSelectList+" option:selected").attr("price-id")*(100-userDiscountValue)/100)
                     var valueQuantity = $(value).val();
                     $("#"+idProductFinalPrice).val(valueProductFinalPrice*valueQuantity)
                     writeOrderPrice()
@@ -175,8 +170,6 @@
     <script type="text/javascript">
         $('.addProductClass').on('change',
             function () {
-                console.log("Поле отредактированно")
-                console.log($(this).attr("id"));
                 var idAddProduct = $(this).attr("id")
                 var idAddProductFirstPart = "addProduct";
                 var idProductFinalPriceFirstPart = "productFinalPrice";
