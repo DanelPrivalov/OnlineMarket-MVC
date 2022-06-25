@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class MainController {
 
@@ -46,12 +48,23 @@ public class MainController {
     @PostMapping("/home")///
     public String addToCart(@AuthenticationPrincipal User activeUser,
                             @RequestParam("add") Product product) {
-        ProductCart productCart = new ProductCart();
-        productCart.setProduct(product);
-        productCart.setQuantity(1);
-        activeUser.getCart().AddProductCart(productCart);
-        productCartRepository.save(productCart);
-        cartRepository.save(activeUser.getCart());
+        List<ProductCart> productCarts =activeUser.getCart().getProductCarts();
+        boolean flag = true;
+        for (ProductCart productCart : productCarts) {
+            if (productCart.getProduct().getId()==product.getId()){
+                productCart.setQuantity(productCart.getQuantity()+1);
+                flag = false;
+                productCartRepository.save(productCart);
+            }
+        }
+        if(flag){
+            ProductCart productCart = new ProductCart();
+            productCart.setProduct(product);
+            productCart.setQuantity(1);
+            activeUser.getCart().AddProductCart(productCart);
+            productCartRepository.save(productCart);
+            cartRepository.save(activeUser.getCart());
+        }
         return "redirect:/home";
     }
 }
