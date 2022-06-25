@@ -202,13 +202,14 @@
 <div class="product-wrap" th:each="product:${products}">
     <div class="product-item">
         <img th:src="@{${product.images}}" width="300" height="600">
-<!--        <div class="product-buttons" th:id="AddToCart">-->
-<!--            <a href="" class="button">В корзину</a>-->
-<!--        </div>-->
+        <form action="#" th:action="@{/home}" method="post">
+            <div class="product-buttons" th:id="AddToCart">
+                <button class="dropbtn" type="submit" name="add" th:value="${product.id}">В корзину</button>
+<!--CДЕЛАТЬ СТИЛЬ КНОПКЕ!-->
+
+            </div>
+           </form>
     </div>
-    <form action="#" th:action="@{/home}" method="post">
-        <button type="submit" name="add" th:value="${product.id}">В корзину</button>
-    </form>
     <!--        <div class="product-buttons">-->
     <!--            <a href="" class="button1">В избранное</a>-->
     <!--        </div>-->
