@@ -15,9 +15,9 @@ public class Cart {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "cart", cascade = CascadeType.ALL)//, orphanRemoval = true
-    @JoinColumn(name = "User_id")//???
-    private User user;
+//    @OneToOne(mappedBy = "cart", cascade = CascadeType.ALL)//, orphanRemoval = true
+//    @JoinColumn(name = "User_id")//???
+//    private User user;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //mappedBy = "order" , cascade = CascadeType.ALL
     @JoinColumn(name = "id")
@@ -44,13 +44,13 @@ public class Cart {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public List<ProductCart> getProductCarts() {
         return productCarts;

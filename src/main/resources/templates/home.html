@@ -206,17 +206,17 @@
             <a href="" class="button">В корзину</a>
         </div>
     </div>
-    <!--        <form action="/home" method="post">-->
-    <!--                       <button type="submit" name="add" th:value="${product.id}">В корзину</button>-->
-    <!--        </form>-->
+            <form action="/cart" method="post">
+                           <button type="submit" name="add" th:value="${product.id}">В корзину</button>
+            </form>
     <!--        <div class="product-buttons">-->
     <!--            <a href="" class="button1">В избранное</a>-->
     <!--        </div>-->
 
-    <div class="product-title">
+<!--    <div class="product-title">-->
         <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
         <span class="product-price" th:text="@{${product.price}} + ' руб.'">  </span>
-    </div>
+<!--    </div>-->
 
 </div>
 

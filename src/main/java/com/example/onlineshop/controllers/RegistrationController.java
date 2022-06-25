@@ -44,9 +44,9 @@ public class RegistrationController {
         user.setActive(true);
         user.setRoles(Collections.singleton(ERole.CUSTOMER));
         user.setCity(cityRepository.getReferenceById(1));//
-        userRepository.save(user);
         Cart cart = new Cart();// нужно ли прописывать это ? чтобы создалась корзина при создании нового пользователя
         user.setCart(cart);
+        userRepository.save(user);
         return "redirect:/login";
 
     }
