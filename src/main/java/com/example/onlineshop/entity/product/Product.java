@@ -1,9 +1,6 @@
 package com.example.onlineshop.entity.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Products")
 public class Product {
@@ -50,4 +48,12 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "sale")
     protected Sale sale;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -1,10 +1,12 @@
 package com.example.onlineshop.entity.Cart;
 
 import com.example.onlineshop.entity.product.Product;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
+@ToString
 @Table(name = "product_cart")
 public class ProductCart {
     @Id
