@@ -12,7 +12,7 @@
         <a href="/home">Главная страница</a>
         <a href="">Мой аккаунт</a>
         <a href="#notyet">Мое избранное</a>
-        <a href="#notyet">Моя корзина</a>
+        <a href="" th:href="@{/cart}" >Моя корзина </a>
         <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
         <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
