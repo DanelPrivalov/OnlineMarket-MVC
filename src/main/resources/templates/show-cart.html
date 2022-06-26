@@ -13,17 +13,8 @@
 </head>
 <body>
 <div>
-
     <div class="container links">
         <h2 class="header" th:text="'Это ваша корзина, '+${user.firstName}"></h2>
-
-        <!--    <div th:if="!${#lists.isEmpty(productCarts)}">-->
-        <!--        <div th:each="product:${productCarts}">-->
-
-        <!--        </div>-->
-        <!--        </div>-->
-
-
         <form th:object="${cart}">
             <table>
                 <thead>
@@ -31,10 +22,12 @@
                     <th>Название</th>
                     <th>Описание</th>
                     <th>Изображение</th>
+                    <th>Стоимость за единицу товара</th>
                     <th></th>
                     <th>Кол-во</th>
                     <th></th>
-                    <th>Стоимость</th>
+                    <th>Стоимость с учетом скидки</th>
+                    <th></th>
                 </tr>
                 </thead>
 
@@ -45,28 +38,24 @@
 <!--                    чек бокс для выбора товаров-->
                     <td th:text="${productCart.product.name}"></td>
                     <td th:text="${productCart.product.description}"></td>
-                    <td><img th:src="@{${productCart.product.images}}" alt="Фото продукта" width="200" height="300">
-                    </td>
-                    <td><a th:href="@{/productCardQuantityDecrease/{id}(id=${productCart.product.id})}"><img
-                            src="https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-icon.png" width="50"
-                            height="50" class="invert"><i></i></img></a></td>
-                    <td th:text="${productCart.quantity}"></td>
-                    <td><a th:href="@{/productCardQuantityIncrease/{id}(id=${productCart.product.id})}"><img
-                            src="https://icons.iconarchive.com/icons/iconsmind/outline/512/Add-icon.png" width="50"
-                            height="50" class="invert"><i></i></img></a></td>
-                    <td th:text="${productCart.product.price}"></td>
-                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}"><img
-                            src="https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-Cart-icon.png"
-                            width="50" height="50" class="invert"><i></i></img></a></td>
+                    <td> <img th:src="@{${productCart.product.images}}" alt="Фото продукта" width="200" height="100"> </td>
+                    <td th:id = "'idPrice'+(${productCart.product.id})" th:text="${productCart.product.price}"></td>
+                    <td><a th:href="@{/productCardQuantityDecrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-icon.png" width="50" height="50" class="invert"><i></i></img></a></td>
+                    <td th:id = "'idQuantity'+(${productCart.product.id})" th:text="${productCart.quantity}"></td>
+                    <td><a th:href="@{/productCardQuantityIncrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Add-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
+                    <td th:id = "'idFinalPrice'+(${productCart.product.id})"></td>
+                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-Cart-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
+
                 </tr>
 
 
                 </tbody>
             </table>
-
-            <p th:text="${cart.id}">value</p>
-            <p>Сумма заказа</p>
-            <p th:text="${cart.sum}">value</p>
+            <label>Скидка: </label>
+            <p  id = "idDiscountValue"  th:text="${user.discount}">value</p>
+            <label>Сумма заказа: </label>
+            <output id = "idSummCart"></output>
+            <label> рублей </label>
             <div class="links">
                 <p><a href="/home">На главную<i></i></a></p>
             </div>
@@ -76,7 +65,28 @@
 
         </form>
     </div>
-</div>
-</body>
 
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        writeProductFinalPrice();
+    }
+</script>
+<script type="text/javascript">
+    function writeProductFinalPrice () {
+        var userDiscountValue = Number($("#idDiscountValue").text());
+        $("#idSummCart").text(0);
+        $.each($("td[id*='idPrice']"), function (index, value) {
+            var idProduct = Number ($(value).attr("id").substring('idPrice'.length))
+            var idQuantity = '#idQuantity'+idProduct;
+            var quantity = Number($(idQuantity).text())
+            var price = Number($(value).text())
+            var idFinalPrice = '#idFinalPrice'+idProduct;
+            $(idFinalPrice).text(quantity*price*(100-userDiscountValue)/100)
+            $("#idSummCart").text(Number($("#idSummCart").text())+Number(($(idFinalPrice).text())))
+        })
+    }
+</script>
+</body>
 </html>
