@@ -3,6 +3,7 @@ import com.example.onlineshop.entity.user.User;
 import javax.persistence.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Entity
