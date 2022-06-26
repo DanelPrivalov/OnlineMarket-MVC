@@ -24,7 +24,7 @@
             <input hidden type="submit" value="Logout"/>
         </form>
     </div>
-    
+
     <div class="container links">
         <h2 class="header" th:text="'Это ваша корзина, '+${user.firstName}"></h2>
         <form th:object="${cart}">
