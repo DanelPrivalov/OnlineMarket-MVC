@@ -10,7 +10,7 @@
 <div class="topnav">
     <a class="active" href="/home">Главная страница</a>
     <a href="#notyet">Мое избранное</a>
-    <a href="@{/cart}">Моя корзина</a>
+    <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
 </div>
 
 <div class="container header">
