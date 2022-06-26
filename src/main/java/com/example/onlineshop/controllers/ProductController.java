@@ -2,10 +2,12 @@ package com.example.onlineshop.controllers;
 import javax.validation.Valid;
 
 import com.example.onlineshop.entity.product.Product;
+import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.BoardGameRepository;
 import com.example.onlineshop.repository.CollectableFigureRepository;
 import com.example.onlineshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,9 +31,10 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public String findAll(Model model){
+    public String findAll(Model model, @AuthenticationPrincipal User user){
         List<Product> products = productRepository.findAll();
         model.addAttribute("products",products);
+        model.addAttribute("user", user);
         return "show-products";
     }
 
@@ -46,10 +49,7 @@ public class ProductController {
         return "show-products";
     }
 
-    @GetMapping("/map")
-    public String showMap(Model model) {
-        return "map";
-    }
+
 
 //    @GetMapping("/games")
 //    public String showGames(Model model) {

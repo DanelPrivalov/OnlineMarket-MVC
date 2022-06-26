@@ -5,8 +5,10 @@ import com.example.onlineshop.entity.product.ProductType;
 import com.example.onlineshop.entity.product.SEO;
 import com.example.onlineshop.entity.product.Sale;
 import com.example.onlineshop.entity.product.boardGame.*;
+import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,11 +45,13 @@ public class BoardGameController {
     }
 
     @GetMapping("/games")
-    public String findAll(Model model) {
+    public String findAll(Model model, @AuthenticationPrincipal User user) {
         List<BoardGame> boardGames = boardGameRepository.findAll();
         model.addAttribute("boardGames", boardGames);
+        model.addAttribute("user", user);
         return "show-games";
     }
+
 
     @GetMapping("/games-create")
     public String createBoardGameForm(Model model) {
