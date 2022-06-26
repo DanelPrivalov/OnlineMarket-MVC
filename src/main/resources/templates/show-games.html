@@ -57,8 +57,8 @@
                     <th>Максимум игроков</th>
                     <th>Время игры</th>
 <!--                    <th>Опции</th>-->
-                    <th>Изменить</th>
-                    <th>Удалить</th>
+                    <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Изменить</th>
+                    <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Удалить</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,8 +81,12 @@
                     <td th:text="${boardGame.playTime.name}"></td>
 <!--                    <td th:each="bGOption : ${boardGame.options}" th:text="${bGOption.name}"></td>-->
 
-                    <td><a th:href="@{games-update/{id}(id=${boardGame.id})}">Изменить</a></td>
-                    <td><a th:href="@{games-delete/{id}(id=${boardGame.id})}">Удалить</a></td>
+                    <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                        <a  th:href="@{/games-update/{id}(id=${boardGame.id})}">Изменить<i></i></a>
+                    </td>
+                    <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                        <a  th:href="@{/games-delete/{id}(id=${boardGame.id})}">Удалить<i></i></a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

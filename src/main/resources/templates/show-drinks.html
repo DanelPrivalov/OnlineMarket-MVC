@@ -55,8 +55,8 @@
                             <!--                        <th>Drink_id</th>-->
                             <th>Производитель</th>
                             <th>Тип напитка</th>
-                            <th>Изменить</th>
-                            <th>Удалить</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Изменить</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Удалить</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,8 +72,12 @@
                             <td th:text="${drink.sale.value}"></td>
                             <td th:text="${drink.drinkProducer.name}"></td>
                             <td th:text="${drink.drinkType.name}"></td>
-                            <td><a th:href="@{/edit-drink/{id}(id=${drink.id})}">Изменить<i></i></a></td>
-                            <td><a th:href="@{/delete-drink/{id}(id=${drink.id})}">Удалить<i></i></a></td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/edit-drink/{id}(id=${drink.id})}">Изменить<i></i></a>
+                            </td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/delete-drink/{id}(id=${drink.id})}">Удалить<i></i></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

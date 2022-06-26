@@ -51,7 +51,8 @@
                             <th>Тип продукта</th>
                             <th>Рейтинг</th>
                             <th>Скидка</th>
-                            <th>Удалить</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'" >Удалить</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -65,7 +66,9 @@
                             <td th:text="${product.productType.name}"></td>
                             <td th:text="${product.ratingId}"></td>
                             <td th:text="${product.sale.value}"></td>
-                            <td><a th:href="@{/delete/{id}(id=${product.id})}">Удалить<i></i></a></td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/delete/{id}(id=${product.id})}">Удалить<i></i></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

@@ -56,8 +56,9 @@
                             <th>Ширина</th>
                             <th>Фандом</th>
                             <th>Гибкость</th>
-                            <th>Изменить</th>
-                            <th>Удалить</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Изменить</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Удалить</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -76,8 +77,13 @@
                             <td th:text="${figure.width}"></td>
                             <td th:text="${figure.fandom.name}"></td>
                             <td th:text="${figure.flexibility}"></td>
-                            <td><a th:href="@{/edit-figure/{id}(id=${figure.id})}">Изменить<i></i></a></td>
-                            <td><a th:href="@{/delete-figure/{id}(id=${figure.id})}">Удалить<i></i></a></td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/edit-figure/{id}(id=${figure.id})}">Изменить<i></i></a>
+                            </td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/delete-figure/{id}(id=${figure.id})}">Удалить<i></i></a>
+                            </td>
+
                         </tr>
                         </tbody>
                     </table>
