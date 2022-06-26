@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -104,21 +105,27 @@ public class CartController {
         LocalDateTime dateTime = LocalDateTime.now();
         order.setDate(dateTime.format(formatter));
         order.setCondition(conditionRepository.getReferenceById(1));
+        order.setOrderPrice((double)0);
         List<ProductInOrder> productInOrders = new ArrayList<>();
-
         for (ProductCart oneProductCart : productCarts) {
             ProductInOrder productInOrder = new ProductInOrder();
             productInOrder.setProduct(oneProductCart.getProduct());
             productInOrder.setQuantity(oneProductCart.getQuantity());
-            productInOrder.setFinalPrice((double) oneProductCart.getProduct().getPrice());
+            productInOrder.setFinalPrice((double) oneProductCart.getProduct().getPrice()*oneProductCart.getQuantity()*((100-activeUser.getDiscount())/100));
             productInOrderRepository.save(productInOrder);
             System.out.println(productInOrder);
             productInOrders.add(productInOrder);
-
+            order.setOrderPrice(order.getOrderPrice()+productInOrder.getFinalPrice());
         }
-        //activeUser.getCart().DeleteProductCart(oneProductCart);
+        Iterator<ProductCart> i = productCarts.iterator();
+        while (i.hasNext()) {
+            ProductCart tempProductCarts = i.next();
+            productCartRepository.delete(tempProductCarts);
+            i.remove();
+        }
         order.setProductInOrder(productInOrders);
         orderRepository.save(order);
-        return "finalOrder";// сделать вьюшку ваш заказ создан ляляля
+        return "redirect:/cart";
+        //       return "finalOrder";// сделать вьюшку ваш заказ создан ляляля
     }
 }
