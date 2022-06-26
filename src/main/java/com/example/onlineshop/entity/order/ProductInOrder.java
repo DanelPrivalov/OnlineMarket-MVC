@@ -12,6 +12,7 @@ import javax.persistence.*;
 
 
 @Entity
+
 @Table(name = "product_in_order")
 public class ProductInOrder {
     @Id
@@ -73,5 +74,16 @@ public class ProductInOrder {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+
+    @Override
+    public String toString() {
+        return "ProductInOrder{" +
+                "id=" + id +
+                ", finalPrice=" + finalPrice +
+                ", quantity=" + quantity +
+                ", product=" + product +
+                '}';
     }
 }
