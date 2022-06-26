@@ -117,7 +117,8 @@
     <a href="/home">Главная страница</a>
     <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
     <a href="#notyet">Мое избранное</a>
-    <a href="" th:href="@{/cart}">Моя корзина </a>
+    <a th="${user.getRoleString()}=='CUSTOMER'?'hidden':' '">Моя корзина </a>
+
     <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
@@ -148,6 +149,7 @@
     </p>
     <p><a href="/users">Пользователи<i></i></a></p>
     <p><a href="/order">Заказы<i></i></a></p>
+
     <div class="popup" onclick="myFunction()">Корзина
         <span class="popuptext" id="myPopup">Данный раздел в разработке</span>
     </div>
@@ -155,7 +157,7 @@
     <input id="userRole" th:value="${user.getRoleString()}">
     <!--    Следующее поле отобразится только у CUSTOMER-->
     <input th:type="${user.getRoleString()}=='CUSTOMER'?'text':'hidden'" value="TEST">
-    <!--    <p><a href="/">Корзина<i></i></a></p>-->
+
 </div>
 
 <br>
