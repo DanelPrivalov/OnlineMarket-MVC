@@ -10,7 +10,6 @@
 <div class="topnav">
     <a href="/home">Главная страница</a>
     <a href="">Мой аккаунт</a>
-    <a href="#notyet">Мое избранное</a>
     <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
     <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
