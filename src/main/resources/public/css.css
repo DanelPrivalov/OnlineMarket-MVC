@@ -11,7 +11,6 @@ body {
     font-size: 17px;
 }
 
-
 .header h1, h2 {
     position: center;
     text-align: left;
@@ -43,6 +42,7 @@ body {
     z-index:4;
     text-indent: 630px;
 }
+
 .containerPrice{
     border: 4px #ee9f22 solid;
     background: transparent;
@@ -50,14 +50,7 @@ body {
     width: 25%;
     text-align: center;
     float: right;
-    }
-/*.wideText p {*/
-/*   color: #ee9f22;*/
-/*    !*font-style: italic;*!*/
-/*    !*text-transform: uppercase;*!*/
-/*    letter-spacing: 2px;*/
-/*    word-spacing: 10px;*/
-/*}*/
+}
 
 .links a{
     font-size: 17px;
@@ -84,7 +77,6 @@ a:visited {
     height: 0;
     border: 6px solid transparent;
 }
-
 
 .container {
     max-width:95%;
@@ -235,7 +227,7 @@ td {
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #6f480b}
 
-/*pop up*/
+pop up
 .popup {
     position: relative;
     display: inline-block;
@@ -291,10 +283,7 @@ td {
     from {opacity: 0;}
     to {opacity:1 ;}
 }
-/*новое от И*/
-* {
-    box-sizing: border-box;
-}
+
 
 .product-wrap  {
     width: 25%;
@@ -302,8 +291,7 @@ td {
     background: transparent;
     padding: 0 0 20px;
     text-align: center;
-    font-size: 14px;
-    font-family: Lora;
+    font-size: 17px;
     border: 6px solid transparent;
     text-transform: uppercase;
     float: left;
@@ -331,93 +319,66 @@ td {
     transition: .3s ease-in-out;
 }
 
-.button {
-    text-decoration: none;
-    color: #c0a97a;
-    font-size: 12px;
-    width: 140px;
-    height: 40px;
+.cardbutton {
+    padding: 10px 20px;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #ee9f22;
+    margin: 5px 2px;
+
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+
     line-height: 40px;
     position: absolute;
     top: 50%;
     left: 50%;
-    border: 2px solid #c0a97a;
     transform: translate(-50%, -50%) scale(0);
     transition: .3s ease-in-out;
-
 }
 
-.button:before {
-    content: "\f07a";
-    font-family: FontAwesome;
-    margin-right: 10px;
+.cardbutton:hover {background-color:#ebb969
+}
+
+.cardbutton:active {
+    background-color: #6f480b;
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
 }
 
 .product-item:hover .product-buttons {
     opacity: 1;
 }
 
-.product-item:hover .button {
+.product-item:hover .cardbutton {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.button:hover {
-    background: black;
-}
-
 .product-title {
-    color: #5e5e5e;
+    color: #ee9f22;
 }
 
 .product-title a {
     text-decoration: none;
-    color: #2e2e2e;
+    color: #ee9f22;
     font-weight: 600;
     margin: 15px 0 5px;
     padding-bottom: 7px;
     display: block;
-    /*border: white;*/
     text-align: center;
     position: center;
     transition: .3s ease-in-out;
 }
 
-.product-title a:after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 2px;
-    background: #2e2e2e;
-    left: 50%;
-    margin-left: -20px;
-    bottom: 0;
-    transition: .3s ease-in-out;
-}
-
 .product-title a:hover {
-    color: #c0a97a;
+    color: #ebb969;
+    text-decoration: underline;
 }
 
-.product-title:hover a:after {
-    background: #c0a97a;
-}
-
-.product-price {
-    font-size: 20px;
-    color: #c0a97a;
-    font-weight: 700;
-}
-#rect1{
-    width: 400px;
-    height: 600px;
-    background: #ee9f22;
-}
-#rect2{
-    width: 400px;
-    height: 600px;
-    background: #ffffff;
-    transform: translate(20px, -10px);
-}
 .box-model{
     /*width: 25%; это в центре увеличиваем число- смещается влево*/
     width: 40%;
@@ -426,3 +387,4 @@ td {
     /*margin-top: auto;*/
     /*width: 6em*/
 }
+
