@@ -30,8 +30,12 @@
                     <th></th>
                 </tr>
                 </thead>
+
                 <tbody>
                 <tr th:each="productCart : ${cart.productCarts}">
+<!--                    <td><input th:id="${productCart.id}" th:type="checkbox" th:name="products"-->
+<!--                               th:value="${productCart.id}"/></td>-->
+<!--                    чек бокс для выбора товаров-->
                     <td th:text="${productCart.product.name}"></td>
                     <td th:text="${productCart.product.description}"></td>
                     <td> <img th:src="@{${productCart.product.images}}" alt="Фото продукта" width="200" height="100"> </td>
@@ -41,7 +45,10 @@
                     <td><a th:href="@{/productCardQuantityIncrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Add-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
                     <td th:id = "'idFinalPrice'+(${productCart.product.id})"></td>
                     <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-Cart-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
+
                 </tr>
+
+
                 </tbody>
             </table>
             <label>Скидка: </label>
@@ -52,6 +59,9 @@
             <div class="links">
                 <p><a href="/home">На главную<i></i></a></p>
             </div>
+
+
+                <p><a href="/buy">купить<i></i></a></p>
 
         </form>
     </div>

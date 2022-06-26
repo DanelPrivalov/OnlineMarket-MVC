@@ -16,18 +16,18 @@ import javax.persistence.*;
 public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long conditionId;
+    private Integer conditionId;
     @Column(name="condition_name")
     private String conditionName;
 
     public Condition() {
     }
 
-    public Long getConditionId() {
+    public Integer getConditionId() {
         return conditionId;
     }
 
-    public void setConditionId(Long conditionId) {
+    public void setConditionId(Integer conditionId) {
         this.conditionId = conditionId;
     }
 

@@ -1,21 +1,22 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.Cart.ProductCart;
+import com.example.onlineshop.entity.order.Condition;
+import com.example.onlineshop.entity.order.Order;
+import com.example.onlineshop.entity.order.ProductInOrder;
 import com.example.onlineshop.entity.product.Product;
 import com.example.onlineshop.entity.user.User;
-import com.example.onlineshop.repository.CartRepository;
-import com.example.onlineshop.repository.ProductCartRepository;
-import com.example.onlineshop.repository.ProductRepository;
-import com.example.onlineshop.repository.UserRepository;
+import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,13 +25,20 @@ public class CartController {
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
     private final ProductCartRepository productCartRepository;
+    private final OrderRepository orderRepository;
+    private final ProductInOrderRepository productInOrderRepository;
+    private final ConditionRepository conditionRepository;
 
     @Autowired
-    public CartController(UserRepository userRepository, ProductRepository productRepository, CartRepository cartRepository, ProductCartRepository productCartRepository) {
+    public CartController(UserRepository userRepository, ProductRepository productRepository, CartRepository cartRepository, ProductCartRepository productCartRepository, OrderRepository orderRepository, ProductInOrderRepository productInOrderRepository, ConditionRepository conditionRepository) {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.productCartRepository = productCartRepository;
+        this.orderRepository = orderRepository;
+
+        this.productInOrderRepository = productInOrderRepository;
+        this.conditionRepository = conditionRepository;
     }
 
     @GetMapping("/cart")
@@ -45,40 +53,72 @@ public class CartController {
     @GetMapping("/productCartDelete/{id}")
     public String deleteProductFromCart(@AuthenticationPrincipal User activeUser, @PathVariable("id") Long id, Model model) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        List<ProductCart> productCarts =activeUser.getCart().getProductCarts();
+        List<ProductCart> productCarts = activeUser.getCart().getProductCarts();
         ProductCart deleteProductCart = new ProductCart();
-        for (ProductCart productCart : productCarts){
-             if (productCart.getProduct().getId()==product.getId()){
-                 deleteProductCart = productCart;
+        for (ProductCart productCart : productCarts) {
+            if (productCart.getProduct().getId() == product.getId()) {
+                deleteProductCart = productCart;
             }
         }
         activeUser.getCart().DeleteProductCart(deleteProductCart);
         productCartRepository.delete(deleteProductCart);
         return "redirect:/cart";
     }
+
     @GetMapping("/productCardQuantityDecrease/{id}")
     public String DecreaseQuantityProductFromCart(@AuthenticationPrincipal User activeUser, @PathVariable("id") Long id, Model model) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        List<ProductCart> productCarts =activeUser.getCart().getProductCarts();
-        for (ProductCart productCart : productCarts){
-            if (productCart.getProduct().getId()==product.getId())
-                if(productCart.getQuantity()>1) {
+        List<ProductCart> productCarts = activeUser.getCart().getProductCarts();
+        for (ProductCart productCart : productCarts) {
+            if (productCart.getProduct().getId() == product.getId())
+                if (productCart.getQuantity() > 1) {
                     productCart.setQuantity(productCart.getQuantity() - 1);
                     productCartRepository.save(productCart);
                 }
         }
         return "redirect:/cart";
     }
+
     @GetMapping("/productCardQuantityIncrease/{id}")
     public String IncreaseQuantityProductFromCart(@AuthenticationPrincipal User activeUser, @PathVariable("id") Long id, Model model) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        List<ProductCart> productCarts =activeUser.getCart().getProductCarts();
-        for (ProductCart productCart : productCarts){
-            if (productCart.getProduct().getId()==product.getId()){
-                    productCart.setQuantity(productCart.getQuantity() + 1);
-                    productCartRepository.save(productCart);
-                }
+        List<ProductCart> productCarts = activeUser.getCart().getProductCarts();
+        for (ProductCart productCart : productCarts) {
+            if (productCart.getProduct().getId() == product.getId()) {
+                productCart.setQuantity(productCart.getQuantity() + 1);
+                productCartRepository.save(productCart);
+            }
         }
         return "redirect:/cart";
+    }
+
+    @GetMapping("/buy")
+    public String BuyProductsFromCart(@AuthenticationPrincipal User activeUser, Model model) {
+        //@RequestParam(name = "products") Long id,
+//         ProductCart productCart = productCartRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        List<ProductCart> productCarts = activeUser.getCart().getProductCarts();
+        Order order = new Order();
+        order.setUser(activeUser);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        order.setDate(dateTime.format(formatter));
+        order.setCondition(conditionRepository.getReferenceById(1));
+        List<ProductInOrder> productInOrders = new ArrayList<>();
+
+        for (ProductCart oneProductCart : productCarts) {
+            ProductInOrder productInOrder = new ProductInOrder();
+            productInOrder.setProduct(oneProductCart.getProduct());
+            productInOrder.setQuantity(oneProductCart.getQuantity());
+            productInOrder.setFinalPrice((double) oneProductCart.getProduct().getPrice());
+            productInOrderRepository.save(productInOrder);
+            System.out.println(productInOrder);
+            productInOrders.add(productInOrder);
+
+        }
+        //activeUser.getCart().DeleteProductCart(oneProductCart);
+        order.setProductInOrder(productInOrders);
+        orderRepository.save(order);
+        return "finalOrder";// сделать вьюшку ваш заказ создан ляляля
     }
 }
