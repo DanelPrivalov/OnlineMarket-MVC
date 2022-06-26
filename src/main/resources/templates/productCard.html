@@ -9,7 +9,6 @@
 <body>
 <div class="topnav">
     <a class="active" href="/home">Главная страница</a>
-    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
     <a href="#notyet">Мое избранное</a>
     <a href="@{/cart}">Моя корзина</a>
 </div>
@@ -20,16 +19,24 @@
 
     <div class="box-model">
         <form th:object="${product}">
-                     <img th:src="@{${product.images}}" width="400" height="600">
+                     <img th:src="@{${product.images}}" width="400">
             <div class="containerPrice">
                 <p style="font-size: 30px" th:text="${product.price} +'  руб.'"></p>
-                <div class="dropdown">
-                    <button class="dropbtn">В корзину</button>
+                <div>
+                    <button class="button">В корзину</button>
                 </div>
             </div>
-            <p th:text="${product.description}">value</p>
-            <p th:text="${product.ratingId}">рейтинг</p>
-            <p th:text="${product.sale.value}">скидка?</p>
+            <p>
+            <br/>
+            <span>Описание: </span>
+            <span th:text="${product.description}">value</span>
+            <br/>
+            <span>Рейтинг: </span>
+            <span th:text="${product.ratingId}">рейтинг</span>
+            <br/>
+            <span>Скидака на товар: </span>
+            <span th:text="${product.sale.value}">скидка?</span>
+            </p>
         </form>
     </div>
 </div>

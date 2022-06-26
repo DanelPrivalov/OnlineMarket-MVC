@@ -12,7 +12,7 @@
 
         /* Slideshow container */
         .slideshow-container {
-            max-width: 1000px;
+            max-width: 80%;
             position: relative;
             margin: auto;
         }
@@ -109,7 +109,6 @@
                 opacity: 1
             }
         }
-
     </style>
 </head>
 <body>
@@ -152,14 +151,14 @@
     <div class="popup" onclick="myFunction()">Корзина
         <span class="popuptext" id="myPopup">Данный раздел в разработке</span>
     </div>
-<!--    Показать роль текущего пользователя-->
-    <input  id="userRole" th:value="${user.getRoleString()}">
-<!--    Следующее поле отобразится только у CUSTOMER-->
-    <input  th:type = "${user.getRoleString()}=='CUSTOMER'?'text':'hidden'" value    = "TEST">
+    <!--    Показать роль текущего пользователя-->
+    <input id="userRole" th:value="${user.getRoleString()}">
+    <!--    Следующее поле отобразится только у CUSTOMER-->
+    <input th:type="${user.getRoleString()}=='CUSTOMER'?'text':'hidden'" value="TEST">
     <!--    <p><a href="/">Корзина<i></i></a></p>-->
-
-
 </div>
+
+<br>
 <!-- Slideshow container -->
 <div class="slideshow-container">
 
@@ -200,29 +199,27 @@
     <span class="dot" onclick="currentSlide(4)"></span>
 </div>
 
-<hr>
-
+<br>
 <!--товар-->
 <div class="product-wrap" th:each="product:${products}">
     <div class="product-item">
         <img th:src="@{${product.images}}" width="300" height="600">
         <form action="#" th:action="@{/home}" method="post">
             <div class="product-buttons" th:id="AddToCart">
-                <button class="dropbtn" type="submit" name="add" th:value="${product.id}">В корзину</button>
-<!--CДЕЛАТЬ СТИЛЬ КНОПКЕ!-->
+                <button class="cardbutton" type="submit" name="add" th:value="${product.id}">В корзину</button>
+                <!--CДЕЛАТЬ СТИЛЬ КНОПКЕ!-->
 
             </div>
-           </form>
+        </form>
     </div>
     <!--        <div class="product-buttons">-->
     <!--            <a href="" class="button1">В избранное</a>-->
     <!--        </div>-->
 
-    <!--    <div class="product-title">-->
-    <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
-    <span class="product-price" th:text="@{${product.price}} + ' руб.'">  </span>
-    <!--    </div>-->
-
+    <div class="product-title">
+        <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
+    </div>
+    <span th:text="@{${product.price}} + ' руб.'">  </span>
 </div>
 
 
@@ -266,11 +263,6 @@
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
     }
-</script>
-
-<script>
-
-</script>
 </script>
 </body>
 </html>
