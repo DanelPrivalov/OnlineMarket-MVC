@@ -5,6 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Cart</title>
+    <style>
+        .invert {
+            filter: invert(1);
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -24,17 +29,16 @@
             <p th:text="${cart.id}">value</p>
             <p th:text="${cart.sum}">value</p>
 
-            <table >
+            <table>
                 <thead>
                 <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Изображение</th>
                     <th></th>
+                    <th>Кол-во</th>
                     <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-
+                    <th>Стоимость</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,11 +46,11 @@
                     <td th:text="${productCart.product.name}"></td>
                     <td th:text="${productCart.product.description}"></td>
                     <td> <img th:src="@{${productCart.product.images}}" alt="Фото продукта" width="200" height="100"> </td>
+                    <td><a th:href="@{/productCardQuantityDecrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-icon.png" width="50" height="50" class="invert"><i></i></img></a></td>
                     <td th:text="${productCart.quantity}"></td>
-<!--                    <td th:text="${productCart.price}"></td>-->
-                    >
-
-                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}">Delete<i></i></a></td>
+                    <td><a th:href="@{/productCardQuantityIncrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Add-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
+                    <td th:text="${productCart.product.price}"></td>
+                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-Cart-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
                 </tr>
                 </tbody>
             </table>
