@@ -4,8 +4,10 @@ import com.example.onlineshop.entity.product.Product;
 import com.example.onlineshop.entity.product.ProductType;
 import com.example.onlineshop.entity.product.drink.Drink;
 import com.example.onlineshop.entity.product.drink.DrinkType;
+import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,8 +41,9 @@ public class DrinkController {
     }
 
     @GetMapping("/drinks")
-    public String showDrinks(Model model) {
+    public String showDrinks(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("drinks", drinkRepository.findAll());
+        model.addAttribute("user", user);
         return "show-drinks";
     }
 

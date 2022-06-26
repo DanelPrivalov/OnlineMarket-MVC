@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="utf-8">
     <title>Users</title>
@@ -9,19 +10,28 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="/home">Главная страница</a>
-    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
-    <a href="/products">Список товаров</a>
-    <a href="/drinks">Список напитков</a>
-    <a href="/games">Список игр</a>
-    <a href="/figures">Список фигурок</a>
-    <a href="/users">Список пользователей</a>
+    <a href="/home">Главная страница</a>
+    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="dropFunction()">Каталог товаров
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="dropElement">
+            <a href="/products">Все товары</a>
+            <a href="/drinks">Напитки</a>
+            <a href="/games">Настольные игры</a>
+            <a href="/figures">Фигурки</a>
+        </div>
+    </div>
+    <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
+
     <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
         <input hidden type="submit" value="Logout"/>
     </form>
 </div>
+
 <div class="container links">
 <div th:switch="${drinks}">
     <div>
@@ -74,5 +84,22 @@
     </div>
 </div>
 </div>
+<script>
+
+    function dropFunction() {
+        document.getElementById("dropElement").classList.toggle("show");
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            var dropElement = document.getElementById("dropFunction");
+            if (dropElement.classList.contains('show')) {
+                dropElement.classList.remove('show');
+            }
+        }
+    }
+</script>
+
+
 </body>
 </html>
