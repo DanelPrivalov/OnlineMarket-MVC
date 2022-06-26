@@ -56,4 +56,29 @@ public class CartController {
         productCartRepository.delete(deleteProductCart);
         return "redirect:/cart";
     }
+    @GetMapping("/productCardQuantityDecrease/{id}")
+    public String DecreaseQuantityProductFromCart(@AuthenticationPrincipal User activeUser, @PathVariable("id") Long id, Model model) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        List<ProductCart> productCarts =activeUser.getCart().getProductCarts();
+        for (ProductCart productCart : productCarts){
+            if (productCart.getProduct().getId()==product.getId())
+                if(productCart.getQuantity()>1) {
+                    productCart.setQuantity(productCart.getQuantity() - 1);
+                    productCartRepository.save(productCart);
+                }
+        }
+        return "redirect:/cart";
+    }
+    @GetMapping("/productCardQuantityIncrease/{id}")
+    public String IncreaseQuantityProductFromCart(@AuthenticationPrincipal User activeUser, @PathVariable("id") Long id, Model model) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        List<ProductCart> productCarts =activeUser.getCart().getProductCarts();
+        for (ProductCart productCart : productCarts){
+            if (productCart.getProduct().getId()==product.getId()){
+                    productCart.setQuantity(productCart.getQuantity() + 1);
+                    productCartRepository.save(productCart);
+                }
+        }
+        return "redirect:/cart";
+    }
 }
