@@ -25,10 +25,6 @@
 
 
         <form th:object="${cart}">
-
-            <p th:text="${cart.id}">value</p>
-            <p th:text="${cart.sum}">value</p>
-
             <table>
                 <thead>
                 <tr>
@@ -55,7 +51,9 @@
                 </tbody>
             </table>
 
-
+            <p th:text="${cart.id}">value</p>
+            <p>Сумма заказа</p>
+            <p th:text="${cart.sum}">value</p>
             <div class="links">
                 <p><a href="/home">На главную<i></i></a></p>
             </div>
@@ -64,4 +62,5 @@
     </div>
 </div>
 </body>
+
 </html>
