@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="utf-8">
     <title>Add Figure</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div>
+<div class="topnav">
     <a class="active" href="/home">Главная страница</a>
     <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
     <a href="/products">Список товаров</a>
@@ -20,10 +21,10 @@
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
         <input hidden type="submit" value="Logout"/>
     </form>
-
+</div>
 
     <div class="container wideText links">
-        <h2 class="header">Add a collectable figure</h2>
+        <h2 class="header">Добавть фигурку</h2>
         <div class="label">
             <form action="#" th:action="@{/add-figure}" th:object="${collectableFigure}" method="post">
                 <div>
@@ -132,11 +133,11 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="button">Add figure</button>
+                    <button type="submit" class="button">Добавить</button>
                 </div>
             </form>
         </div>
-        <p><a href="/figures">Cancel<i></i></a></p>
+        <p><a href="/figures">Отмена<i></i></a></p>
     </div>
 </div>
 </body>

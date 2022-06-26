@@ -38,21 +38,20 @@
             <div>
                 <h2 th:case="null">No product yet!</h2>
                 <div th:case="*">
-                    <h2 class="header">Products</h2>
+                    <h2 class="header">Продукты</h2>
                     <table border="1">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Picture</th>
-                            <th>Availability</th>
-                            <th>SEO_attributes</th>
-                            <th>Product_type_id</th>
-                            <th>Rating_id</th>
-                            <th>Sale_id</th>
-                            <!--                        <th>Edit</th>-->
-                            <th>Delete</th>
+                            <th>Название</th>
+                            <th>Описание</th>
+                            <th>Цена</th>
+                            <th>Картинка</th>
+                            <th>Наличие</th>
+                            <th>SEO атрибут</th>
+                            <th>Тип продукта</th>
+                            <th>Рейтинг</th>
+                            <th>Скидка</th>
+                            <th>Удалить</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -66,16 +65,14 @@
                             <td th:text="${product.productType.name}"></td>
                             <td th:text="${product.ratingId}"></td>
                             <td th:text="${product.sale.value}"></td>
-                            <!--                        <td><a th:href="@{/edit/{id}(id=${product.id})}">Edit<i></i></a></td>-->
-                            <td><a th:href="@{/delete/{id}(id=${product.id})}">Delete<i></i></a></td>
+                            <td><a th:href="@{/delete/{id}(id=${product.id})}">Удалить<i></i></a></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <!--            <p><a href="/signup">Create product<i></i></a></p>-->
-                <p><a href="/drinks">See drinks<i></i></a></p>
-                <p><a href="/games">See board games<i></i></a></p>
-                <p><a href="/figures">See figures<i></i></a></p>
+                <p><a href="/drinks">Посмотреть напитки<i></i></a></p>
+                <p><a href="/games">Посмотреть настольные игры<i></i></a></p>
+                <p><a href="/figures">Посмотреть коллекционные фигурки<i></i></a></p>
                 <p><a href="/home">На главную<i></i></a></p>
 
             </div>

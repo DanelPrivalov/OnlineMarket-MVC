@@ -225,16 +225,11 @@
         <form action="#" th:action="@{/home}" method="post">
             <div class="product-buttons" th:id="AddToCart">
                 <button class="cardbutton" type="submit" name="add" th:value="${product.id}">В корзину</button>
-                <!--CДЕЛАТЬ СТИЛЬ КНОПКЕ!-->
 
             </div>
         </form>
     </div>
-    <!--        <div class="product-buttons">-->
-    <!--            <a href="" class="button1">В избранное</a>-->
-    <!--        </div>-->
-
-    <div class="product-title">
+       <div class="product-title">
         <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
     </div>
     <span th:text="@{${product.price}} + ' руб.'">  </span>

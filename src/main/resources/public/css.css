@@ -129,17 +129,19 @@ a:visited {
     border-color: #ee9f22;
     width:100%
 }
-.table td {
-    padding-bottom: 10px;
-}
-td {
-    word-wrap:break-word;
-}
+/*.table td {*/
+/*    padding-bottom: 10px;*/
+/*}*/
+/*td {*/
 
-.table th, td {
+/*}*/
+
+.table th, td, tr{
     border-style: solid;
     border-width: 0 1px 1px 0;
     border-color: #ee9f22;
+    padding: 10px;
+    word-wrap:break-word;
 }
 
 .topnav {

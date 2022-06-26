@@ -38,27 +38,26 @@
             <h2 th:case="null">No figures yet!</h2>
             <div th:case="*">
                 <div class="container links">
-                    <h2 class="header">Figures</h2>
+                    <h2 class="header">Коллекционные фигурки</h2>
                     <table border="1">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Picture</th>
-                            <th>Availability</th>
-                            <th>SEO_attributes</th>
-                            <th>Product_type_id</th>
-                            <th>Rating_id</th>
-                            <th>Sale_id</th>
-                            <!--                        <th>Figure_id</th>-->
-                            <th>Figure_producer</th>
-                            <th>Height</th>
-                            <th>Width</th>
-                            <th>Fandom</th>
-                            <th>Flexibility</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Название</th>
+                            <th>Описание</th>
+                            <th>Цена</th>
+                            <th>Картинка</th>
+                            <th>Наличие</th>
+                            <th>SEO атрибут</th>
+                            <th>Тип продукта</th>
+                            <th>Рейтинг</th>
+                            <th>Скидка</th>
+                            <th>Производитель</th>
+                            <th>Высота</th>
+                            <th>Ширина</th>
+                            <th>Фандом</th>
+                            <th>Гибкость</th>
+                            <th>Изменить</th>
+                            <th>Удалить</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,21 +71,20 @@
                             <td th:text="${figure.productType.name}"></td>
                             <td th:text="${figure.ratingId}"></td>
                             <td th:text="${figure.sale.value}"></td>
-                            <!--                        <td th:text="${figure.collectableFiguresId}"></td>-->
                             <td th:text="${figure.collectableFigureProducer.name}"></td>
                             <td th:text="${figure.height}"></td>
                             <td th:text="${figure.width}"></td>
                             <td th:text="${figure.fandom.name}"></td>
                             <td th:text="${figure.flexibility}"></td>
-                            <td><a th:href="@{/edit-figure/{id}(id=${figure.id})}">Edit<i></i></a></td>
-                            <td><a th:href="@{/delete-figure/{id}(id=${figure.id})}">Delete<i></i></a></td>
+                            <td><a th:href="@{/edit-figure/{id}(id=${figure.id})}">Изменить<i></i></a></td>
+                            <td><a th:href="@{/delete-figure/{id}(id=${figure.id})}">Удалить<i></i></a></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <p><a href="/add-figure">Create figure<i></i></a></p>
-            <p><a href="/products">Back to products<i></i></a></p>
+            <p><a href="/add-figure">Добавить фигурку<i></i></a></p>
+            <p><a href="/products">Назад к продуктам<i></i></a></p>
         </div>
     </div>
 </div>
@@ -106,6 +104,5 @@
         }
     }
 </script>
-
 </body>
 </html>
