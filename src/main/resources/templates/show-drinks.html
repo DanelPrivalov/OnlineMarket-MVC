@@ -48,15 +48,15 @@
                             <th>Цена</th>
                             <th>Картинка</th>
                             <th>Наличие</th>
-                            <th>SEO атрибут</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">SEO атрибут</th>
                             <th>Тип продукта</th>
                             <th>Рейтинг</th>
                             <th>Скидка</th>
-                            <!--                        <th>Drink_id</th>-->
                             <th>Производитель</th>
                             <th>Тип напитка</th>
                             <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Изменить</th>
                             <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Удалить</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -66,7 +66,8 @@
                             <td th:text="${drink.price}"></td>
                             <td><img th:src="@{${drink.images}}" alt="Фото продукта" width="200" height="100"></td>
                             <td th:text="${drink.availability}"></td>
-                            <td th:text="${drink.seo.name}"></td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'" th:text="${drink.seo.name}"></td>
+
                             <td th:text="${drink.productType.name}"></td>
                             <td th:text="${drink.ratingId}"></td>
                             <td th:text="${drink.sale.value}"></td>
@@ -78,6 +79,7 @@
                             <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
                                 <a  th:href="@{/delete-drink/{id}(id=${drink.id})}">Удалить<i></i></a>
                             </td>
+
                         </tr>
                         </tbody>
                     </table>
