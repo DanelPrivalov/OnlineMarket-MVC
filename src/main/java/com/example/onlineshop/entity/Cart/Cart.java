@@ -29,8 +29,8 @@ public class Cart {
     public void AddProductCart(ProductCart productCart) {
         productCarts.add(productCart);
     }
-    public void DeleteProductCart(ProductCart productCart_new) {
-        productCarts.remove(productCart_new);
+    public void DeleteProductCart(ProductCart productCart) {
+        productCarts.remove(productCart);
     }
 
 //        public ProductCart getProductCart(Long id){
