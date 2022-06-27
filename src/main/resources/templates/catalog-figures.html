@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-       <link rel="stylesheet" href="/css.css">
+    <title> CatalogFigures </title>
+    <link rel="stylesheet" href="/css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
-    <title>MyOrders</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+    </style>
 </head>
 <body>
 <div class="topnav">
@@ -23,50 +28,31 @@
         </div>
     </div>
     <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
-
     <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
-
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
         <input hidden type="submit" value="Logout"/>
     </form>
 </div>
+<div class="product-wrap" th:each="figure:${figures}">
+    <div class="product-item">
+        <img th:src="@{${figure.images}}" width="300" height="600">
+        <form action="#" th:action="@{/home}" method="post">
+            <div class="product-buttons" th:id="AddToCart">
+                <button class="cardbutton" type="submit" name="add" th:value="${figure.id}">В корзину</button>
 
-<div th:switch="${ordersActiveUser}">
-    <h2 th:case="null">No orders found!</h2>
-    <div th:case="*">
-        <h2 class="header">My Orders</h2>
-        <div class="container links">
-            <table border="1">
-                <thead>
-                <tr>
-                    <th>№ Заказа</th>
-                    <th>Дата</th>
-                    <th>Состояние заказа</th>
-                    <th>Комментарий</th>
-                    <th>Сумма</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="order : ${ordersActiveUser}">
-                    <td th:text="${order.orderId}"></td>
-                    <td th:text="${order.date}"></td>
-                    <td th:text="${order.condition.conditionName}"></td>
-                    <td th:text="${order.comment}"></td>
-                    <td th:text="${order.orderPrice}"></td>
-                    <td><a th:href="@{myOrder-detail/{id}(id=${order.orderId})}">Детали заказа</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+            </div>
+        </form>
     </div>
-    <p><a href="/home">На главную<i></i></a></p>
+    <div class="product-title">
+        <p><a th:href="@{/productCard/{id}(id=${figure.id})}" th:text=" @{${figure.name}}"> </a></p>
+    </div>
+    <span th:text="@{${figure.price}} + ' руб.'">  </span>
 </div>
-<script>
 
+<script>
     function dropFunction() {
         document.getElementById("dropElement").classList.toggle("show");
     }
-
     window.onclick = function(e) {
         if (!e.target.matches('.dropbtn')) {
             var dropElement = document.getElementById("dropFunction");
@@ -78,5 +64,3 @@
 </script>
 </body>
 </html>
-
-

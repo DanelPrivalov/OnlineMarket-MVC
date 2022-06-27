@@ -132,10 +132,10 @@
         <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content" id="dropElement">
-            <a href="/products">Все товары</a>
-            <a href="/drinks">Напитки</a>
-            <a href="/games">Настольные игры</a>
-            <a href="/figures">Фигурки</a>
+            <a href="/catalog-products">Все товары</a>
+            <a href="/catalog-drinks">Напитки</a>
+            <a href="/catalog-boardGames">Настольные игры</a>
+            <a href="/catalog-figures">Фигурки</a>
         </div>
     </div>
     <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
