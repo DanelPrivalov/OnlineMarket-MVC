@@ -115,7 +115,7 @@
             position: absolute;
             bottom: 20px;
             right: 20px;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(0, 0, 0, 0.6);
             color: white;
             padding-left: 20px;
             padding-right: 20px;
@@ -127,11 +127,22 @@
 <div class="topnav">
     <a href="/home">Главная страница</a>
     <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
-    <div class="dropdown">
+    <div th:hidden="${user.getRoleString()}=='CUSTOMER'?'true':'false'" class="dropdown">
         <button class="dropbtn" onclick="dropFunction()">Каталог товаров
-        <i class="fa fa-caret-down"></i>
+            <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content" id="dropElement">
+            <a href="/products">Все товары</a>
+            <a href="/drinks">Напитки</a>
+            <a href="/games">Настольные игры</a>
+            <a href="/figures">Фигурки</a>
+        </div>
+    </div>
+    <div th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" class="dropdown"> <!--  у кастомера-->
+        <button class="dropbtn" onclick="dropFunctionForCustomer()">Каталог товаров
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="dropElementForCustomer">
             <a href="/catalog-products">Все товары</a>
             <a href="/catalog-drinks">Напитки</a>
             <a href="/catalog-boardGames">Настольные игры</a>
@@ -191,9 +202,9 @@
         <div class="numbertext">3 / 4</div>
         <img src="img/ris3.png" style="width:100%">
         <div class="text-block">
-        <h4>Выбор редакции</h4>
-        <p>Под прицелом: Нуар</p>
-    </div>
+            <h4>Выбор редакции</h4>
+            <p>Под прицелом: Нуар</p>
+        </div>
     </div>
     <div class="mySlides fade">
         <div class="numbertext">4 / 4</div>
@@ -229,7 +240,7 @@
             </div>
         </form>
     </div>
-       <div class="product-title">
+    <div class="product-title">
         <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
     </div>
     <span th:text="@{${product.price}} + ' руб.'">  </span>
@@ -284,9 +295,26 @@
         document.getElementById("dropElement").classList.toggle("show");
     }
 
-    window.onclick = function(e) {
+    window.onclick = function (e) {
         if (!e.target.matches('.dropbtn')) {
             var dropElement = document.getElementById("dropFunction");
+            if (dropElement.classList.contains('show')) {
+                dropElement.classList.remove('show');
+            }
+        }
+    }
+</script>
+
+
+<script>
+
+    function dropFunctionForCustomer() {
+        document.getElementById("dropElementForCustomer").classList.toggle("show");
+    }
+
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            var dropElement = document.getElementById("dropFunctionForCustomer");
             if (dropElement.classList.contains('show')) {
                 dropElement.classList.remove('show');
             }
