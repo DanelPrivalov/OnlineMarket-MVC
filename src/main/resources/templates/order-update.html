@@ -38,35 +38,77 @@
                         <option th:each="user:${users}"
                                 th:value="${user.id}"
                                 th:text="${user.login}"
-                                th:discount="${user.discount}" Логин покупателя
+                                th:discount="${user.discount}"
                             th:selected="${order.user.id == user.id}">
                         </option>
                     </select>
-                    <!--                <input type="text" th:name="{users.discount}" id="idUserDiscount" placeholder="Discount">-->
+
+                    <!--<input type="text" th:name="{users.discount}" id="idUserDiscount" placeholder="Discount">-->
                 </div>
-                <br>
-                <div id="productSelectContainer" th:each="productInOrder: ${order.productInOrder}">
-                    <label> Выберите продукт</label>
-                    <div class="addProductClass" th:id="addProduct0">
-                        <select class="productSelectClass" th:name="${productInOrder.product.id}" id="productSelectList0">
-                            <option th:each="product :${products}"
-                                    th:value="${product.id}"
-                                    th:text="${product.name}" Наименование продукта
-                                    th:price-id="${product.price}"
-                                    th:selected="${productInOrder.product.id == product.id}">
-                            </option>
-                        </select>
-                        <label> Количество</label>
-                        <input type="number" class="productQuantityClass" th:value="${productInOrder.quantity}"
-                               id="productQuantity0" placeholder="Количество товара" onchange="writeProductFinalPrice()"/>
-                        <label> Итоговая цена</label>
-                        <input readonly type="number" class="productFinalPriceClass" th:value="${productInOrder.finalPrice}"
-                               id="productFinalPrice0" placeholder="Итоговая цена"/>
-                    </div>
-                </div>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th >Row</th>
+                        <th >Variety</th>
+                        <th >Seeds per cell</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block id="productSelectContainer" th:each="currentProductInOrder,productInOrderStat : *{productInOrder}">
+                    <tr class="addProductClass" th:id="${productInOrderStat.index}">
+<!--                        <tr id="productSelectContainer">-->
+                        <div class="addProductClass" th:id="addProduct__${productInOrderStat.index}__">
+                        <td th:text="${productInOrderStat.count}">1</td>
+                        <td>
+                            <select class="productSelectClass"  th:field="*{productInOrder[__${productInOrderStat.index}__].product.id}" th:id="productSelectList__${productInOrderStat.index}__">
+                                <option th:each="product :${products}"
+                                        th:value="${product.id}"
+                                        th:text="${product.name}"
+                                        th:price-id="${product.price}"
+                                        th:selected="${currentProductInOrder.product.id == product.id}">
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="productQuantityClass"  th:field="*{productInOrder[__${productInOrderStat.index}__].quantity}" th:id="productQuantity__${productInOrderStat.index}__" placeholder="Количество товара" onchange="writeProductFinalPrice()"/>
+                        </td>
+                        <td>
+                            <input readonly type="number" class="productFinalPriceClass" th:field="*{productInOrder[__${productInOrderStat.index}__].finalPrice}" th:id="productFinalPrice__${productInOrderStat.index}__" placeholder="Итоговая цена"/>
+                            <input type="hidden" th:field="*{productInOrder[__${productInOrderStat.index}__].id}" />
+                        </td>
+                        <td>
+                            <button type = "button" th:onclick="'removeProduct('+__${productInOrderStat.index}__+')'">Удалить товар</button>
+                        </td>
+                        </div>
+
+                    </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+<!--                <br>-->
+<!--                <div id="productSelectContainer" th:each="productInOrder: ${order.productInOrder}">-->
+<!--                    <label> Выберите продукт</label>-->
+<!--                    <div class="addProductClass" th:id="addProduct0">-->
+<!--                        <select class="productSelectClass" th:name="${productInOrder.product.id}" id="productSelectList0">-->
+<!--                            <option th:each="product :${products}"-->
+<!--                                    th:value="${product.id}"-->
+<!--                                    th:text="${product.name}" Наименование продукта-->
+<!--                                    th:price-id="${product.price}"-->
+<!--                                    th:selected="${productInOrder.product.id == product.id}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                        <label> Количество</label>-->
+<!--                        <input type="number" class="productQuantityClass" th:value="${productInOrder.quantity}"-->
+<!--                               id="productQuantity0" placeholder="Количество товара" onchange="writeProductFinalPrice()"/>-->
+<!--                        <label> Итоговая цена</label>-->
+<!--                        <input readonly type="number" class="productFinalPriceClass" th:value="${productInOrder.finalPrice}"-->
+<!--                               id="productFinalPrice0" placeholder="Итоговая цена"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+
                 <br>
                 <button type="button" id="addProductSelect">Добавить еще товар</button>
-                <button type="button" id="deleteLastProductSelect">Удалить последний товар</button>
                 <br>
                 <br>
                 <div>
@@ -94,14 +136,19 @@
             <p><a href="/order">Cancel<i></i></a></p>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script type="text/javascript">
+                function removeProduct(index) {
+                    $("#"+index).remove();
+                }
+            </script>
+            <script type="text/javascript">
                 $(document).ready(function () {
                         $('#addProductSelect').on('click', function () {            // Триггер на изменение нажатие кнопки
-                            var oldIdProductSelectContainer = $("#productSelectContainer .addProductClass:last-child").attr("ID") // Получаем ID последнего добавленного класса
+                            var oldIdProductSelectContainer = $(".addProductClass").attr("ID") // Получаем ID последнего добавленного класса
                             var subStringIdAddProductClass = "addProduct";                          // ID класса ( используется для вычиследния длинны и создания ID нового класса
                             var oldNumber = Number(oldIdProductSelectContainer.substring(subStringIdAddProductClass.length))
                             var newNumber = oldNumber + 1;
                             var newIdProductSelectContainer = subStringIdAddProductClass + newNumber;                            // Генерируем новый ID
-                            var cloneClass = $(".addProductClass:last-child").clone(true, true) //клонируем последний добавленный класс(это нужно для того чтобы не копировать полностью весь класс иначе уходит в разнос
+                            var cloneClass = $(".addProductClass").clone(true, true) //клонируем последний добавленный класс(это нужно для того чтобы не копировать полностью весь класс иначе уходит в разнос
                             cloneClass.attr("id", newIdProductSelectContainer);                                //Прописываем склонированному классу новый ID
                             var nameFirstPart = "productInOrder[";  // Первая часть имени для select и input (одинаковая у всех)
 // Select товар
@@ -109,8 +156,8 @@
                             var selNameLastPart = "].product.id";         // Последняя часть name для select
                             var newSelectName = nameFirstPart + newNumber + selNameLastPart; // Создаем новый name
                             var newSelectId = idSelectFirstPart + newNumber;// Создаем новый ID
-                            cloneClass.children()[0].setAttribute("name", newSelectName); //Присваиваем новый name
-                            cloneClass.children()[0].setAttribute("id", newSelectId); // Присваиваем новый ID
+                            cloneClass.children()[1].setAttribute("name", newSelectName); //Присваиваем новый name
+                            cloneClass.children()[1].setAttribute("id", newSelectId); // Присваиваем новый ID
 // input количество
                             var idQuantityFirstPart = "productQuantity"; // Первая часть ID
                             var quantityNameLastPart = "].quantity";    // Последняя часть name
@@ -124,9 +171,9 @@
                             var finalPriceNameLastPart = "].finalPrice";     // Последняя часть name для
                             var newFinalPriceName = nameFirstPart + newNumber + finalPriceNameLastPart;  // Создаем новый name
                             var newFinalPriceId = idFinalPriceFirstPart + newNumber; // Создаем новый ID
-                            cloneClass.children()[4].setAttribute("name", newFinalPriceName); //Присваиваем новый name
-                            cloneClass.children()[4].setAttribute("id", newFinalPriceId); // Присваиваем новый ID
-                            cloneClass.children()[4].value = "";                        // Обнуляем значение
+                            cloneClass.children()[3].setAttribute("name", newFinalPriceName); //Присваиваем новый name
+                            cloneClass.children()[3].setAttribute("id", newFinalPriceId); // Присваиваем новый ID
+                            cloneClass.children()[3].value = "";                        // Обнуляем значение
                             $("#productSelectContainer").append(cloneClass);  //Присоединяем новый класс
                             writeProductFinalPrice()
                         });
@@ -140,20 +187,6 @@
                         $("#orderPrice").val(Number($(value).val())+Number($("#orderPrice").val()))
                     })
                 };
-            </script>
-
-            <script type="text/javascript">
-                $(document).ready(function () {
-                        $('#deleteLastProductSelect').on('click', function () {            // Триггер на изменение нажатие кнопки
-                            var firstIdProductSelectContainer = $("#productSelectContainer .addProductClass").attr("ID") // Получаем ID первого класса
-                            var lastIdProductSelectContainer = $("#productSelectContainer .addProductClass:last-child").attr("ID") // Получаем ID последнего класса
-                            if (firstIdProductSelectContainer != lastIdProductSelectContainer) {  //Проверка нужна для того, чтобы мы не удалили единственный товар( иначе кнопка добавить больше не будет работать)
-                                $("#productSelectContainer .addProductClass:last-child").remove();    //Удаляем последний добавленный класс
-                                writeProductFinalPrice()
-                            }
-                        });
-                    }
-                );
             </script>
             <script type="text/javascript">
                 function writeProductFinalPrice () {
