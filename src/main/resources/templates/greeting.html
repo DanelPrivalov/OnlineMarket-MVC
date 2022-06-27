@@ -1,12 +1,287 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title> Getting Started: Serving Web Content</title>
+    <title> home </title>
+    <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta charset="UTF-8">
+    <style>
+        * {
+            box-sizing: border-box
+        }
 
-    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8/>
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 80%;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/4 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .text-block {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
 </head>
 <body>
-<p th:text="'Приветствие'" />
-<a href="/home"> Войти </a>
+
+<div class="topnav">
+    <a href="/home">Главная страница</a>
+    <a href="/home">Мой аккаунт</a>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="dropFunction()">Каталог товаров
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="dropElement">
+            <a href="/products">Все товары</a>
+            <a href="/drinks">Напитки</a>
+            <a href="/games">Настольные игры</a>
+            <a href="/figures">Фигурки</a>
+        </div>
+    </div>
+    <a href = "/home"> Моя корзина </a>
+    <a href="/home" style="float:right;"> Выйти </a>
+</div>
+
+
+<div class="container links">
+    <div>
+        <figure class="fig">
+            <img src="img/Logo.png" height="45">
+            <h2 class="header" text="Войдите или зарегистрируйтесь"></h2>
+        </figure>
+    </div>
+
+
+</div>
+
+<br>
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+        <div class="numbertext">1 / 4</div>
+        <img src="img/ris1.png" style="width:100%">
+        <div class="text-block">
+            <h4>Мероприятия</h4>
+            <p>Фото с наешего стенда на ComiC CON</p>
+        </div>
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">2 / 4</div>
+        <img src="img/ris2.png" style="width:100%">
+        <div class="text-block">
+            <h4>Наивысшие оценки</h4>
+            <p>Топ этой недели</p>
+        </div>
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 4</div>
+        <img src="img/ris3.png" style="width:100%">
+        <div class="text-block">
+            <h4>Выбор редакции</h4>
+            <p>Под прицелом: Нуар</p>
+        </div>
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img src="img/ris4.png" style="width:100%">
+        <div class="text-block">
+            <h4>Новинки</h4>
+            <p>Дополнение для Dark souls</p>
+        </div>
+    </div>
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+</div>
+
+<br>
+<!--товар-->
+<div class="product-wrap" th:each="product:${products}">
+    <div class="product-item">
+        <img th:src="@{${product.images}}" width="300" height="600">
+        <form action="#" th:action="@{/home}" method="post">
+            <div class="product-buttons" th:id="AddToCart">
+                <button class="cardbutton" type="submit" name="add" th:value="${product.id}">В корзину</button>
+
+            </div>
+        </form>
+    </div>
+    <div class="product-title">
+        <p><a th:href="@{/productCard/{id}(id=${product.id})}" th:text=" @{${product.name}}"> </a></p>
+    </div>
+    <span th:text="@{${product.price}} + ' руб.'">  </span>
+</div>
+
+
+<td th:text="${name}"></td>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+</script>
+<script>
+    // When the user clicks on div, open the popup
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
+<script>
+
+    function dropFunction() {
+        document.getElementById("dropElement").classList.toggle("show");
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            var dropElement = document.getElementById("dropElement");
+            if (dropElement.classList.contains('show')) {
+                dropElement.classList.remove('show');
+            }
+        }
+    }
+</script>
 </body>
 </html>

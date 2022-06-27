@@ -35,6 +35,7 @@ public class MainController {
 
     @GetMapping("/")
     public String homePage(Model model) {
+        model.addAttribute("products", productRepository.findAll());
         return "greeting";
     }
 

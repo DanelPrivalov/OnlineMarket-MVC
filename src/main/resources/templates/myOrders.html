@@ -53,7 +53,7 @@
                     <th>№ Заказа</th>
                     <th>Дата</th>
                     <th>Состояние заказа</th>
-                    <th>Комментарий</th>
+
                     <th>Сумма</th>
                 </tr>
                 </thead>
@@ -62,7 +62,6 @@
                     <td th:text="${order.orderId}"></td>
                     <td th:text="${order.date}"></td>
                     <td th:text="${order.condition.conditionName}"></td>
-                    <td th:text="${order.comment}"></td>
                     <td th:text="${order.orderPrice}"></td>
                     <td><a th:href="@{myOrder-detail/{id}(id=${order.orderId})}">Детали заказа</a></td>
                 </tr>

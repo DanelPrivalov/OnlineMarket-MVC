@@ -162,7 +162,7 @@
 <div class="container links">
     <div>
         <figure class="fig">
-            <img src="img/Logo.png" width="312" height="66">
+            <img src="img/Logo.png" height="45">
             <figcaption>
                 <h2 class="header" th:text="'Добро пожаловать, '+${user.firstName}"></h2>
             </figcaption>
@@ -208,7 +208,7 @@
     </div>
     <div class="mySlides fade">
         <div class="numbertext">4 / 4</div>
-        <img src="img/ris4.png" style="width:100%">
+        <img src="img/Dark.jpg" style="width:100%">
         <div class="text-block">
             <h4>Новинки</h4>
             <p>Дополнение для Dark souls</p>
@@ -297,14 +297,13 @@
 
     window.onclick = function (e) {
         if (!e.target.matches('.dropbtn')) {
-            var dropElement = document.getElementById("dropFunction");
+            var dropElement = document.getElementById("dropElement");
             if (dropElement.classList.contains('show')) {
                 dropElement.classList.remove('show');
             }
         }
     }
 </script>
-
 
 <script>
 
