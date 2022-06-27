@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="utf-8">
     <title>Users</title>
@@ -9,13 +10,21 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="/home">Главная страница</a>
-    <!--    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>-->
-    <a href="/products">Список товаров</a>
-    <a href="/drinks">Список напитков</a>
-    <a href="/games">Список игр</a>
-    <a href="/figures">Список фигурок</a>
-    <a href="/users">Список пользователей</a>
+    <a href="/home">Главная страница</a>
+    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="dropFunction()">Каталог товаров
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="dropElement">
+            <a href="/products">Все товары</a>
+            <a href="/drinks">Напитки</a>
+            <a href="/games">Настольные игры</a>
+            <a href="/figures">Фигурки</a>
+        </div>
+    </div>
+    <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
+
     <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
 
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
@@ -29,27 +38,27 @@
             <h2 th:case="null">No figures yet!</h2>
             <div th:case="*">
                 <div class="container links">
-                    <h2 class="header">Figures</h2>
+                    <h2 class="header">Коллекционные фигурки</h2>
                     <table border="1">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Picture</th>
-                            <th>Availability</th>
-                            <th>SEO_attributes</th>
-                            <th>Product_type_id</th>
-                            <th>Rating_id</th>
-                            <th>Sale_id</th>
-                            <!--                        <th>Figure_id</th>-->
-                            <th>Figure_producer</th>
-                            <th>Height</th>
-                            <th>Width</th>
-                            <th>Fandom</th>
-                            <th>Flexibility</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Название</th>
+                            <th>Описание</th>
+                            <th>Цена</th>
+                            <th>Картинка</th>
+                            <th>Наличие</th>
+                            <th>SEO атрибут</th>
+                            <th>Тип продукта</th>
+                            <th>Рейтинг</th>
+                            <th>Скидка</th>
+                            <th>Производитель</th>
+                            <th>Высота</th>
+                            <th>Ширина</th>
+                            <th>Фандом</th>
+                            <th>Гибкость</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Изменить</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">Удалить</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -63,23 +72,43 @@
                             <td th:text="${figure.productType.name}"></td>
                             <td th:text="${figure.ratingId}"></td>
                             <td th:text="${figure.sale.value}"></td>
-                            <!--                        <td th:text="${figure.collectableFiguresId}"></td>-->
                             <td th:text="${figure.collectableFigureProducer.name}"></td>
                             <td th:text="${figure.height}"></td>
                             <td th:text="${figure.width}"></td>
                             <td th:text="${figure.fandom.name}"></td>
                             <td th:text="${figure.flexibility}"></td>
-                            <td><a th:href="@{/edit-figure/{id}(id=${figure.id})}">Edit<i></i></a></td>
-                            <td><a th:href="@{/delete-figure/{id}(id=${figure.id})}">Delete<i></i></a></td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/edit-figure/{id}(id=${figure.id})}">Изменить<i></i></a>
+                            </td>
+                            <td th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER'?'false':'true'">
+                                <a  th:href="@{/delete-figure/{id}(id=${figure.id})}">Удалить<i></i></a>
+                            </td>
+
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <p><a href="/add-figure">Create figure<i></i></a></p>
-            <p><a href="/products">Back to products<i></i></a></p>
+            <p><a href="/add-figure">Добавить фигурку<i></i></a></p>
+            <p><a href="/products">Назад к продуктам<i></i></a></p>
         </div>
     </div>
 </div>
+
+<script>
+
+    function dropFunction() {
+        document.getElementById("dropElement").classList.toggle("show");
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            var dropElement = document.getElementById("dropFunction");
+            if (dropElement.classList.contains('show')) {
+                dropElement.classList.remove('show');
+            }
+        }
+    }
+</script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html">
     <meta charset="UTF-8">
     <title>Cart</title>
@@ -12,18 +13,28 @@
     </style>
 </head>
 <body>
-<div>
-    <div class="topnav">
-        <a href="/home">Главная страница</a>
-        <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
-        <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
-
-        <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
-
-        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-            <input hidden type="submit" value="Logout"/>
-        </form>
+<div class="topnav">
+    <a href="/home">Главная страница</a>
+    <a th:href="@{account/{id}(id=${user.id})}">Мой аккаунт</a>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="dropFunction()">Каталог товаров
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="dropElement">
+            <a href="/products">Все товары</a>
+            <a href="/drinks">Напитки</a>
+            <a href="/games">Настольные игры</a>
+            <a href="/figures">Фигурки</a>
+        </div>
     </div>
+    <a th:hidden="${user.getRoleString()}=='CUSTOMER'?'false':'true'" th:href = "@{/cart}"> Моя корзина </a>
+
+    <a href="javascript: document.logoutForm.submit()" style="float:right;"> Выйти </a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Logout"/>
+    </form>
+</div>
 
     <div class="container links">
         <h2 class="header" th:text="'Это ваша корзина, '+${user.firstName}"></h2>
@@ -45,18 +56,15 @@
 
                 <tbody>
                 <tr th:each="productCart : ${cart.productCarts}">
-<!--                    <td><input th:id="${productCart.id}" th:type="checkbox" th:name="products"-->
-<!--                               th:value="${productCart.id}"/></td>-->
-<!--                    чек бокс для выбора товаров-->
                     <td th:text="${productCart.product.name}"></td>
                     <td th:text="${productCart.product.description}"></td>
                     <td> <img th:src="@{${productCart.product.images}}" alt="Фото продукта" width="200" height="100"> </td>
                     <td th:id = "'idPrice'+(${productCart.product.id})" th:text="${productCart.product.price}"></td>
-                    <td><a th:href="@{/productCardQuantityDecrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-icon.png" width="50" height="50" class="invert"><i></i></img></a></td>
+                    <td><a th:href="@{/productCardQuantityDecrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-icon.png" width="25"  class="invert"><i></i></img></a></td>
                     <td th:id = "'idQuantity'+(${productCart.product.id})" th:text="${productCart.quantity}"></td>
-                    <td><a th:href="@{/productCardQuantityIncrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Add-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
+                    <td><a th:href="@{/productCardQuantityIncrease/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Add-icon.png" width="25" class="invert"><i></i></img></a></td>
                     <td th:id = "'idFinalPrice'+(${productCart.product.id})"></td>
-                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-Cart-icon.png" width="50" height="50"class="invert"><i></i></img></a></td>
+                    <td><a th:href="@{/productCartDelete/{id}(id=${productCart.product.id})}" ><img src= "https://icons.iconarchive.com/icons/iconsmind/outline/512/Remove-Cart-icon.png" width="25"class="invert"><i></i></img></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -103,5 +111,22 @@
         }
     }
 </script>
+
+<script>
+
+    function dropFunction() {
+        document.getElementById("dropElement").classList.toggle("show");
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            var dropElement = document.getElementById("dropFunction");
+            if (dropElement.classList.contains('show')) {
+                dropElement.classList.remove('show');
+            }
+        }
+    }
+</script>
+
 </body>
 </html>

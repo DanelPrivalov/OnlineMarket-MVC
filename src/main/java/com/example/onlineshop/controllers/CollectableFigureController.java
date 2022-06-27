@@ -3,8 +3,10 @@ package com.example.onlineshop.controllers;
 import com.example.onlineshop.entity.product.ProductType;
 import com.example.onlineshop.entity.product.collectableFigure.CollectableFigure;
 import com.example.onlineshop.entity.product.drink.Drink;
+import com.example.onlineshop.entity.user.User;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,8 +40,9 @@ public class CollectableFigureController {
     }
 
     @GetMapping("/figures")
-    public String showFigures(Model model) {
+    public String showFigures(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("figures", collectableFigureRepository.findAll());
+        model.addAttribute("user", user);
         return "show-figures";
     }
     @GetMapping("/add-figure")
