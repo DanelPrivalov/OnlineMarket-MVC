@@ -13,7 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -126,7 +127,30 @@ public class CartController {
         }
         order.setProductInOrder(productInOrders);
         orderRepository.save(order);
-        return "redirect:/cart";
-        //       return "finalOrder";// сделать вьюшку ваш заказ создан ляляля
+        //return "redirect:/cart";
+        return "finalOrder";// сделать вьюшку ваш заказ создан ляляля
+    }
+
+    @GetMapping("/myOrders")
+    public String ShowMyOrders(@AuthenticationPrincipal User activeUser, Order order, Model model) {
+        model.addAttribute("user", activeUser);
+        model.addAttribute("ordersActiveUser", orderRepository.findByUser(activeUser));
+        return "myOrders";
+    }
+
+
+    @GetMapping("/myOrder-detail/{orderId}")
+    public String updateOrderForm(@AuthenticationPrincipal User activeUser, @PathVariable("orderId") Long orderId, Model model) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("Invalid type ID" + orderId));
+        model.addAttribute("user", activeUser);
+        model.addAttribute("order", order);
+        return "myOrder-detail";
+    }
+
+    @PostMapping("/myOrder-detail")
+    public String updateOrder(@Valid Order order) {
+        orderRepository.save(order);
+        return "redirect:/myOrders";
     }
 }
