@@ -1,19 +1,22 @@
 package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.entity.order.Order;
+import com.example.onlineshop.entity.order.ProductInOrder;
 import com.example.onlineshop.entity.product.Product;
 import com.example.onlineshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,13 +27,15 @@ public class OrderController {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final ConditionRepository conditionRepository;
+    private final ProductInOrderRepository productInOrderRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository, ConditionRepository conditionRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository, ConditionRepository conditionRepository, ProductInOrderRepository productInOrderRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.conditionRepository = conditionRepository;
         this.productRepository = productRepository;
+        this.productInOrderRepository = productInOrderRepository;
     }
 
     @GetMapping("/order")
@@ -76,9 +81,29 @@ public class OrderController {
     }
 
     @PostMapping("/order-update")
-    public String updateOrder(@Valid Order order, BindingResult bindingResult, Model model, Product product, Integer quantity, Double finalPrice) {
+    public String updateOrder(@Valid Order order) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        LocalDateTime dateTime = LocalDateTime.now();
+        order.setDate(dateTime.format(formatter));
+        order.getProductInOrder().removeIf(p->(p.getProduct()==null));
+        int amount = orderRepository.findById(order.getOrderId()).get().getProductInOrder().size();
+        var productList = new ArrayList<ProductInOrder>();
+        for(int i = 0 ; i < amount;i++ ) {
+            var product = orderRepository.findById(order.getOrderId()).get().getProductInOrder().get(i);
+            productList.add(product);
+         }
+        orderRepository.findById(order.getOrderId()).get().getProductInOrder().clear();
+        orderRepository.save(orderRepository.findById(order.getOrderId()).get());
+        productInOrderRepository.deleteAll(productList);
+ //       productInOrderRepository.deleteAll(orderRepository.findById(order.getOrderId()).get().getProductInOrder());
         orderRepository.save(order);
         return "redirect:/order";
     }
-
+    @RequestMapping(value="/order-update", params={"removeRow"})
+    public String removeRow(
+            Order order, HttpServletRequest req) {
+        Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
+        order.getProductInOrder().remove(rowId.intValue());
+        return "order-update";
+    }
 }

@@ -53,14 +53,15 @@ public class CartController {
 
     @GetMapping("/productCartDelete/{id}")
     public String deleteProductFromCart(@AuthenticationPrincipal User activeUser, @PathVariable("id") Long id, Model model) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        List<ProductCart> productCarts = activeUser.getCart().getProductCarts();
-        ProductCart deleteProductCart = new ProductCart();
-        for (ProductCart productCart : productCarts) {
-            if (productCart.getProduct().getId() == product.getId()) {
-                deleteProductCart = productCart;
-            }
-        }
+        //Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+//        List<ProductCart> productCarts = activeUser.getCart().getProductCarts();
+//        ProductCart deleteProductCart = new ProductCart();
+//        for (ProductCart productCart : productCarts) {
+//            if (productCart.getProduct().getId() == product.getId()) {
+//                deleteProductCart = productCart;
+//            }
+//        }
+        ProductCart deleteProductCart =  activeUser.getCart().getProductCarts().stream().filter(p->p.getProduct().getId()==id).findFirst().orElseThrow(()-> new IllegalArgumentException("Invalid product Id:" + id));
         activeUser.getCart().DeleteProductCart(deleteProductCart);
         productCartRepository.delete(deleteProductCart);
         return "redirect:/cart";

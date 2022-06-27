@@ -29,16 +29,9 @@ public class Cart {
     public void AddProductCart(ProductCart productCart) {
         productCarts.add(productCart);
     }
-    public void DeleteProductCart(ProductCart productCart_new){
-        System.out.println(productCart_new);
-        for (ProductCart productCarts : this.productCarts){
-            System.out.println(productCarts);
-        }
-       productCarts.remove(productCart_new);
-        for (ProductCart productCarts : this.productCarts){
-            System.out.println(productCarts);
-        }
-         }
+    public void DeleteProductCart(ProductCart productCart_new) {
+        productCarts.remove(productCart_new);
+    }
 
 //        public ProductCart getProductCart(Long id){
 //        return productCarts.stream().filter(productCart -> productCart.getId().equals(id)).findFirst().orElse(null);
