@@ -25,8 +25,6 @@
 <h2 class="header"> Редактировать настольную игру </h2>
 
 <form action="#" th:action="@{/games-update}" th:object="${boardGame}" method="post">
-    <fieldset>
-        <legend>Редактирование игры</legend>
         <div>
             <label for="id">Id товара</label>
             <input readonly type="text" th:field="*{id}" id="id" placeholder="id">
@@ -196,8 +194,6 @@
             </label>
         </div>
         <br>
-
-
         <div>
             <label>Выберите доп.опцию игры
                 <select th:name="options[0].optionId">
@@ -209,10 +205,8 @@
                 </select>
             </label>
         </div>
-    </fieldset>
     <button type="submit" class="button">Изменить</button>
     <p><a href="/games">Отмена<i></i></a></p>
-    </fieldset>
 </form>
 </div>
 </body>

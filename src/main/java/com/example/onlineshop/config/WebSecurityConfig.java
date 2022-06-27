@@ -56,7 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/loginpage.css");
         web.ignoring().antMatchers("/css.css");
         web.ignoring().antMatchers("/img/background.jpg");
-        web.ignoring().antMatchers("/img");
 
     }
 
