@@ -151,7 +151,7 @@
 <div class="container links">
     <div>
         <figure class="fig">
-            <img src="img/Logo.png" width="312" height="66">
+            <img src="img/Logo.png" height="45">
             <figcaption>
                 <h2 class="header" th:text="'Добро пожаловать, '+${user.firstName}"></h2>
             </figcaption>
@@ -286,13 +286,12 @@
 
     window.onclick = function(e) {
         if (!e.target.matches('.dropbtn')) {
-            var dropElement = document.getElementById("dropFunction");
+            var dropElement = document.getElementById("dropElement");
             if (dropElement.classList.contains('show')) {
                 dropElement.classList.remove('show');
             }
         }
     }
 </script>
-
 </body>
 </html>

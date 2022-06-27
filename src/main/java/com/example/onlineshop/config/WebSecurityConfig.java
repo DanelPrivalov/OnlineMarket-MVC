@@ -26,9 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration").permitAll()
+                .antMatchers("/", "/registration", "/img/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
@@ -50,10 +51,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
+
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/loginpage.css");
         web.ignoring().antMatchers("/css.css");
         web.ignoring().antMatchers("/img/background.jpg");
+        web.ignoring().antMatchers("/img");
 
     }
 

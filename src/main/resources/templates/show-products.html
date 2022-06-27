@@ -47,7 +47,7 @@
                             <th>Цена</th>
                             <th>Картинка</th>
                             <th>Наличие</th>
-                            <th>SEO атрибут</th>
+                            <th th:hidden="${user.getRoleString()}=='ADMIN' or ${user.getRoleString()}=='MANAGER' ?'false':'true'">SEO атрибут</th>
                             <th>Тип продукта</th>
                             <th>Рейтинг</th>
                             <th>Скидка</th>
@@ -91,7 +91,7 @@
 
     window.onclick = function(e) {
         if (!e.target.matches('.dropbtn')) {
-            var dropElement = document.getElementById("dropFunction");
+            var dropElement = document.getElementById("dropElement");
             if (dropElement.classList.contains('show')) {
                 dropElement.classList.remove('show');
             }
